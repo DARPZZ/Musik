@@ -2,13 +2,19 @@ package sample;
 
 import java.util.ArrayList;
 
+/**
+ * Song class
+ * @author NMP
+ */
+
 public class Song
 {
     private final String SONG_NAME;
     private final String ARTIST;
     private final String FILE_PATH;
     private final double DURATION;
-    private static ArrayList<sample.Song> songList = new ArrayList<sample.Song>();
+    private static final ArrayList<Song> SONG_LIST = new ArrayList<>();
+
 
     public Song(String songName, String artist, String filePath, double duration)
     {
@@ -25,13 +31,20 @@ public class Song
         while (!DB.getData().equals(DB.NOMOREDATA))
         {
 
-            songList.add(new sample.Song(DB.getData(), DB.getData(), DB.getData(), Double.parseDouble(DB.getData())));
+            SONG_LIST.add(new sample.Song(DB.getData(), DB.getData(), DB.getData(), Double.parseDouble(DB.getData())));
         }
 
-        if (!songList.isEmpty())
+        if (!SONG_LIST.isEmpty())
         {
-            System.out.println(songList);
+            System.out.println(SONG_LIST);
         }
+    }
+
+    public static void AddSongToDB(String songName, String artist, String filePath, double duration)
+    {
+        DB.insertSQL("Insert into tblSong values('" + songName + "', '" + artist + "', '" + filePath + "', '" + duration + "');");
+        System.out.printf("%s er oprettet i databasen", songName);
+        SONG_LIST.add(new Song(songName, artist, filePath, duration));
     }
 
     //region getter
@@ -58,7 +71,7 @@ public class Song
 
     public static ArrayList<sample.Song> getSongList()
     {
-        return songList;
+        return SONG_LIST;
     }
 
     //endregion

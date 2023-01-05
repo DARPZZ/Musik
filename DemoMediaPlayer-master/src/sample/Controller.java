@@ -36,7 +36,7 @@ public class Controller implements Initializable {
         //
         mediaV.setMediaPlayer(mp);
         // mp.setAutoPlay(true);
-        // If autoplay is turned of the method play(), stop(), pause() etc controls how/when medias are played
+        // If autoplay is turned off the method play(), stop(), pause() etc controls how/when medias are played
         mp.setAutoPlay(false);
 
     }
