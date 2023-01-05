@@ -41,6 +41,7 @@ public class Controller implements Initializable {
 
     }
 
+
     @FXML
     /**
      * Handler for the play button
@@ -49,7 +50,6 @@ public class Controller implements Initializable {
     {
         // Play the mediaPlayer with the attached media
         mp.play();
-        Song.CreateList();
     }
 
 }
