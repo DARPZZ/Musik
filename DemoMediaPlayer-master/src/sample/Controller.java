@@ -1,5 +1,7 @@
 package sample;
 
+import javafx.scene.control.ListView;
+import javafx.scene.control.TextField;
 import javafx.scene.media.*;
 import javafx.scene.control.Button;
 
@@ -13,12 +15,14 @@ public class Controller implements Initializable {
     @FXML
     private MediaView mediaV;
 
-    @FXML Button knapPlay;
+    @FXML
+    Button knapPlay, knapPause, knapStop;
 
     @FXML
-    Button knapPause;
+    ListView sangeliste, playlistview, playlistsongs;
+
     @FXML
-    Button knapStop;
+    TextField searchfield;
 
     private MediaPlayer mp;
     private Media me;
