@@ -50,13 +50,14 @@ public class Song
     public static ArrayList<Song> CreateList(String tblName, String fldName, String value)
     {
         ArrayList<Song> songList = new ArrayList<>();
-        DB.selectSQL("Select * from " + tblName + " where " + fldName + " = '" + value + "');");
+        DB.selectSQL("Select * from " + tblName + " where " + fldName + " = '" + value + "';");
+        System.out.println("Select * from " + tblName + " where " + fldName + " = '" + value + "');");
 
-        while (!DB.getData().equals(DB.NOMOREDATA))
+       /* while (!DB.getData().equals(DB.NOMOREDATA))
         {
 
             songList.add(new sample.Song(DB.getData(), DB.getData(), DB.getData(), Double.parseDouble(DB.getData())));
-        }
+        } */
         return songList;
     }
 
