@@ -21,8 +21,8 @@ public class Main extends Application
 
     public static void main(String[] args)
     {
-        ArrayList<Song> test = Song.CreateList("tblSong", "fldSondId", "1");
-        System.out.println(test.get(0).getFILE_PATH());
+        //ArrayList<Song> test = Song.CreateList("tblSong", "fldSondId", "1");
+        //System.out.println(test.get(0).getFILE_PATH());
 
         launch();
     }
