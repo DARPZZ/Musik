@@ -5,6 +5,7 @@ import javafx.collections.ObservableList;
 import javafx.scene.control.ListView;
 import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
 import javafx.scene.media.*;
 import javafx.scene.control.Button;
 
@@ -67,7 +68,10 @@ public class Controller implements Initializable {
 
         // set the selection mode to single, so only one song can be selected at a time
         sangeliste.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
+
+
     }
+
 
     @FXML
     /**
@@ -85,6 +89,17 @@ public class Controller implements Initializable {
     public void handlerStop()
     {
         mp.stop();
+    }
+    public void handlerSearch()
+    {
+        searchfield.setOnKeyPressed(handlerSearch -> {
+            // Handle the key press event here
+            KeyCode code = handlerSearch.getCode();
+            if (code == KeyCode.ENTER) {
+                System.out.println("m´he");
+            }
+        });
+
     }
 
 
