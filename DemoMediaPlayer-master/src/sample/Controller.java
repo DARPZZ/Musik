@@ -76,7 +76,7 @@ public class Controller implements Initializable {
 
     @FXML
     /**
-     * Handler for the play button
+     * Handler for the play/pause/stop button
      */
     public void handlerplay()
     {

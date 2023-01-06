@@ -10,10 +10,10 @@
       <Button fx:id="knapPlay" layoutX="110.0" layoutY="367.0" mnemonicParsing="false" onAction="#handlerplay" prefHeight="50.0" prefWidth="102.0" text="Play" />
       <Button fx:id="knapPause" layoutX="222.0" layoutY="367.0" mnemonicParsing="false" onAction="#handlerPause" prefHeight="50.0" prefWidth="102.0" text="Pause" />
       <Button fx:id="knapStop" layoutX="332.0" layoutY="367.0" mnemonicParsing="false" onAction="#handlerStop" prefHeight="50.0" prefWidth="102.0" text="Stop" />
-      <MediaView fx:id="mediaV" fitHeight="200.0" fitWidth="200.0" layoutX="811.0" layoutY="14.0" />
+      <MediaView fx:id="mediaV" fitHeight="400.0" fitWidth="400.0" layoutX="866.0" layoutY="279.0" />
       <ListView fx:id="sangeliste" layoutX="14.0" layoutY="14.0" prefHeight="244.0" prefWidth="579.0" />
       <TextField fx:id="searchfield" layoutX="14.0" layoutY="266.0" onAction="#handlerSearch" onKeyTyped="#handlerSearch" prefHeight="25.0" prefWidth="579.0" promptText="Search for a song" styleClass="search-field" />
       <ListView fx:id="playlistsongs" layoutX="865.0" layoutY="14.0" prefHeight="244.0" prefWidth="401.0" />
-      <ListView fx:id="playlistview" layoutX="596.0" layoutY="14.0" prefHeight="244.0" prefWidth="263.0" />
+      <ListView fx:id="playlistview" layoutX="596.0" layoutY="14.0" prefHeight="244.0" prefWidth="266.0" />
    </children>
 </AnchorPane>
