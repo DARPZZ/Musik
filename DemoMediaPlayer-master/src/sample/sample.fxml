@@ -5,12 +5,15 @@
 <?import javafx.scene.media.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="607.0" prefWidth="1025.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: Black;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
    <children>
-      <Button fx:id="knapPlay" layoutX="465.0" layoutY="37.0" mnemonicParsing="false" onAction="#handlerplay" prefHeight="50.0" prefWidth="102.0" text="Play" />
-      <Button fx:id="knapPause" layoutX="465.0" layoutY="129.0" mnemonicParsing="false" onAction="#handlerPause" prefHeight="67.0" prefWidth="102.0" text="Pause" />
-      <Button fx:id="knapStop" layoutX="465.0" layoutY="229.0" mnemonicParsing="false" onAction="#handlerStop" prefHeight="67.0" prefWidth="102.0" text="Stop" />
-      <MediaView fx:id="mediaV" fitHeight="200.0" fitWidth="200.0" layoutX="162.0" layoutY="62.0" />
-      <ListView fx:id="sangeliste" layoutX="14.0" layoutY="6.0" prefHeight="244.0" prefWidth="222.0" />
+      <Button fx:id="knapPlay" layoutX="110.0" layoutY="367.0" mnemonicParsing="false" onAction="#handlerplay" prefHeight="50.0" prefWidth="102.0" text="Play" />
+      <Button fx:id="knapPause" layoutX="222.0" layoutY="367.0" mnemonicParsing="false" onAction="#handlerPause" prefHeight="50.0" prefWidth="102.0" text="Pause" />
+      <Button fx:id="knapStop" layoutX="332.0" layoutY="367.0" mnemonicParsing="false" onAction="#handlerStop" prefHeight="50.0" prefWidth="102.0" text="Stop" />
+      <MediaView fx:id="mediaV" fitHeight="200.0" fitWidth="200.0" layoutX="811.0" layoutY="14.0" />
+      <ListView fx:id="sangeliste" layoutX="14.0" layoutY="14.0" prefHeight="244.0" prefWidth="579.0" />
+      <TextField fx:id="searchfield" layoutX="14.0" layoutY="266.0" prefHeight="25.0" prefWidth="579.0" promptText="Search for a song" styleClass="search-field" />
+      <ListView fx:id="playlistsongs" layoutX="865.0" layoutY="14.0" prefHeight="244.0" prefWidth="401.0" />
+      <ListView fx:id="playlistview" layoutX="596.0" layoutY="14.0" prefHeight="244.0" prefWidth="263.0" />
    </children>
 </AnchorPane>
