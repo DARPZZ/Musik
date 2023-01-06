@@ -103,6 +103,10 @@ public class Controller implements Initializable {
         });
 
     }
+    public void handleClickView(){
+
+
+    }
 
 
 }
