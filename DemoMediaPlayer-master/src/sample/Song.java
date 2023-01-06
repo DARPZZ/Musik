@@ -15,7 +15,6 @@ public class Song
     private final double DURATION;
     private static final ArrayList<Song> SONG_LIST = new ArrayList<>();
 
-
     public Song(String songName, String artist, String filePath, double duration)
     {
         this.SONG_NAME = songName;
@@ -30,7 +29,6 @@ public class Song
 
         while (!DB.getData().equals(DB.NOMOREDATA))
         {
-
             SONG_LIST.add(new sample.Song(DB.getData(), DB.getData(), DB.getData(), Double.parseDouble(DB.getData())));
         }
 
@@ -51,13 +49,11 @@ public class Song
     {
         ArrayList<Song> songList = new ArrayList<>();
         DB.selectSQL("Select * from " + tblName + " where " + fldName + " = '" + value + "';");
-        System.out.println("Select * from " + tblName + " where " + fldName + " = '" + value + "');");
 
-       /* while (!DB.getData().equals(DB.NOMOREDATA))
+        while (!DB.getData().equals(DB.NOMOREDATA))
         {
-
             songList.add(new sample.Song(DB.getData(), DB.getData(), DB.getData(), Double.parseDouble(DB.getData())));
-        } */
+        }
         return songList;
     }
 
@@ -87,7 +83,6 @@ public class Song
     {
         return SONG_LIST;
     }
-
     //endregion
 
 }
