@@ -1,5 +1,6 @@
 package sample;
 
+import com.sun.org.apache.xalan.internal.xsltc.dom.SortingIterator;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.ListView;
@@ -96,7 +97,8 @@ public class Controller implements Initializable {
             // Handle the key press event here
             KeyCode code = handlerSearch.getCode();
             if (code == KeyCode.ENTER) {
-                System.out.println("m´he");
+                String search = searchfield.getText();
+                 SearchSong.søgIgennemSange(search);
             }
         });
 
