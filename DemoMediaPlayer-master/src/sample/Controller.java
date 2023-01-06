@@ -13,8 +13,12 @@ public class Controller implements Initializable {
     @FXML
     private MediaView mediaV;
 
+    @FXML Button knapPlay;
+
     @FXML
-    private Button play;
+    Button knapPause;
+    @FXML
+    Button knapStop;
 
     private MediaPlayer mp;
     private Media me;
@@ -28,7 +32,7 @@ public class Controller implements Initializable {
      */
     public void initialize(URL location, ResourceBundle resources){
         // Build the path to the location of the media file
-        String path = new File("DemoMediaPlayer-master/src/sample/media/SampleAudio_0.4mb.mp3").getAbsolutePath();
+        String path = new File("DemoMediaPlayer-master/src/sample/media/Avicii vs. Conrad Sewell - Taste The Feeling.mp3").getAbsolutePath();
         // Create new Media object (the actual media content)
         me = new Media(new File(path).toURI().toString());
         // Create new MediaPlayer and attach the media to be played
@@ -46,18 +50,19 @@ public class Controller implements Initializable {
     /**
      * Handler for the play button
      */
-    private void handlePlay()
+    public void handlerplay()
     {
         // Play the mediaPlayer with the attached media
         mp.play();
     }
-    private void handlerstop()
-    {
-        mp.stop();
-    }
-    private void handlerPause()
+    public void handlerPause()
     {
         mp.pause();
     }
+    public void handlerStop()
+    {
+        mp.stop();
+    }
+
 
 }
