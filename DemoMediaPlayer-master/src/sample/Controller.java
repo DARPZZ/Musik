@@ -60,7 +60,9 @@ public class Controller implements Initializable {
 
         for (Song object : Song.getSongList())
         {
-            songName.add(object.getSONG_NAME());
+            String navn = "Song: "+  object.getSONG_NAME() + " Artist: " + object.getARTIST();
+            songName.add(navn);
+
         }
         ObservableList<String> songs = FXCollections.observableArrayList(songName);
 
@@ -69,7 +71,6 @@ public class Controller implements Initializable {
 
         // set the selection mode to single, so only one song can be selected at a time
         sangeliste.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
-
 
     }
 
@@ -98,7 +99,21 @@ public class Controller implements Initializable {
             KeyCode code = handlerSearch.getCode();
             if (code == KeyCode.ENTER) {
                 String search = searchfield.getText();
-                 SearchSong.søgIgennemSange(search);
+                // SearchSong.søgIgennemSange(search);
+                 Song.searchSong(search);
+
+                ArrayList<String> songName = new ArrayList<>();
+                for (Song object : Song.getSongList())
+                {
+                    String navn = "Song: "+  object.getSONG_NAME() + " Artist: " + object.getARTIST();
+                    songName.add(navn);
+                }
+                ObservableList<String> songs = FXCollections.observableArrayList(songName);
+
+                // set the items of the list view
+                sangeliste.setItems(songs);
+               // searchfield.clear();
+
             }
         });
 
