@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import javafx.scene.shape.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.media.*?>
@@ -19,7 +22,7 @@
          <font>
             <Font name="System Bold" size="18.0" />
          </font></Button>
-      <MediaView fx:id="mediaV" fitHeight="300.0" fitWidth="300.0" layoutX="966.0" layoutY="406.0" />
+      <MediaView fx:id="mediaV" fitHeight="300.0" fitWidth="300.0" layoutX="366.0" layoutY="360.0" />
       <ListView fx:id="sangeliste" layoutX="14.0" layoutY="47.0" onMouseClicked="#handleClickView" prefHeight="244.0" prefWidth="579.0" />
       <TextField fx:id="searchfield" layoutX="14.0" layoutY="291.0" onAction="#handlerSearch" onKeyTyped="#handlerSearch" prefHeight="25.0" prefWidth="579.0" promptText="Search for a song" styleClass="search-field" />
       <ListView fx:id="playlistsongs" layoutX="873.0" layoutY="47.0" prefHeight="244.0" prefWidth="401.0" />
@@ -39,5 +42,7 @@
             <Font size="26.0" />
          </font>
       </Text>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="400.0" layoutX="873.0" layoutY="306.0" stroke="BLACK" strokeType="INSIDE" width="400.0" />
+      <ImageView fx:id="ImageV" fitHeight="350.0" fitWidth="350.0" layoutX="899.0" layoutY="331.0" pickOnBounds="true" preserveRatio="true" />
    </children>
 </AnchorPane>
