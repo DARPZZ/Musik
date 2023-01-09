@@ -149,5 +149,6 @@ public class Controller implements Initializable {
 
             // set the selection mode to single, so only one song can be selected at a time
             sangeliste.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
+            System.out.println("ko");
         }
 }
