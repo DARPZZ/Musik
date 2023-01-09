@@ -7,7 +7,7 @@ public class Pictures
     ArrayList<String> pictures = new ArrayList<>();
     public void addPictures()
     {
-        pictures.add("");
+        pictures.add("DemoMediaPlayer-master/src/sample/Billeder/download (1).jfif");
 
     }
 }
