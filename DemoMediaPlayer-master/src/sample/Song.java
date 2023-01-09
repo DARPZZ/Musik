@@ -56,6 +56,18 @@ public class Song
         }
         return songList;
     }
+    public static void searchSong(String searchString)
+    {
+        SONG_LIST.clear();
+        System.out.println("Kina");
+        ArrayList<Song> songList = new ArrayList<>();
+
+        DB.selectSQL("Select * from tblSong where fldArtistName like '%"+searchString +"%' or  fldTitel like '%"+ searchString + "%'");
+        while (!DB.getData().equals(DB.NOMOREDATA))
+        {
+            SONG_LIST.add(new sample.Song(DB.getData(), DB.getData(), DB.getData(), Double.parseDouble(DB.getData())));
+        }
+    }
 
     //region getter
 

@@ -113,9 +113,10 @@ public class Controller implements Initializable {
             // Handle the key press event here
             KeyCode code = handlerSearch.getCode();
             if (code == KeyCode.ENTER) {
-                String search = searchfield.getText();
-                // SearchSong.søgIgennemSange(search);
 
+                String search = searchfield.getText();
+
+                Song.searchSong(search);
 
                 ArrayList<String> songName = new ArrayList<>();
                 for (Song object : Song.getSongList())
@@ -127,12 +128,14 @@ public class Controller implements Initializable {
 
                 // set the items of the list view
                 sangeliste.setItems(songs);
-               // searchfield.clear();
+                // searchfield.clear();
 
             }
         });
 
     }
+
+
 
     public void handleClickView(MouseEvent mouseEvent)
     {
