@@ -1,7 +1,5 @@
 package sample;
 
-import javafx.collections.ObservableList;
-
 import java.util.ArrayList;
 
 /**
@@ -52,24 +50,12 @@ public class Song
         ArrayList<Song> songList = new ArrayList<>();
         DB.selectSQL("Select * from " + tblName + " where " + fldName + " = '" + value + "';");
 
-
         while (!DB.getData().equals(DB.NOMOREDATA))
         {
             songList.add(new sample.Song(DB.getData(), DB.getData(), DB.getData(), Double.parseDouble(DB.getData())));
         }
         return songList;
     }
-    public static void searchSong(String searchString)
-    {
-        SONG_LIST.clear();
-
-        DB.selectSQL("Select * from tblSong where fldArtistName like '%"+searchString +"%' or  fldTitel like '%"+ searchString + "%'");
-        while (!DB.getData().equals(DB.NOMOREDATA))
-        {
-            SONG_LIST.add(new sample.Song(DB.getData(), DB.getData(), DB.getData(), Double.parseDouble(DB.getData())));
-        }
-    }
-
 
     //region getter
 
