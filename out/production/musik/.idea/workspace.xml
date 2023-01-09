@@ -2,7 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="731a5893-d892-4d5f-8bd3-35cec8f1e4c4" name="Changes" comment="Added billeder">
+      <change afterPath="$PROJECT_DIR$/DemoMediaPlayer-master/src/sample/Billeder/download (1).jfif" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DemoMediaPlayer-master/src/sample/Pictures.java" beforeDir="false" afterPath="$PROJECT_DIR$/DemoMediaPlayer-master/src/sample/Pictures.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db.properties" beforeDir="false" afterPath="$PROJECT_DIR$/db.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/musik/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/musik/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -72,6 +75,7 @@
       <workItem from="1673261116929" duration="134000" />
       <workItem from="1673261273667" duration="12468000" />
       <workItem from="1673297147588" duration="355000" />
+      <workItem from="1673297523765" duration="322000" />
     </task>
     <task id="LOCAL-00001" summary="Bug fixes">
       <created>1673257103086</created>
