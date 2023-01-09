@@ -45,7 +45,7 @@ public class Controller implements Initializable {
     public void initialize(URL location, ResourceBundle resources){
         // mp.setAutoPlay(true);
         // If autoplay is turned off the method play(), stop(), pause() etc controls how/when medias are played
-       // mp.setAutoPlay(false);
+        //mp.setAutoPlay(false);
         // Create new Media object (the actual media content)
 
         // create the list of songs
