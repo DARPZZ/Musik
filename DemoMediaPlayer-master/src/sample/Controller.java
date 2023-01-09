@@ -1,6 +1,5 @@
 package sample;
 
-import com.sun.org.apache.xalan.internal.xsltc.dom.SortingIterator;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.ListView;
@@ -35,13 +34,13 @@ public class Controller implements Initializable {
     private Media me;
     private String filepath = new File("DemoMediaPlayer-master/src/sample/media/SampleAudio_0.4mb.mp3").getAbsolutePath();
 
-
     /**
      * This method is invoked automatically in the beginning. Used for initializing, loading data etc.
      *
      * @param location
      * @param resources
      */
+
     public void initialize(URL location, ResourceBundle resources){
         // mp.setAutoPlay(true);
         // If autoplay is turned off the method play(), stop(), pause() etc controls how/when medias are played
@@ -65,7 +64,6 @@ public class Controller implements Initializable {
 
         // set the selection mode to single, so only one song can be selected at a time
         sangeliste.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
-
     }
 
     @FXML
@@ -81,8 +79,8 @@ public class Controller implements Initializable {
         //
         mediaV.setMediaPlayer(mp);
         mp.play();
-
     }
+
     public void handlerPause()
     {
         mp.pause();
@@ -113,24 +111,19 @@ public class Controller implements Initializable {
                 // set the items of the list view
                 sangeliste.setItems(songs);
                 // searchfield.clear();
-
             }
         });
-
     }
 
     public void handleClickView(MouseEvent mouseEvent)
     {
         String selectedItem = (String) sangeliste.getSelectionModel().getSelectedItem();
         String beginSearch = selectedItem.substring(selectedItem.indexOf(" ") + 1);
-        String endSearch = beginSearch.substring(0, selectedItem.indexOf(" "));
-
-        System.out.println(endSearch);
+        String endSearch = beginSearch.substring(0, selectedItem.indexOf("Artist") - "Artist ".length());
 
         for ( Song songs : Song.getSongList() )
         {
-
-            if (songs.getSONG_NAME().substring(0, 5).equals(endSearch))
+            if (songs.getSONG_NAME().equals(endSearch))
             {
                 filepath = songs.getFILE_PATH();
             }
