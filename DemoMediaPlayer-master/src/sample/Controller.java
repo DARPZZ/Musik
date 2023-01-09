@@ -44,10 +44,16 @@ public class Controller implements Initializable {
      */
     public void initialize(URL location, ResourceBundle resources){
         // Build the path to the location of the media file
-        String path = new File("DemoMediaPlayer-master/src/sample/media/SampleAudio_0.4mb.mp3").getAbsolutePath();
+
         // mp.setAutoPlay(true);
         // If autoplay is turned off the method play(), stop(), pause() etc controls how/when medias are played
-        mp.setAutoPlay(false);
+       // mp.setAutoPlay(false);
+        // Create new Media object (the actual media content)
+
+
+        // Play the mediaPlayer with the attached media
+
+        System.out.println(filepath);
 
         // create the list of songs
         Song.CreateList();
@@ -70,8 +76,7 @@ public class Controller implements Initializable {
 
         sangeliste.setOnMouseClicked(event ->
         {
-            String selectedItem = (String) sangeliste.getSelectionModel().getSelectedItem();
-            handleClickView(selectedItem);
+
         });
 
     }
@@ -85,17 +90,14 @@ public class Controller implements Initializable {
      */
     public void handlerplay()
     {
-        String path = new File(filepath).getAbsolutePath();
-        // Create new Media object (the actual media content)
+        String path = new File("DemoMediaPlayer-master/src/sample/media/SampleAudio_0.4mb.mp3").getAbsolutePath();
         me = new Media(new File(path).toURI().toString());
         // Create new MediaPlayer and attach the media to be played
         mp = new MediaPlayer(me);
         //
         mediaV.setMediaPlayer(mp);
-
-        // Play the mediaPlayer with the attached media
         mp.play();
-        System.out.println(filepath);
+
     }
     public void handlerPause()
     {
@@ -113,7 +115,7 @@ public class Controller implements Initializable {
             if (code == KeyCode.ENTER) {
                 String search = searchfield.getText();
                 // SearchSong.søgIgennemSange(search);
-                 Song.searchSong(search);
+
 
                 ArrayList<String> songName = new ArrayList<>();
                 for (Song object : Song.getSongList())
@@ -132,20 +134,16 @@ public class Controller implements Initializable {
 
     }
 
-    @FXML
-    public void handleClickView(String item)
+    public void handleClickView(MouseEvent mouseEvent)
     {
+        String selectedItem = (String) sangeliste.getSelectionModel().getSelectedItem();
+
         for (int i = 0; i < Song.getSongList().size(); i++)
         {
-            if (Song.getSongList().get(i).getSONG_NAME().equals(item))
+            if (Song.getSongList().get(i).getSONG_NAME().equals(selectedItem))
             {
                 filepath = Song.getSongList().get(i).getFILE_PATH();
             }
         }
-    }
-
-    public void handleClickView(MouseEvent mouseEvent)
-    {
-
     }
 }
