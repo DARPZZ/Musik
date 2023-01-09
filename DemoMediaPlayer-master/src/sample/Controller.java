@@ -90,6 +90,7 @@ public class Controller implements Initializable {
     public void handlerStop()
     {
         mp.stop();
+        System.out.println();
     }
     public void handlerSearch()
     {
