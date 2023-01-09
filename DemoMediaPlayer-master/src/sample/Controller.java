@@ -33,7 +33,7 @@ public class Controller implements Initializable {
 
     private MediaPlayer mp;
     private Media me;
-    private String filepath;
+    private String filepath = new File("DemoMediaPlayer-master/src/sample/media/SampleAudio_0.4mb.mp3").getAbsolutePath();
 
 
     /**
@@ -74,11 +74,6 @@ public class Controller implements Initializable {
         // set the selection mode to single, so only one song can be selected at a time
         sangeliste.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
 
-        sangeliste.setOnMouseClicked(event ->
-        {
-
-        });
-
     }
 
 
@@ -90,8 +85,7 @@ public class Controller implements Initializable {
      */
     public void handlerplay()
     {
-        String path = new File("DemoMediaPlayer-master/src/sample/media/SampleAudio_0.4mb.mp3").getAbsolutePath();
-        me = new Media(new File(path).toURI().toString());
+        me = new Media(new File(filepath).toURI().toString());
         // Create new MediaPlayer and attach the media to be played
         mp = new MediaPlayer(me);
         //
