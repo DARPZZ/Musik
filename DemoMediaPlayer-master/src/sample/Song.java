@@ -59,7 +59,6 @@ public class Song
     public static void searchSong(String searchString)
     {
         SONG_LIST.clear();
-        System.out.println("Kina");
         ArrayList<Song> songList = new ArrayList<>();
 
         DB.selectSQL("Select * from tblSong where fldArtistName like '%"+searchString +"%' or  fldTitel like '%"+ searchString + "%'");

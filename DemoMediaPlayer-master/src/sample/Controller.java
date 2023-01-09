@@ -49,15 +49,13 @@ public class Controller implements Initializable {
         // If autoplay is turned off the method play(), stop(), pause() etc controls how/when medias are played
        // mp.setAutoPlay(false);
         // Create new Media object (the actual media content)
-
-
         // Play the mediaPlayer with the attached media
 
         System.out.println(filepath);
 
         // create the list of songs
         Song.CreateList();
-
+/*
         ArrayList<String> songName = new ArrayList<>();
 
         for (Song object : Song.getSongList())
@@ -74,10 +72,10 @@ public class Controller implements Initializable {
         // set the selection mode to single, so only one song can be selected at a time
         sangeliste.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
 
+ */
+        publishSong();
+
     }
-
-
-
 
     @FXML
     /**
@@ -111,20 +109,11 @@ public class Controller implements Initializable {
                 String search = searchfield.getText();
 
                 Song.searchSong(search);
-
-                ArrayList<String> songName = new ArrayList<>();
-                for (Song object : Song.getSongList())
-                {
-                    String navn = "Song: "+  object.getSONG_NAME() + " Artist: " + object.getARTIST();
-                    songName.add(navn);
-                }
-                ObservableList<String> songs = FXCollections.observableArrayList(songName);
-
-                // set the items of the list view
-                sangeliste.setItems(songs);
+                publishSong();
                 // searchfield.clear();
-
             }
+
+
         });
 
     }
@@ -143,4 +132,22 @@ public class Controller implements Initializable {
             }
         }
     }
+    public void publishSong()
+        {
+            ArrayList<String> songName = new ArrayList<>();
+
+            for (Song object : Song.getSongList())
+            {
+                String navn = "Song: "+  object.getSONG_NAME() + " Artist: " + object.getARTIST();
+                songName.add(navn);
+
+            }
+            ObservableList<String> songs = FXCollections.observableArrayList(songName);
+
+            // set the items of the list view
+            sangeliste.setItems(songs);
+
+            // set the selection mode to single, so only one song can be selected at a time
+            sangeliste.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
+        }
 }
