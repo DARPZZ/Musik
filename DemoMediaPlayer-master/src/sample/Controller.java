@@ -43,14 +43,10 @@ public class Controller implements Initializable {
      * @param resources
      */
     public void initialize(URL location, ResourceBundle resources){
-        // Build the path to the location of the media file
-        String path = new File("DemoMediaPlayer-master/src/sample/media/SampleAudio_0.4mb.mp3").getAbsolutePath();
-        // mp.setAutoPlay(true);
-        // If autoplay is turned off the method play(), stop(), pause() etc controls how/when medias are played
-        mp.setAutoPlay(false);
 
         // create the list of songs
         Song.CreateList();
+
 
         ArrayList<String> songName = new ArrayList<>();
 
@@ -68,16 +64,9 @@ public class Controller implements Initializable {
         // set the selection mode to single, so only one song can be selected at a time
         sangeliste.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
 
-        sangeliste.setOnMouseClicked(event ->
-        {
-            String selectedItem = (String) sangeliste.getSelectionModel().getSelectedItem();
-            handleClickView(selectedItem);
-        });
+
 
     }
-
-
-
 
     @FXML
     /**
@@ -105,6 +94,7 @@ public class Controller implements Initializable {
     {
         mp.stop();
     }
+
     public void handlerSearch()
     {
         searchfield.setOnKeyPressed(handlerSearch -> {
@@ -114,6 +104,7 @@ public class Controller implements Initializable {
                 String search = searchfield.getText();
                 // SearchSong.søgIgennemSange(search);
                  Song.searchSong(search);
+
 
                 ArrayList<String> songName = new ArrayList<>();
                 for (Song object : Song.getSongList())
@@ -131,21 +122,19 @@ public class Controller implements Initializable {
         });
 
     }
-    
+
+
     @FXML
-    public void handleClickView(String item)
+    public void handleClickView(MouseEvent mouseEvent)
     {
+        String selectedItem = (String) sangeliste.getSelectionModel().getSelectedItem();
+
         for (int i = 0; i < Song.getSongList().size(); i++)
         {
-            if (Song.getSongList().get(i).getSONG_NAME().equals(item))
+            if (Song.getSongList().get(i).getSONG_NAME().equals(selectedItem))
             {
                 filepath = Song.getSongList().get(i).getFILE_PATH();
             }
         }
-    }
-
-    public void handleClickView(MouseEvent mouseEvent)
-    {
-
     }
 }
