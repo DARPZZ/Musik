@@ -43,17 +43,10 @@ public class Controller implements Initializable {
      * @param resources
      */
     public void initialize(URL location, ResourceBundle resources){
-        // Build the path to the location of the media file
-
         // mp.setAutoPlay(true);
         // If autoplay is turned off the method play(), stop(), pause() etc controls how/when medias are played
        // mp.setAutoPlay(false);
         // Create new Media object (the actual media content)
-
-
-        // Play the mediaPlayer with the attached media
-
-        System.out.println(filepath);
 
         // create the list of songs
         Song.CreateList();
@@ -64,7 +57,6 @@ public class Controller implements Initializable {
         {
             String navn = "Song: "+  object.getSONG_NAME() + " Artist: " + object.getARTIST();
             songName.add(navn);
-
         }
         ObservableList<String> songs = FXCollections.observableArrayList(songName);
 
@@ -76,15 +68,13 @@ public class Controller implements Initializable {
 
     }
 
-
-
-
     @FXML
     /**
      * Handler for the play/pause/stop button
      */
     public void handlerplay()
     {
+        System.out.println("Now playing: " + filepath);
         me = new Media(new File(filepath).toURI().toString());
         // Create new MediaPlayer and attach the media to be played
         mp = new MediaPlayer(me);
@@ -115,7 +105,7 @@ public class Controller implements Initializable {
                 ArrayList<String> songName = new ArrayList<>();
                 for (Song object : Song.getSongList())
                 {
-                    String navn = "Song: "+  object.getSONG_NAME() + " Artist: " + object.getARTIST();
+                    String navn = object.getSONG_NAME();
                     songName.add(navn);
                 }
                 ObservableList<String> songs = FXCollections.observableArrayList(songName);
@@ -129,17 +119,20 @@ public class Controller implements Initializable {
 
     }
 
-
-
     public void handleClickView(MouseEvent mouseEvent)
     {
         String selectedItem = (String) sangeliste.getSelectionModel().getSelectedItem();
+        String beginSearch = selectedItem.substring(selectedItem.indexOf(" ") + 1);
+        String endSearch = beginSearch.substring(0, selectedItem.indexOf(" "));
 
-        for (int i = 0; i < Song.getSongList().size(); i++)
+        System.out.println(endSearch);
+
+        for ( Song songs : Song.getSongList() )
         {
-            if (Song.getSongList().get(i).getSONG_NAME().equals(selectedItem))
+
+            if (songs.getSONG_NAME().substring(0, 5).equals(endSearch))
             {
-                filepath = Song.getSongList().get(i).getFILE_PATH();
+                filepath = songs.getFILE_PATH();
             }
         }
     }
