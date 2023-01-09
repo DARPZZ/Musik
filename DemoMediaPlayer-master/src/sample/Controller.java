@@ -118,8 +118,7 @@ public class Controller implements Initializable {
     public void handleClickView(MouseEvent mouseEvent)
     {
         String selectedItem = (String) sangeliste.getSelectionModel().getSelectedItem();
-        String beginSearch = selectedItem.substring(selectedItem.indexOf(" ") + 1);
-        String endSearch = beginSearch.substring(0, selectedItem.indexOf("Artist") - "Artist ".length());
+        String endSearch = selectedItem.substring(selectedItem.indexOf(" ") + 1, selectedItem.indexOf("Artist") - 1);
 
         for ( Song songs : Song.getSongList() )
         {
