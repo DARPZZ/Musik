@@ -47,14 +47,14 @@ public class Song
 
     public static ArrayList<Song> CreateList(String tblName, String fldName, String value)
     {
-        ArrayList<Song> songList = new ArrayList<>();
+        ArrayList<Song> listOfSongs = new ArrayList<>();
         DB.selectSQL("Select * from " + tblName + " where " + fldName + " = '" + value + "';");
 
         while (!DB.getData().equals(DB.NOMOREDATA))
         {
-            songList.add(new sample.Song(DB.getData(), DB.getData(), DB.getData(), Double.parseDouble(DB.getData())));
+            listOfSongs.add(new sample.Song(DB.getData(), DB.getData(), DB.getData(), Double.parseDouble(DB.getData())));
         }
-        return songList;
+        return listOfSongs;
     }
     public static void searchSong(String searchString)
     {
@@ -63,7 +63,7 @@ public class Song
         DB.selectSQL("Select * from tblSong where fldArtistName like '%"+searchString +"%' or  fldTitel like '%"+ searchString + "%'");
         while (!DB.getData().equals(DB.NOMOREDATA))
         {
-            SONG_LIST.add(new sample.Song(DB.getData(), DB.getData(), DB.getData(), Double.parseDouble(DB.getData())));
+            SONG_LIST.add(new Song(DB.getData(), DB.getData(), DB.getData(), Double.parseDouble(DB.getData())));
         }
     }
 
