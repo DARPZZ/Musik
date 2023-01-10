@@ -81,6 +81,11 @@ public class Controller implements Initializable {
 
     }
 
+    /**
+     * Method updates the playlist view
+     */
+    public void updatePlaylistView()
+    {playlistview.setItems(FXCollections.observableArrayList(Playlist.PlaylistArray()));}
     @FXML
     /**
      * Handler for the play/pause/stop button
@@ -149,21 +154,21 @@ public class Controller implements Initializable {
         Playlist ActivePlaylist = new Playlist(PLname,Playlist.createPlaylist(PLname)); // Ugly code, Creates the Playlist in SQL and the instance of the Playlist Class
         ActivePlaylist.playlistSongNameFill();
         System.out.println(Playlist.PlaylistArray());
-        playlistview.setItems(FXCollections.observableArrayList(Playlist.PlaylistArray()));
+        updatePlaylistView();
 
 
     }
     public void handlerPL_Delete()
     {
         ActivePlaylist.deletePlaylist();
-        playlistview.setItems(FXCollections.observableArrayList(Playlist.PlaylistArray()));
+        updatePlaylistView();
     }
     public void handlerPL_Rename()
     {
         System.out.println();
         String selectedPL = TF_PlaylistName.getText();
         ActivePlaylist.renamePlaylist(selectedPL);
-        playlistview.setItems(FXCollections.observableArrayList(Playlist.PlaylistArray()));
+        updatePlaylistView();
 
     }
     public void handlerPL_Select(MouseEvent event)
