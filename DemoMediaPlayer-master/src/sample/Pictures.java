@@ -18,6 +18,10 @@ public class Pictures
         pictures.add("DemoMediaPlayer-master/src/sample/Billeder/billed 2.png");
         pictures.add("DemoMediaPlayer-master/src/sample/Billeder/billeder1.png");
         pictures.add("DemoMediaPlayer-master/src/sample/Billeder/billeder 3.png");
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
         return pictures;
     }
 
