@@ -27,8 +27,8 @@
       <MediaView fx:id="mediaV" fitHeight="50.0" fitWidth="50.0" layoutX="816.0" layoutY="323.0" />
       <ListView fx:id="sangeliste" layoutX="14.0" layoutY="47.0" onMouseClicked="#handleClickView" prefHeight="244.0" prefWidth="579.0" />
       <TextField fx:id="searchfield" layoutX="14.0" layoutY="291.0" onAction="#handlerSearch" onKeyTyped="#handlerSearch" prefHeight="25.0" prefWidth="579.0" promptText="Search for a song" styleClass="search-field" />
-      <ListView fx:id="playlistsongs" layoutX="873.0" layoutY="47.0" prefHeight="220.0" prefWidth="401.0" />
-      <ListView fx:id="playlistview" layoutX="600.0" layoutY="47.0" prefHeight="244.0" prefWidth="266.0" />
+      <ListView fx:id="playlistsongs" layoutX="873.0" layoutY="47.0" onMouseClicked="#handlerPLsong_Select" prefHeight="220.0" prefWidth="401.0" />
+      <ListView fx:id="playlistview" layoutX="600.0" layoutY="47.0" onMouseClicked="#handlerPL_Select" prefHeight="244.0" prefWidth="266.0" />
       <Text fill="WHITE" layoutX="219.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tracks" textAlignment="CENTER" wrappingWidth="169.13671875">
          <font>
             <Font size="26.0" />
@@ -54,27 +54,27 @@
             </LinearGradient>
          </fill></Rectangle>
       <ImageView fx:id="ImageV" fitHeight="335.0" fitWidth="350.0" layoutX="899.0" layoutY="346.0" pickOnBounds="true" preserveRatio="true" />
-      <Button fx:id="knapAdd" layoutX="879.0" layoutY="297.0" mnemonicParsing="false" prefHeight="21.0" prefWidth="186.0" scaleShape="false" style="-fx-background-color: Black; -fx-border-color: White;" text="Add" textFill="WHITE">
+      <Button fx:id="knapAdd" layoutX="879.0" layoutY="297.0" mnemonicParsing="false" onAction="#handlerPL_add" prefHeight="21.0" prefWidth="186.0" scaleShape="false" style="-fx-background-color: Black; -fx-border-color: White;" text="Add" textFill="WHITE">
          <font>
             <Font name="System Bold" size="9.0" />
          </font>
       </Button>
-      <Button fx:id="knapRemove" layoutX="1083.0" layoutY="297.0" mnemonicParsing="false" prefHeight="21.0" prefWidth="186.0" scaleShape="false" style="-fx-background-color: Black; -fx-border-color: White;" text="Remove" textFill="WHITE">
+      <Button fx:id="knapRemove" layoutX="1083.0" layoutY="297.0" mnemonicParsing="false" onAction="#handlerPL_remove" prefHeight="21.0" prefWidth="186.0" scaleShape="false" style="-fx-background-color: Black; -fx-border-color: White;" text="Remove" textFill="WHITE">
          <font>
             <Font name="System Bold" size="9.0" />
          </font>
       </Button>
-      <Button fx:id="knapCreate" layoutX="599.0" layoutY="297.0" mnemonicParsing="false" prefHeight="21.0" prefWidth="83.0" style="-fx-background-color: Black; -fx-border-color: White;" text="Create" textFill="WHITE">
+      <Button fx:id="knapCreate" layoutX="599.0" layoutY="297.0" mnemonicParsing="false" onAction="#handlerPL_Create" prefHeight="21.0" prefWidth="83.0" style="-fx-background-color: Black; -fx-border-color: White;" text="Create" textFill="WHITE">
          <font>
             <Font name="System Bold" size="9.0" />
          </font>
       </Button>
-      <Button fx:id="knapRename" layoutX="692.0" layoutY="297.0" mnemonicParsing="false" prefHeight="21.0" prefWidth="83.0" style="-fx-background-color: Black; -fx-border-color: White;" text="Rename" textFill="WHITE">
+      <Button fx:id="knapRename" layoutX="692.0" layoutY="297.0" mnemonicParsing="false" onAction="#handlerPL_Rename" prefHeight="21.0" prefWidth="83.0" style="-fx-background-color: Black; -fx-border-color: White;" text="Rename" textFill="WHITE">
          <font>
             <Font name="System Bold" size="9.0" />
          </font>
       </Button>
-      <Button fx:id="knapDelete" layoutX="783.0" layoutY="297.0" mnemonicParsing="false" prefHeight="21.0" prefWidth="83.0" style="-fx-background-color: Black; -fx-border-color: White;" text="Delete" textFill="WHITE">
+      <Button fx:id="knapDelete" layoutX="783.0" layoutY="297.0" mnemonicParsing="false" onAction="#handlerPL_Delete" prefHeight="21.0" prefWidth="83.0" style="-fx-background-color: Black; -fx-border-color: White;" text="Delete" textFill="WHITE">
          <font>
             <Font name="System Bold" size="9.0" />
          </font>
@@ -91,7 +91,7 @@
          </font>
       </Text>
       <ProgressBar layoutX="14.0" layoutY="605.0" prefHeight="18.0" prefWidth="854.0" progress="0.0" />
-      <TextField fx:id="textfieldInfo" layoutX="14.0" layoutY="561.0" prefHeight="44.0" prefWidth="854.0" promptText="Song - Artist - Duration" scaleShape="false">
+      <TextField fx:id="textfieldInfo" editable="false" layoutX="14.0" layoutY="561.0" prefHeight="44.0" prefWidth="854.0" scaleShape="false">
          <font>
             <Font size="18.0" />
          </font>
@@ -111,5 +111,6 @@
             </LinearGradient>
          </fill>
       </Text>
+      <TextField fx:id="TF_PlaylistName" layoutX="609.0" layoutY="318.0" promptText="Enter Name" />
    </children>
 </AnchorPane>
