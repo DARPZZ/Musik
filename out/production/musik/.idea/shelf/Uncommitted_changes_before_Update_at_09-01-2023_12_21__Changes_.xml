@@ -1,0 +1,39 @@
+<changelist name="Uncommitted_changes_before_Update_at_09-01-2023_12_21_[Changes]" date="1673263293571" recycled="true" deleted="true">
+  <option name="PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_09-01-2023_12_21_[Changes]/shelved.patch" />
+  <option name="DESCRIPTION" value="Uncommitted changes before Update at 09-01-2023 12:21 [Changes]" />
+  <binary>
+    <option name="BEFORE_PATH" value="out/production/musik/sample/Controller.class" />
+    <option name="AFTER_PATH" value="out/production/musik/sample/Controller.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_09-01-2023_12_21_[Changes]/Controller.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value="out/production/musik/sample/Main.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_09-01-2023_12_21_[Changes]/Main.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value="out/production/musik/sample/media/file_example_MP4_640_3MG.mp4" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_09-01-2023_12_21_[Changes]/file_example_MP4_640_3MG.mp4" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value="out/production/musik/sample/media/Avicii vs. Conrad Sewell - Taste The Feeling.mp3" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_09-01-2023_12_21_[Changes]/Avicii vs. Conrad Sewell - Taste The Feeling.mp3" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value="out/production/musik/sample/DB.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_09-01-2023_12_21_[Changes]/DB.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value="out/production/musik/sample/Song.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_09-01-2023_12_21_[Changes]/Song.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value="out/production/musik/sample/media/SampleAudio_0.4mb.mp3" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_09-01-2023_12_21_[Changes]/SampleAudio_0.4mb.mp3" />
+  </binary>
+</changelist>
