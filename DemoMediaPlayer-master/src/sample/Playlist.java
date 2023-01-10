@@ -120,6 +120,10 @@ public class Playlist
         // insert INTO tblSongList (fldPlaylistID, fldSongID) VALUES (x,y)
         DB.updateSQL("insert INTO tblSongList (fldPlaylistID, fldSongID) VALUES ("+PlaylistID+","+SongID+")");
     }
+    public void renamePlaylist(String Newname)
+    {
+        DB.updateSQL("UPDATE tblPlaylist SET fldPlaylistName ='"+Newname+"' WHERE fldPlaylistName ='"+this.PlaylistName+"'");
+    }
     public void setPlaylistID(int i)
     {
         this.PlaylistID = i;

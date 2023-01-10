@@ -177,7 +177,13 @@ public class Controller implements Initializable {
         playlistview.setItems(FXCollections.observableArrayList(Playlist.PlaylistArray()));
     }
     public void handlerPL_Rename()
-    {}
+    {
+        System.out.println();
+        String selectedPL = TF_PlaylistName.getText();
+        ActivePlaylist.renamePlaylist(selectedPL);
+        playlistview.setItems(FXCollections.observableArrayList(Playlist.PlaylistArray()));
+
+    }
     public void handlerPL_Select(MouseEvent event)
     {
         try // Java throws an error if you click on a non entry in the table, catch to ignore
@@ -189,6 +195,11 @@ public class Controller implements Initializable {
             playlistsongs.setItems(FXCollections.observableArrayList(ActivePlaylist.getListPlaylist()));
         }
         catch (Exception e ) {System.out.println();}
+
+    }
+    public void handlerPLsong_Select()
+    {
+        String selectedSong = playlistsongs.getSelectionModel().getSelectedItem().toString();
 
     }
 }

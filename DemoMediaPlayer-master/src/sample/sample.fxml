@@ -25,7 +25,7 @@
       <MediaView fx:id="mediaV" fitHeight="300.0" fitWidth="300.0" layoutX="366.0" layoutY="360.0" />
       <ListView fx:id="sangeliste" layoutX="14.0" layoutY="47.0" onMouseClicked="#handleClickView" prefHeight="244.0" prefWidth="579.0" />
       <TextField fx:id="searchfield" layoutX="14.0" layoutY="291.0" onAction="#handlerSearch" onKeyTyped="#handlerSearch" prefHeight="25.0" prefWidth="579.0" promptText="Search for a song" styleClass="search-field" />
-      <ListView fx:id="playlistsongs" layoutX="873.0" layoutY="47.0" prefHeight="244.0" prefWidth="401.0" />
+      <ListView fx:id="playlistsongs" layoutX="873.0" layoutY="47.0" onMouseClicked="#handlerPLsong_Select" prefHeight="244.0" prefWidth="401.0" />
       <ListView fx:id="playlistview" layoutX="600.0" layoutY="47.0" onMouseClicked="#handlerPL_Select" prefHeight="244.0" prefWidth="266.0" />
       <Text fill="WHITE" layoutX="219.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tracks" textAlignment="CENTER" wrappingWidth="169.13671875">
          <font>
