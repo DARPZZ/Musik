@@ -9,7 +9,7 @@ public class Playlist
 {
     private String PlaylistName;
     private int PlaylistID;
-    private ArrayList ListPlaylist;
+    private ArrayList ListPlaylist = new ArrayList();
     public Playlist(String name, int ID)
     {
         this.PlaylistName=name;
@@ -52,11 +52,12 @@ public class Playlist
     {
         // SQL query
         //SELECT fldSongID from tblSongList WHERE fldPlaylistID = 1
+        this.ListPlaylist.clear();
         int rows = 0;
-        DB.selectSQL("SELECT COUNT (fldSongID) from tblSongList WHERE fldPlaylistID="+PlaylistID);
+        DB.selectSQL("SELECT COUNT (fldSongID) from tblSongList WHERE fldPlaylistID="+this.PlaylistID);
         rows = Integer.valueOf(DB.getData());
         DB.getData();
-        DB.selectSQL("SELECT fldSongID from tblSongList WHERE fldPlaylistID ="+PlaylistID);
+        DB.selectSQL("SELECT fldSongID from tblSongList WHERE fldPlaylistID ="+this.PlaylistID);
         String[] IDLIST = new String[rows];
         for (int i = 0; i < rows; i++)
         {
@@ -66,8 +67,8 @@ public class Playlist
         for (String SongID : IDLIST)
         {
             int songInt = Integer.parseInt(SongID);
-            DB.selectSQL("SELECT fldSongName from tblSong WHERE fldSongID ="+songInt);
-            ListPlaylist.add(DB.getData());
+            DB.selectSQL("SELECT fldTitel from tblSong WHERE fldSongID ="+songInt);
+            this.ListPlaylist.add(DB.getData());
             DB.getData();
         }
 
@@ -118,5 +119,13 @@ public class Playlist
         //SQL query
         // insert INTO tblSongList (fldPlaylistID, fldSongID) VALUES (x,y)
         DB.updateSQL("insert INTO tblSongList (fldPlaylistID, fldSongID) VALUES ("+PlaylistID+","+SongID+")");
+    }
+    public void setPlaylistID(int i)
+    {
+        this.PlaylistID = i;
+    }
+    public void setPlaylistName(String s)
+    {
+        this.PlaylistName = s;
     }
 }
