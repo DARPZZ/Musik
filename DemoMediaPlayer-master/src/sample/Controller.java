@@ -23,13 +23,13 @@ public class Controller implements Initializable {
     private MediaView mediaV;
 
     @FXML
-    Button knapPlay, knapPause, knapStop;
+    Button knapPlay, knapPause, knapStop, knapCreate, knapAdd, knapDelete, knapRemove, knapRename, knapChoose;
 
     @FXML
     ListView sangeliste, playlistview, playlistsongs;
 
     @FXML
-    TextField searchfield;
+    TextField searchfield, textfieldInfo;
 
     private MediaPlayer mp;
     private Media me;
