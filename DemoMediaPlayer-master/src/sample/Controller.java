@@ -6,6 +6,8 @@ import javafx.collections.ObservableList;
 import javafx.scene.control.ListView;
 import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.media.*;
@@ -13,9 +15,14 @@ import javafx.scene.control.Button;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+
+import javax.imageio.ImageIO;
+import javax.swing.*;
+import java.awt.image.BufferedImage;
 import java.io.*;
 import java.net.*;
 import java.util.ArrayList;
+import java.util.Random;
 import java.util.ResourceBundle;
 
 public class Controller implements Initializable {
@@ -72,8 +79,19 @@ public class Controller implements Initializable {
     /**
      * Handler for the play/pause/stop button
      */
-    public void handlerplay()
+    public void handlerplay() throws FileNotFoundException
     {
+
+    ArrayList<String> mylist = Pictures.addPictures();
+
+        int index = (int)(Math.random() * mylist.size());
+       String random= mylist.get(index);
+        System.out.println("suiii" + random);
+
+
+
+
+
         System.out.println("Now playing: " + filepath);
         me = new Media(new File(filepath).toURI().toString());
         // Create new MediaPlayer and attach the media to be played
