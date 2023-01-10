@@ -1,10 +1,14 @@
 package sample;
 
+import javafx.animation.Animation;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.ListView;
 import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseEvent;
@@ -14,9 +18,12 @@ import javafx.scene.control.Button;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.util.Duration;
+
 import java.io.*;
 import java.net.*;
 import java.util.ArrayList;
+import java.util.Random;
 import java.util.ResourceBundle;
 
 public class Controller implements Initializable {
@@ -34,6 +41,8 @@ public class Controller implements Initializable {
     @FXML
     TextField searchfield, textfieldInfo, TF_PlaylistName;
 
+    final Timeline timeline = new Timeline();
+
     private MediaPlayer mp;
     private Media me;
     private String filepath = new File("DemoMediaPlayer-master/src/sample/media/SampleAudio_0.4mb.mp3").getAbsolutePath();
@@ -48,8 +57,6 @@ public class Controller implements Initializable {
      */
 
     public void initialize(URL location, ResourceBundle resources) {
-
-
         textfieldInfo.setStyle("-fx-background-color: Black; -fx-text-inner-color: white");
         // mp.setAutoPlay(true);
         // If autoplay is turned off the method play(), stop(), pause() etc controls how/when medias are played
@@ -98,6 +105,18 @@ public class Controller implements Initializable {
      */
     public void handlerplay() {
         String endSearch = selectedItem.substring(selectedItem.indexOf(" ") + 1, selectedItem.indexOf("Artist") - 1);
+        System.out.println(endSearch);
+        ArrayList<String> mylist = Pictures.addPictures();
+/*
+        int index = (int)(Math.random() * mylist.size());
+        Image billeder = new Image(mylist.get(index));
+        String random= mylist.get(index);
+        ImageV.setImage(billeder);
+
+ */
+        loadBilleder();
+
+
 
         for (Song songs : Song.getSongList()) {
             if (songs.getSONG_NAME().equals(endSearch)) {
@@ -116,10 +135,16 @@ public class Controller implements Initializable {
 
     public void handlerPause() {
         mp.pause();
+        timeline.stop();
+        timeline.getKeyFrames().clear();
     }
 
     public void handlerStop() {
         mp.stop();
+        timeline.stop();
+       timeline.getKeyFrames().clear();
+
+
     }
 
     public void handlerSearch() {
@@ -134,7 +159,7 @@ public class Controller implements Initializable {
 
                 ArrayList<String> songName = new ArrayList<>();
                 for (Song object : Song.getSongList()) {
-                    String navn = object.getSONG_NAME();
+                    String navn = "Song: " + object.getSONG_NAME() + " Artist: " + object.getARTIST();
                     songName.add(navn);
                 }
                 ObservableList<String> songs = FXCollections.observableArrayList(songName);
@@ -208,6 +233,19 @@ public class Controller implements Initializable {
         }
         catch (Exception e){}
 
+    }
+    public void loadBilleder()
+    {
+        Random random = new Random();
+        ArrayList<String> mylist = Pictures.addPictures();
+        timeline.getKeyFrames().add(
+                new KeyFrame(Duration.seconds(5), event -> {
+                    final Image image = new Image(mylist.get( random.nextInt(mylist.size())));
+                    System.out.println("RONALDO: SUIIIIIIIIIIII");
+                    ImageV.setImage(image);
+                }));
+        timeline.setCycleCount(Animation.INDEFINITE);
+        timeline.play();
     }
 }
 
