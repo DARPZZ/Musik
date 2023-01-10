@@ -2,10 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="731a5893-d892-4d5f-8bd3-35cec8f1e4c4" name="Changes" comment="Added billeder">
-      <change afterPath="$PROJECT_DIR$/DemoMediaPlayer-master/src/sample/Billeder/download (1).jfif" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/sqljdbc4.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/DemoMediaPlayer-master/src/sample/Billeder/download (1).jfif" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/DemoMediaPlayer-master/src/sample/Pictures.java" beforeDir="false" afterPath="$PROJECT_DIR$/DemoMediaPlayer-master/src/sample/Pictures.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db.properties" beforeDir="false" afterPath="$PROJECT_DIR$/db.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/musik/.idea/libraries/sqljdbc4.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/musik/.idea/libraries/sqljdbc4.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/musik/.idea/shelf/Uncommitted_changes_before_Update_at_09-01-2023_11_46__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/musik/.idea/shelf/Uncommitted_changes_before_Update_at_09-01-2023_11_46__Changes_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/musik/.idea/shelf/Uncommitted_changes_before_Update_at_09-01-2023_12_21__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/musik/.idea/shelf/Uncommitted_changes_before_Update_at_09-01-2023_12_21__Changes_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/musik/.idea/shelf/Uncommitted_changes_before_Update_at_09-01-2023_13_06__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/musik/.idea/shelf/Uncommitted_changes_before_Update_at_09-01-2023_13_06__Changes_.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/musik/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/musik/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/musik/DemoMediaPlayer-master/src/sample/Billeder/download (1).jfif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/musik/DemoMediaPlayer-master/src/sample/sample.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/musik/DemoMediaPlayer-master/src/sample/sample.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/musik/sample/Billeder/download (1).jfif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/musik/sample/Pictures.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/musik/sample/Pictures.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -76,6 +84,12 @@
       <workItem from="1673261273667" duration="12468000" />
       <workItem from="1673297147588" duration="355000" />
       <workItem from="1673297523765" duration="322000" />
+      <workItem from="1673299011356" duration="2532000" />
+      <workItem from="1673333046772" duration="340000" />
+      <workItem from="1673333659198" duration="534000" />
+      <workItem from="1673334219075" duration="90000" />
+      <workItem from="1673334398712" duration="1285000" />
+      <workItem from="1673336653998" duration="439000" />
     </task>
     <task id="LOCAL-00001" summary="Bug fixes">
       <created>1673257103086</created>
