@@ -8,6 +8,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Background;
 import javafx.scene.media.*;
 import javafx.scene.control.Button;
 
@@ -45,6 +46,9 @@ public class Controller implements Initializable {
      */
 
     public void initialize(URL location, ResourceBundle resources){
+
+
+        textfieldInfo.setStyle("-fx-background-color: Black; -fx-text-inner-color: white");
         // mp.setAutoPlay(true);
         // If autoplay is turned off the method play(), stop(), pause() etc controls how/when medias are played
         //mp.setAutoPlay(false);

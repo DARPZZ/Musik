@@ -91,13 +91,10 @@
          </font>
       </Text>
       <ProgressBar layoutX="14.0" layoutY="605.0" prefHeight="18.0" prefWidth="854.0" progress="0.0" />
-      <TextField fx:id="textfieldInfo" editable="false" layoutX="14.0" layoutY="561.0" prefHeight="44.0" prefWidth="854.0" promptText="Song - Artist - Duration" scaleShape="false" style="-fx-background-color: black;">
+      <TextField fx:id="textfieldInfo" layoutX="14.0" layoutY="561.0" prefHeight="44.0" prefWidth="854.0" promptText="Song - Artist - Duration" scaleShape="false">
          <font>
             <Font size="18.0" />
          </font>
-         <effect>
-            <Glow level="1.0" />
-         </effect>
       </TextField>
       <Text layoutX="23.0" layoutY="412.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Proudly brought to you by Niko,Darpzz,Tobias &amp; Mulle" textAlignment="CENTER" wrappingWidth="730.52001953125">
          <font>
