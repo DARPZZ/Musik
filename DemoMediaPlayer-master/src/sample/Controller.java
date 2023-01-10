@@ -32,11 +32,12 @@ public class Controller implements Initializable {
     ListView sangeliste, playlistview, playlistsongs;
 
     @FXML
-    TextField searchfield, textfieldInfo;
+    TextField searchfield, textfieldInfo, TF_PlaylistName;
 
     private MediaPlayer mp;
     private Media me;
     private String filepath = new File("DemoMediaPlayer-master/src/sample/media/SampleAudio_0.4mb.mp3").getAbsolutePath();
+    public Playlist ActivePlaylist = new Playlist(null,0);
 
     /**
      * This method is invoked automatically in the beginning. Used for initializing, loading data etc.
@@ -71,6 +72,13 @@ public class Controller implements Initializable {
 
         // set the selection mode to single, so only one song can be selected at a time
         sangeliste.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
+
+        // Playlist setup
+        playlistview.setItems(FXCollections.observableArrayList(Playlist.PlaylistArray()));
+        playlistview.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+        playlistsongs.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
+        System.out.println(Playlist.PlaylistArray());
+
     }
 
     @FXML
@@ -135,4 +143,42 @@ public class Controller implements Initializable {
             }
         }
     }
+    public void handlerPL_Create()
+    {
+        String PLname = TF_PlaylistName.getText();
+        Playlist ActivePlaylist = new Playlist(PLname,Playlist.createPlaylist(PLname)); // Ugly code, Creates the Playlist in SQL and the instance of the Playlist Class
+        ActivePlaylist.playlistSongNameFill();
+        System.out.println(Playlist.PlaylistArray());
+        playlistview.setItems(FXCollections.observableArrayList(Playlist.PlaylistArray()));
+
+
+    }
+    public void handlerPL_Delete()
+    {
+        ActivePlaylist.deletePlaylist();
+        playlistview.setItems(FXCollections.observableArrayList(Playlist.PlaylistArray()));
+    }
+    public void handlerPL_Rename()
+    {
+        System.out.println();
+        String selectedPL = TF_PlaylistName.getText();
+        ActivePlaylist.renamePlaylist(selectedPL);
+        playlistview.setItems(FXCollections.observableArrayList(Playlist.PlaylistArray()));
+
+    }
+    public void handlerPL_Select(MouseEvent event)
+    {
+        try // Java throws an error if you click on a non entry in the table, catch to ignore
+        {
+            String selectedPL = playlistview.getSelectionModel().getSelectedItem().toString();
+            ActivePlaylist.setPlaylistName(selectedPL);
+            ActivePlaylist.setPlaylistID( Playlist.getPlaylistID(selectedPL));
+            ActivePlaylist.playlistSongNameFill();
+            playlistsongs.setItems(FXCollections.observableArrayList(ActivePlaylist.getListPlaylist()));
+        }
+        catch (Exception e ) {System.out.println();}
+
+    }
+    public void handlerPLsong_Select()
+    {}
 }

@@ -1,19 +1,26 @@
 package sample;
 
+import java.util.ArrayList;
 
 public class Playlist
 {
     private String PlaylistName;
     private int PlaylistID;
-
+    private ArrayList ListPlaylist = new ArrayList();
     public Playlist(String name, int ID)
     {
         this.PlaylistName=name;
         this.PlaylistID=ID;
     }
-        //test
-    /*region Needs to be move somewhere outside class
-    public void createPlaylist(String name)
+    public String PlaylistName()
+    {return PlaylistName;}
+    public int PlaylistID()
+    {return PlaylistID;}
+    public ArrayList getListPlaylist()
+    {return ListPlaylist;}
+
+
+    public static int createPlaylist(String name)
     {
         //SQL query
         //SELECT MAX(fldPlaylistID) from tblPlaylist
@@ -22,51 +29,60 @@ public class Playlist
         DB.getData();
         //SQL query
         //INSERT INTO tblPlaylist (fldPlaylistID,fldPlaylistName) VALUES ()
-        DB.updateSQL("INSERT INTO tblPlaylist (fldPlaylistID,fldPlaylistName) VALUES ("+PlaylistID+","+ name+")");
-
-    }
-     */
-    public int getPlaylistID_Decrepitated(String PlaylistName) //
-    {
-        // SQL qeury
-        // SELECT fldPlaylistID from tblPlaylist WHERE fldPlaylistName = NAME
-        DB.selectSQL("SELECT fldPlaylistID from tblPlaylist WHERE fldPlaylistName ="+PlaylistName);
-        int ID = Integer.parseInt(DB.getData());
-        DB.getData();
-        return ID;
+        DB.updateSQL("INSERT INTO tblPlaylist (fldPlaylistID,fldPlaylistName) VALUES ("+PlaylistID+",'"+ name+"')");
+        return PlaylistID;
     }
 
     public int getPlaylistID()
     {
         return PlaylistID;
     }
+    static public int getPlaylistID(String name)
+    {
+        DB.selectSQL("SELECT fldPlaylistID FROM tblPlaylist WHERE fldPlaylistName ='"+name+"'");
+        int i =Integer.parseInt(DB.getData());
+        return i;
+    }
     public String getPlaylistName() {return PlaylistName;}
 
-    public String[] playlistPathOut() //array file path
+    public void playlistSongNameFill() //array song names
     {
         // SQL query
         //SELECT fldSongID from tblSongList WHERE fldPlaylistID = 1
+        this.ListPlaylist.clear();
         int rows = 0;
-        DB.selectSQL("SELECT COUNT (fldSongID) from tblSongList WHERE fldPlaylistID="+PlaylistID);
+        DB.selectSQL("SELECT COUNT (fldSongID) from tblSongList WHERE fldPlaylistID="+this.PlaylistID);
         rows = Integer.valueOf(DB.getData());
         DB.getData();
-        DB.selectSQL("SELECT fldSongID from tblSongList WHERE fldPlaylistID ="+PlaylistID);
+        DB.selectSQL("SELECT fldSongID from tblSongList WHERE fldPlaylistID ="+this.PlaylistID);
         String[] IDLIST = new String[rows];
         for (int i = 0; i < rows; i++)
         {
             IDLIST[i] = DB.getData();
         }
         DB.getData();
-        String[] PathList = new String[IDLIST.length];
-        int i =0;
         for (String SongID : IDLIST)
         {
             int songInt = Integer.parseInt(SongID);
-            DB.selectSQL("SELECT fldFilePath from tblSong WHERE fldSongID ="+songInt);
-            PathList[i] = DB.getData();
+            DB.selectSQL("SELECT fldTitel from tblSong WHERE fldSongID ="+songInt);
+            this.ListPlaylist.add(DB.getData());
             DB.getData();
         }
-        return IDLIST;
+
+    }
+    public static ArrayList<String> PlaylistArray()
+    {
+        ArrayList<String> listPlaylist = new ArrayList<String>();
+        DB.selectSQL("SELECT COUNT (fldPlaylistName) FROM tblPlaylist");
+        int nameAmount = Integer.parseInt(DB.getData());
+        DB.getData();
+        DB.selectSQL("SELECT fldPlaylistName FROM tblPlaylist");
+        for (int i = 0; i < nameAmount; i++)
+        {
+            listPlaylist.add(DB.getData());
+        }
+        DB.getData();
+        return listPlaylist;
     }
 
     public void deletePlaylist()
@@ -77,8 +93,8 @@ public class Playlist
     public void deleteSongPlaylist(int SongID)
     {
         //SQL query
-       // insert INTO tblSongList (fldPlaylistID, fldSongID) VALUES (x,y)
-       DB.updateSQL("DELETE FROM tblSongList WHERE flbPlaylistID ="+PlaylistID+" AND fldSongID ="+SongID);
+        // insert INTO tblSongList (fldPlaylistID, fldSongID) VALUES (x,y)
+        DB.updateSQL("DELETE FROM tblSongList WHERE flbPlaylistID ="+PlaylistID+" AND fldSongID ="+SongID);
     }
     public void deleteSongPlaylist(String SongName)
     {
@@ -100,5 +116,17 @@ public class Playlist
         //SQL query
         // insert INTO tblSongList (fldPlaylistID, fldSongID) VALUES (x,y)
         DB.updateSQL("insert INTO tblSongList (fldPlaylistID, fldSongID) VALUES ("+PlaylistID+","+SongID+")");
+    }
+    public void renamePlaylist(String Newname)
+    {
+        DB.updateSQL("UPDATE tblPlaylist SET fldPlaylistName ='"+Newname+"' WHERE fldPlaylistName ='"+this.PlaylistName+"'");
+    }
+    public void setPlaylistID(int i)
+    {
+        this.PlaylistID = i;
+    }
+    public void setPlaylistName(String s)
+    {
+        this.PlaylistName = s;
     }
 }
