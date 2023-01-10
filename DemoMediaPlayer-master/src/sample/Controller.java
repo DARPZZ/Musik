@@ -37,7 +37,8 @@ public class Controller implements Initializable {
     private MediaPlayer mp;
     private Media me;
     private String filepath = new File("DemoMediaPlayer-master/src/sample/media/SampleAudio_0.4mb.mp3").getAbsolutePath();
-    public Playlist ActivePlaylist = new Playlist(null,0);
+    public Playlist ActivePlaylist = new Playlist(null, 0);
+    public String selectedItem;
 
     /**
      * This method is invoked automatically in the beginning. Used for initializing, loading data etc.
@@ -46,7 +47,7 @@ public class Controller implements Initializable {
      * @param resources
      */
 
-    public void initialize(URL location, ResourceBundle resources){
+    public void initialize(URL location, ResourceBundle resources) {
 
 
         textfieldInfo.setStyle("-fx-background-color: Black; -fx-text-inner-color: white");
@@ -60,9 +61,8 @@ public class Controller implements Initializable {
 
         ArrayList<String> songName = new ArrayList<>();
 
-        for (Song object : Song.getSongList())
-        {
-            String navn = "Song: "+  object.getSONG_NAME() + " Artist: " + object.getARTIST();
+        for (Song object : Song.getSongList()) {
+            String navn = "Song: " + object.getSONG_NAME() + " Artist: " + object.getARTIST();
             songName.add(navn);
         }
         ObservableList<String> songs = FXCollections.observableArrayList(songName);
@@ -84,14 +84,27 @@ public class Controller implements Initializable {
     /**
      * Method updates the playlist view
      */
-    public void updatePlaylistView()
-    {playlistview.setItems(FXCollections.observableArrayList(Playlist.PlaylistArray()));}
+    public void updatePlaylistView() {
+        playlistview.setItems(FXCollections.observableArrayList(Playlist.PlaylistArray()));
+    }
+    public void updatePlaylistSongView()
+    {
+        playlistsongs.setItems(FXCollections.observableArrayList(ActivePlaylist.getListPlaylist()));
+    }
+
     @FXML
     /**
      * Handler for the play/pause/stop button
      */
-    public void handlerplay()
-    {
+    public void handlerplay() {
+        String endSearch = selectedItem.substring(selectedItem.indexOf(" ") + 1, selectedItem.indexOf("Artist") - 1);
+
+        for (Song songs : Song.getSongList()) {
+            if (songs.getSONG_NAME().equals(endSearch)) {
+                filepath = songs.getFILE_PATH();
+            }
+        }
+
         System.out.println("Now playing: " + filepath);
         me = new Media(new File(filepath).toURI().toString());
         // Create new MediaPlayer and attach the media to be played
@@ -101,16 +114,15 @@ public class Controller implements Initializable {
         mp.play();
     }
 
-    public void handlerPause()
-    {
+    public void handlerPause() {
         mp.pause();
     }
-    public void handlerStop()
-    {
+
+    public void handlerStop() {
         mp.stop();
     }
-    public void handlerSearch()
-    {
+
+    public void handlerSearch() {
         searchfield.setOnKeyPressed(handlerSearch -> {
             // Handle the key press event here
             KeyCode code = handlerSearch.getCode();
@@ -121,8 +133,7 @@ public class Controller implements Initializable {
                 Song.searchSong(search);
 
                 ArrayList<String> songName = new ArrayList<>();
-                for (Song object : Song.getSongList())
-                {
+                for (Song object : Song.getSongList()) {
                     String navn = object.getSONG_NAME();
                     songName.add(navn);
                 }
@@ -135,55 +146,68 @@ public class Controller implements Initializable {
         });
     }
 
-    public void handleClickView(MouseEvent mouseEvent)
-    {
-        String selectedItem = (String) sangeliste.getSelectionModel().getSelectedItem();
-        String endSearch = selectedItem.substring(selectedItem.indexOf(" ") + 1, selectedItem.indexOf("Artist") - 1);
-
-        for ( Song songs : Song.getSongList() )
-        {
-            if (songs.getSONG_NAME().equals(endSearch))
-            {
-                filepath = songs.getFILE_PATH();
-            }
-        }
+    public void handleClickView(MouseEvent mouseEvent) {
+        selectedItem = (String) sangeliste.getSelectionModel().getSelectedItem();
     }
-    public void handlerPL_Create()
-    {
+
+    public void handlerPL_Create() {
         String PLname = TF_PlaylistName.getText();
-        Playlist ActivePlaylist = new Playlist(PLname,Playlist.createPlaylist(PLname)); // Ugly code, Creates the Playlist in SQL and the instance of the Playlist Class
+        Playlist ActivePlaylist = new Playlist(PLname, Playlist.createPlaylist(PLname)); // Ugly code, Creates the Playlist in SQL and the instance of the Playlist Class
         ActivePlaylist.playlistSongNameFill();
         System.out.println(Playlist.PlaylistArray());
         updatePlaylistView();
 
 
     }
-    public void handlerPL_Delete()
-    {
+
+    public void handlerPL_Delete() {
         ActivePlaylist.deletePlaylist();
         updatePlaylistView();
     }
-    public void handlerPL_Rename()
-    {
+
+    public void handlerPL_Rename() {
         System.out.println();
         String selectedPL = TF_PlaylistName.getText();
         ActivePlaylist.renamePlaylist(selectedPL);
         updatePlaylistView();
 
     }
-    public void handlerPL_Select(MouseEvent event)
-    {
+
+    public void handlerPL_Select(MouseEvent event) {
         try // Java throws an error if you click on a non entry in the table, catch to ignore
         {
             String selectedPL = playlistview.getSelectionModel().getSelectedItem().toString();
             ActivePlaylist.setPlaylistName(selectedPL);
-            ActivePlaylist.setPlaylistID( Playlist.getPlaylistID(selectedPL));
+            ActivePlaylist.setPlaylistID(Playlist.getPlaylistID(selectedPL));
             ActivePlaylist.playlistSongNameFill();
-            playlistsongs.setItems(FXCollections.observableArrayList(ActivePlaylist.getListPlaylist()));
+            updatePlaylistSongView();
+        } catch (Exception e) {
+            System.out.println();
         }
-        catch (Exception e ) {System.out.println();}
 
     }
+
     public void handlerPLsong_Select()
-    {}
+    {
+        String selectedPLsong = playlistsongs.getSelectionModel().getSelectedItem().toString();
+        selectedItem = selectedPLsong.substring(selectedPLsong.indexOf(" ") + 1, selectedPLsong.indexOf("Artist") - 1);
+        System.out.println();
+    }
+
+    public void handlerPL_add()
+    {
+        String endSearch = selectedItem.substring(selectedItem.indexOf(" ") + 1, selectedItem.indexOf("Artist") - 1);
+        ActivePlaylist.addSongPlaylist(endSearch);
+        updatePlaylistSongView();
+
+    }
+    public void handlerPL_remove()
+    {
+        try {
+            ActivePlaylist.deleteSongPlaylist(selectedItem);
+        }
+        catch (Exception e){}
+
+    }
 }
+

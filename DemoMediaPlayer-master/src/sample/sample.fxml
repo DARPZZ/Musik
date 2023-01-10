@@ -54,12 +54,12 @@
             </LinearGradient>
          </fill></Rectangle>
       <ImageView fx:id="ImageV" fitHeight="335.0" fitWidth="350.0" layoutX="899.0" layoutY="346.0" pickOnBounds="true" preserveRatio="true" />
-      <Button fx:id="knapAdd" layoutX="879.0" layoutY="297.0" mnemonicParsing="false" prefHeight="21.0" prefWidth="186.0" scaleShape="false" style="-fx-background-color: Black; -fx-border-color: White;" text="Add" textFill="WHITE">
+      <Button fx:id="knapAdd" layoutX="879.0" layoutY="297.0" mnemonicParsing="false" onAction="#handlerPL_add" prefHeight="21.0" prefWidth="186.0" scaleShape="false" style="-fx-background-color: Black; -fx-border-color: White;" text="Add" textFill="WHITE">
          <font>
             <Font name="System Bold" size="9.0" />
          </font>
       </Button>
-      <Button fx:id="knapRemove" layoutX="1083.0" layoutY="297.0" mnemonicParsing="false" prefHeight="21.0" prefWidth="186.0" scaleShape="false" style="-fx-background-color: Black; -fx-border-color: White;" text="Remove" textFill="WHITE">
+      <Button fx:id="knapRemove" layoutX="1083.0" layoutY="297.0" mnemonicParsing="false" onAction="#handlerPL_remove" prefHeight="21.0" prefWidth="186.0" scaleShape="false" style="-fx-background-color: Black; -fx-border-color: White;" text="Remove" textFill="WHITE">
          <font>
             <Font name="System Bold" size="9.0" />
          </font>
