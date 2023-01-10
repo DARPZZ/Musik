@@ -5,6 +5,7 @@ public class Playlist
 {
     private String PlaylistName;
     private int PlaylistID;
+
     public Playlist(String name, int ID)
     {
         this.PlaylistName=name;
@@ -33,7 +34,6 @@ public class Playlist
         int ID = Integer.parseInt(DB.getData());
         DB.getData();
         return ID;
-
     }
 
     public int getPlaylistID()
@@ -68,7 +68,6 @@ public class Playlist
         }
         return IDLIST;
     }
-
 
     public void deletePlaylist()
     {
