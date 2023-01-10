@@ -3,6 +3,7 @@ package sample;
 import com.sun.org.apache.xalan.internal.xsltc.dom.SortingIterator;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.*;
 import javafx.scene.control.ListView;
 import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TextField;
@@ -13,8 +14,11 @@ import javafx.scene.control.Button;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+
+import javax.swing.table.AbstractTableModel;
 import java.io.*;
 import java.net.*;
+import java.text.BreakIterator;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
@@ -28,13 +32,15 @@ public class Controller implements Initializable {
     @FXML
     ListView sangeliste, playlistview, playlistsongs;
 
+
     @FXML
-    TextField searchfield;
+    TextField searchfield, TF_PlaylistName;
 
     private MediaPlayer mp;
     private Media me;
     private String filepath = new File("DemoMediaPlayer-master/src/sample/media/SampleAudio_0.4mb.mp3").getAbsolutePath();
-
+    public ArrayList<String> ListPlaylist = new ArrayList<>();
+    public Playlist ActivePlaylist;
 
     /**
      * This method is invoked automatically in the beginning. Used for initializing, loading data etc.
@@ -66,8 +72,23 @@ public class Controller implements Initializable {
         // set the selection mode to single, so only one song can be selected at a time
         sangeliste.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
 
+        // Playliste View init
+
+        ObservableList<String> ListPlaylistOut = FXCollections.observableArrayList(ListPlaylist);
+        ArrayList<String> songPlaylist = new ArrayList<>();
+        ObservableList<String> songPlaylistOut = FXCollections.observableArrayList(songPlaylist);
+        playlistview.setItems(ListPlaylistOut);
+        playlistsongs.setItems(songPlaylistOut);
+        playlistview.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+        playlistsongs.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
+
+
     }
 
+    public String getPlaylistView()
+    {
+        return playlistview.getSelectionModel().getSelectedItem().toString();
+    }
     @FXML
     /**
      * Handler for the play/pause/stop button
@@ -137,9 +158,22 @@ public class Controller implements Initializable {
         }
     }
     public void handlerPL_Create()
-    {}
+    {
+        String PLname = TF_PlaylistName.getText();
+        Playlist ActivePlaylist = new Playlist(PLname,Playlist.createPlaylist(PLname)); // Ugly code, Creates the Playlist in SQL and the instance of the Playlist Class
+        ActivePlaylist.playlistSongNameFill();
+        System.out.println(Playlist.PlaylistArray());
+        playlistview.setItems(FXCollections.observableArrayList(Playlist.PlaylistArray()));
+
+
+    }
     public void handlerPL_Delete()
     {}
     public void handlerPL_Rename()
     {}
+    public void handlerPL_Select(MouseEvent event)
+    {
+        String selectedPL = playlistview.getSelectionModel().getSelectedItem().toString();
+        Playlist ActivePlaylist = new Playlist(selectedPL, Playlist.getPlaylistID(selectedPL));
+    }
 }
