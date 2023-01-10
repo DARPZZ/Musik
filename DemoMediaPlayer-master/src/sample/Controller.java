@@ -5,6 +5,7 @@ import javafx.collections.ObservableList;
 import javafx.scene.control.ListView;
 import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.media.*;
@@ -20,6 +21,8 @@ import java.util.ResourceBundle;
 public class Controller implements Initializable {
     @FXML
     private MediaView mediaV;
+    @FXML
+    ImageView ImageV;
 
     @FXML
     Button knapPlay, knapPause, knapStop;
