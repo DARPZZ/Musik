@@ -97,7 +97,8 @@ public class Controller implements Initializable {
     /**
      * Handler for the play/pause/stop button
      */
-    public void handlerplay() {
+    public void handlerplay()
+    {
         String endSearch = selectedItem.substring(selectedItem.indexOf(" ") + 1, selectedItem.indexOf("Artist") - 1);
 
         for (Song songs : Song.getSongList()) {
@@ -190,9 +191,13 @@ public class Controller implements Initializable {
 
     public void handlerPLsong_Select()
     {
-        String selectedPLsong = playlistsongs.getSelectionModel().getSelectedItem().toString();
-        selectedItem = selectedPLsong.substring(selectedPLsong.indexOf(" ") + 1, selectedPLsong.indexOf("Artist") - 1);
         System.out.println();
+        String selectedPLsong = playlistsongs.getSelectionModel().getSelectedItem().toString();
+        selectedPLsong= selectedPLsong.substring(selectedPLsong.indexOf("g")+3,selectedPLsong.indexOf("Artist")-1);
+        //Super hacky workaround string requirements in play method
+        DB.selectSQL("SELECT fldFilePath FROM tblSong WHERE fldTitel ='"+selectedPLsong+"'");
+        selectedItem = selectedPLsong+DB.getData()+"                        Artist";
+        DB.getData();
     }
 
     public void handlerPL_add()
