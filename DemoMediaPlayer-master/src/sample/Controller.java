@@ -60,9 +60,10 @@ public class Controller implements Initializable {
         Song.CreateList();
 
         ArrayList<String> songName = new ArrayList<>();
-
-        for (Song object : Song.getSongList()) {
-            String navn = "Song: " + object.getSONG_NAME() + " Artist: " + object.getARTIST();
+        for (Song object : Song.getSongList())
+        {
+            double duration = Playlist.durationIntToDouble((double)object.getDURATION());
+            String navn = "Song: " + object.getSONG_NAME() + " Artist: " + object.getARTIST()+"Duration: " +duration;
             songName.add(navn);
         }
         ObservableList<String> songs = FXCollections.observableArrayList(songName);

@@ -24,12 +24,17 @@ public class Playlist
     {
         //SQL query
         //SELECT MAX(fldListId) from tblPlaylist
-        DB.selectSQL("SELECT MAX(fldListId) from tblListName");
-        int PlaylistID = Integer.parseInt(DB.getData())+1;
+        DB.selectSQL("SELECT MAX(fldListId) from tblPlaylist");
+        int PlaylistID;
+        try {
+            PlaylistID = Integer.parseInt(DB.getData())+1;
+        }
+        catch (Exception e){PlaylistID = 1;}
+
         DB.getData();
         //SQL query
         //INSERT INTO tblPlaylist (fldListId,fldListName) VALUES ()
-        DB.updateSQL("INSERT INTO tblPlaylist (fldListId,fldListName) VALUES ("+PlaylistID+",'"+ name+"')");
+        DB.updateSQL("INSERT INTO tblPlaylist (fldListName) VALUES ('"+ name+"')");
         return PlaylistID;
     }
 
@@ -71,7 +76,10 @@ public class Playlist
                 DB.selectSQL("SELECT fldArtistName FROM tblSong WHERE fldSongId ="+songInt);
                 String artist = DB.getData();
                 DB.getData();
-                String navn = "Song: " + titel + " Artist: " + artist;
+
+                DB.selectSQL("SELECT fldDuration FROM tblSong WHERE fldSongId ="+songInt);
+                double duration = durationIntToDouble(Integer.parseInt(DB.getData()));
+                String navn = "Song: " + titel + " Artist: " + artist+ "Duration: "+duration;
 
             this.ListPlaylist.add(navn);
         }
@@ -118,18 +126,12 @@ public class Playlist
     }
     public void addSongPlaylist(String songName)
     {
-        System.out.println();
-        DB.selectSQL("SELECT MAX(fldRelationId) from tblSonglist");
-
-        int listID = Integer.parseInt(DB.getData())+1;
-        DB.getData();
-
         DB.selectSQL("SELECT fldSongId FROM tblSong WHERE fldTitel ='"+songName+"'");
         int SongID =Integer.parseInt(DB.getData());
         DB.getData();
         //SQL query
         // insert INTO tblSonglist (fldListId, fldSongId) VALUES (x,y)
-        DB.updateSQL("insert INTO tblSonglist (fldListId, fldSongId, fldRelationId) VALUES ("+this.PlaylistID+","+SongID+","+listID+")");
+        DB.updateSQL("insert INTO tblSonglist (fldListId, fldSongId) VALUES ("+this.PlaylistID+","+SongID+")");
     }
     public void renamePlaylist(String Newname)
     {
@@ -142,6 +144,20 @@ public class Playlist
     public void setPlaylistName(String s)
     {
         this.PlaylistName = s;
+    }
+
+    public static double durationIntToDouble(double f) //formatere int til en double i formattet tt:mm:ss
+    {
+        int Timer =(int)f;
+        double y = Timer;
+        double minutter = ((f-y)*60)/100;
+        return y+minutter;
+    }
+    private static double durationDoubleToInt(double f)//formatere double i formattet tt:mm:ss til en float.
+    {
+        int Timer1 = (int)f;
+        double minutter = ((f-Timer1)*100)/60;
+        return Timer1+minutter;
     }
 
 }
