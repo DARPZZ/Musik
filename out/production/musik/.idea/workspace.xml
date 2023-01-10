@@ -1,39 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
     <list default="true" id="731a5893-d892-4d5f-8bd3-35cec8f1e4c4" name="Changes" comment="Added billeder">
       <change beforePath="$PROJECT_DIR$/.idea/libraries/sqljdbc4.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/DemoMediaPlayer-master/src/sample/Billeder/download (1).jfif" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/DemoMediaPlayer-master/src/sample/Pictures.java" beforeDir="false" afterPath="$PROJECT_DIR$/DemoMediaPlayer-master/src/sample/Pictures.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/musik/.idea/libraries/sqljdbc4.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/musik/.idea/libraries/sqljdbc4.xml" afterDir="false" />
-=======
-=======
->>>>>>> Stashed changes
+
     <list default="true" id="731a5893-d892-4d5f-8bd3-35cec8f1e4c4" name="Changes" comment="Added image view as fxml">
       <change beforePath="$PROJECT_DIR$/DemoMediaPlayer-master/src/sample/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/DemoMediaPlayer-master/src/sample/Controller.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DemoMediaPlayer-master/src/sample/DB.java" beforeDir="false" afterPath="$PROJECT_DIR$/DemoMediaPlayer-master/src/sample/DB.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DemoMediaPlayer-master/src/sample/Pictures.java" beforeDir="false" afterPath="$PROJECT_DIR$/DemoMediaPlayer-master/src/sample/Pictures.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DemoMediaPlayer-master/src/sample/sample.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/DemoMediaPlayer-master/src/sample/sample.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db.properties" beforeDir="false" afterPath="$PROJECT_DIR$/db.properties" afterDir="false" />
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
+
       <change beforePath="$PROJECT_DIR$/out/production/musik/.idea/shelf/Uncommitted_changes_before_Update_at_09-01-2023_11_46__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/musik/.idea/shelf/Uncommitted_changes_before_Update_at_09-01-2023_11_46__Changes_.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/musik/.idea/shelf/Uncommitted_changes_before_Update_at_09-01-2023_12_21__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/musik/.idea/shelf/Uncommitted_changes_before_Update_at_09-01-2023_12_21__Changes_.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/musik/.idea/shelf/Uncommitted_changes_before_Update_at_09-01-2023_13_06__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/musik/.idea/shelf/Uncommitted_changes_before_Update_at_09-01-2023_13_06__Changes_.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/musik/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/musik/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/musik/DemoMediaPlayer-master/src/sample/Billeder/download (1).jfif" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/musik/DemoMediaPlayer-master/src/sample/sample.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/musik/DemoMediaPlayer-master/src/sample/sample.fxml" afterDir="false" />
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
+
       <change beforePath="$PROJECT_DIR$/out/production/musik/sample/Billeder/download (1).jfif" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/musik/sample/Pictures.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/musik/sample/Pictures.class" afterDir="false" />
-=======
-=======
->>>>>>> Stashed changes
       <change beforePath="$PROJECT_DIR$/out/production/musik/db.properties" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/musik/db.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/musik/sample/Billeder/download (1).jfif" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/musik/sample/Controller.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/musik/sample/Controller.class" afterDir="false" />
@@ -41,10 +30,7 @@
       <change beforePath="$PROJECT_DIR$/out/production/musik/sample/Pictures.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/musik/sample/Pictures.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/musik/sample/Playlist.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/musik/sample/Playlist.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/musik/sample/sample.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/musik/sample/sample.fxml" afterDir="false" />
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
+
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -121,8 +107,6 @@
       <workItem from="1673334219075" duration="90000" />
       <workItem from="1673334398712" duration="1285000" />
       <workItem from="1673336653998" duration="439000" />
-<<<<<<< Updated upstream
-=======
       <workItem from="1673337613626" duration="2536000" />
       <workItem from="1673340390248" duration="178000" />
       <workItem from="1673340589066" duration="36000" />
@@ -133,10 +117,6 @@
       <workItem from="1673351446622" duration="1207000" />
       <workItem from="1673353984051" duration="397000" />
       <workItem from="1673354406638" duration="710000" />
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
     </task>
     <task id="LOCAL-00001" summary="Bug fixes">
       <created>1673257103086</created>
@@ -187,9 +167,8 @@
       <option name="project" value="LOCAL" />
       <updated>1673273978967</updated>
     </task>
-<<<<<<< Updated upstream
+
     <option name="localTasksCounter" value="8" />
-=======
     <task id="LOCAL-00008" summary="commit billeder 1.1">
       <created>1673340502454</created>
       <option name="number" value="00008" />
@@ -212,10 +191,7 @@
       <updated>1673344510360</updated>
     </task>
     <option name="localTasksCounter" value="11" />
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
+
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -237,16 +213,14 @@
     <MESSAGE value="Added seachSange" />
     <MESSAGE value="duplicated code removed" />
     <MESSAGE value="Added billeder" />
-<<<<<<< Updated upstream
+
     <option name="LAST_COMMIT_MESSAGE" value="Added billeder" />
-=======
+
     <MESSAGE value="commit billeder 1.1" />
     <MESSAGE value="Tiljøet billederne" />
     <MESSAGE value="Added image view as fxml" />
     <option name="LAST_COMMIT_MESSAGE" value="Added image view as fxml" />
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
+
+
   </component>
 </project>
