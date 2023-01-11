@@ -32,7 +32,7 @@ public class Controller implements Initializable {
     ListView sangeliste, playlistview, playlistsongs;
 
     @FXML
-    TextField searchfield, textfieldInfo, TF_PlaylistName;
+    TextField searchfield, textfieldInfo, TF_PlaylistName, textfieldPlDuration;
 
     private MediaPlayer mp;
     private Media me;
@@ -62,7 +62,7 @@ public class Controller implements Initializable {
         ArrayList<String> songName = new ArrayList<>();
         for (Song object : Song.getSongList())
         {
-            double duration = Playlist.durationIntToDouble((double)object.getDURATION());
+            double duration = Playlist.durationIntToDouble(object.getDURATION());
             String navn = "Song: " + object.getSONG_NAME() + " Artist: " + object.getARTIST()+"Duration: " +duration;
             songName.add(navn);
         }
@@ -87,6 +87,11 @@ public class Controller implements Initializable {
      */
     public void updatePlaylistView() {
         playlistview.setItems(FXCollections.observableArrayList(Playlist.PlaylistArray()));
+    }
+    public void updatePlaylistSongView(int totalDur)
+    {
+        playlistsongs.setItems(FXCollections.observableArrayList(ActivePlaylist.getListPlaylist()));
+        textfieldPlDuration.setText(Double.toString(Playlist.durationIntToDouble(totalDur)));
     }
     public void updatePlaylistSongView()
     {
@@ -155,7 +160,7 @@ public class Controller implements Initializable {
     public void handlerPL_Create() {
         String PLname = TF_PlaylistName.getText();
         Playlist ActivePlaylist = new Playlist(PLname, Playlist.createPlaylist(PLname)); // Ugly code, Creates the Playlist in SQL and the instance of the Playlist Class
-        ActivePlaylist.playlistSongNameFill();
+        int totalDur = ActivePlaylist.playlistSongNameFill();
         System.out.println(Playlist.PlaylistArray());
         updatePlaylistView();
 
@@ -181,8 +186,8 @@ public class Controller implements Initializable {
             String selectedPL = playlistview.getSelectionModel().getSelectedItem().toString();
             ActivePlaylist.setPlaylistName(selectedPL);
             ActivePlaylist.setPlaylistID(Playlist.getPlaylistID(selectedPL));
-            ActivePlaylist.playlistSongNameFill();
-            updatePlaylistSongView();
+            int totalDur = ActivePlaylist.playlistSongNameFill();
+            updatePlaylistSongView(totalDur);
         } catch (Exception e) {
             System.out.println();
         }
@@ -196,7 +201,7 @@ public class Controller implements Initializable {
         selectedPLsong= selectedPLsong.substring(selectedPLsong.indexOf("g")+3,selectedPLsong.indexOf("Artist")-1);
         //Super hacky workaround string requirements in play method
         DB.selectSQL("SELECT fldFilePath FROM tblSong WHERE fldTitel ='"+selectedPLsong+"'");
-        selectedItem = selectedPLsong+DB.getData()+"                        Artist";
+        selectedItem = selectedPLsong+DB.getData()+"Artist";
         DB.getData();
     }
 

@@ -1,5 +1,7 @@
 package sample;
 
+import com.microsoft.sqlserver.jdbc.SQLServerConnectionPoolDataSource;
+
 import java.util.ArrayList;
 
 public class Playlist
@@ -50,10 +52,11 @@ public class Playlist
     }
     public String getPlaylistName() {return PlaylistName;}
 
-    public void playlistSongNameFill() //array song names
+    public int playlistSongNameFill() //array song names
     {
         // SQL query
         //SELECT fldSongId from tblSonglist WHERE fldListId = 1
+        int totalduration = 0;
         this.ListPlaylist.clear();
         int rows = 0;
         DB.selectSQL("SELECT COUNT (fldSongId) from tblSonglist WHERE fldListId="+this.PlaylistID);
@@ -69,21 +72,18 @@ public class Playlist
         for (String SongID : IDLIST)
         {
             int songInt = Integer.parseInt(SongID);
-                DB.selectSQL("SELECT fldTitel FROM tblSong WHERE fldSongId ="+songInt);
+                DB.selectSQL("SELECT fldTitel, fldArtistName, fldDuration FROM tblSong WHERE fldSongId ="+songInt);
                 String titel = DB.getData();
-                DB.getData();
-
-                DB.selectSQL("SELECT fldArtistName FROM tblSong WHERE fldSongId ="+songInt);
                 String artist = DB.getData();
-                DB.getData();
-
-                DB.selectSQL("SELECT fldDuration FROM tblSong WHERE fldSongId ="+songInt);
-                double duration = durationIntToDouble(Integer.parseInt(DB.getData()));
+                int durantionInt =Integer.parseInt(DB.getData());
+                double duration = durationIntToDouble(durantionInt);
+                totalduration +=durantionInt;
                 String navn = "Song: " + titel + " Artist: " + artist+ "Duration: "+duration;
 
             this.ListPlaylist.add(navn);
-        }
 
+        }
+        return totalduration;
     }
     public static ArrayList<String> PlaylistArray()
     {
@@ -148,16 +148,12 @@ public class Playlist
 
     public static double durationIntToDouble(double f) //formatere int til en double i formattet tt:mm:ss
     {
-        int Timer =(int)f;
-        double y = Timer;
-        double minutter = ((f-y)*60)/100;
-        return y+minutter;
-    }
-    private static double durationDoubleToInt(double f)//formatere double i formattet tt:mm:ss til en float.
-    {
-        int Timer1 = (int)f;
-        double minutter = ((f-Timer1)*100)/60;
-        return Timer1+minutter;
-    }
+        int totalDurInt = (int)f; // Cast the duration to an int, to minimize rounding errors
+        int totalMinute = totalDurInt/60; // divide by 60 to get mm.ss and cast away the seconds
+        double totalSec = (totalDurInt%totalMinute)/100; // moduls the total from amount of minutes for seconds
+        return Math.round(totalMinute+totalSec); // add it all together
 
+
+
+    }
 }
