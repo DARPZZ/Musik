@@ -1,7 +1,5 @@
 package sample;
 
-import com.microsoft.sqlserver.jdbc.SQLServerConnectionPoolDataSource;
-
 import java.util.ArrayList;
 
 public class Playlist

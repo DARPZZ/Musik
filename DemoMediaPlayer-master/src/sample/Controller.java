@@ -3,18 +3,17 @@ package sample;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.beans.InvalidationListener;
+import javafx.beans.Observable;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.scene.control.ListView;
-import javafx.scene.control.SelectionMode;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseEvent;
 
 import javafx.scene.media.*;
-import javafx.scene.control.Button;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -39,6 +38,9 @@ public class Controller implements Initializable
     ListView sangeliste, playlistview, playlistsongs;
     @FXML
     TextField searchfield, textfieldInfo, TF_PlaylistName;
+    @FXML
+    Slider sliderVolume;
+
 
     final Timeline timeline = new Timeline();
 
@@ -73,6 +75,15 @@ public class Controller implements Initializable
         playlistview.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
         playlistsongs.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
         System.out.println(Playlist.PlaylistArray());
+
+        sliderVolume.valueProperty().addListener(new InvalidationListener()
+        {
+            @Override
+            public void invalidated(Observable observable)
+            {
+                mp.setVolume(sliderVolume.getValue()/ 100);
+            }
+        });
 
     }
 
@@ -245,6 +256,14 @@ public class Controller implements Initializable
 
         // set the items of the list view
         sangeliste.setItems(songs);
+    }
+    public void handleChoose()
+    {
+
+    }
+    public void handleVolume()
+    {
+
     }
 }
 
