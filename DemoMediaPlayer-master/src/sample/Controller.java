@@ -58,6 +58,9 @@ public class Controller implements Initializable {
 
     public void initialize(URL location, ResourceBundle resources) {
         textfieldInfo.setStyle("-fx-background-color: Black; -fx-text-inner-color: white");
+        knapPause.setText("\u23f8");
+        knapStop.setText("\u23f9");
+        knapPlay.setText("\u23f5");
         // mp.setAutoPlay(true);
         // If autoplay is turned off the method play(), stop(), pause() etc controls how/when medias are played
         //mp.setAutoPlay(false);
