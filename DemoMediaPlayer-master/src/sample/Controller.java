@@ -5,6 +5,7 @@ import javafx.collections.ObservableList;
 import javafx.scene.control.ListView;
 import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseEvent;
@@ -23,7 +24,7 @@ public class Controller implements Initializable {
     @FXML
     private MediaView mediaV;
     @FXML
-    ImageView ImageV;
+    ImageView ImageV, imageV2;
 
     @FXML
     Button knapPlay, knapPause, knapStop, knapCreate, knapAdd, knapDelete, knapRemove, knapRename, knapChoose;
@@ -51,9 +52,13 @@ public class Controller implements Initializable {
 
 
         textfieldInfo.setStyle("-fx-background-color: Black; -fx-text-inner-color: white");
+        Image defaultImage = new Image("DemoMediaPlayer-master/src/sample/Logo/Das Music Playa.png");
+        imageV2.setImage(defaultImage);
+        //Unicode for play/pause/stop symbols in corresponding buttons
         knapPause.setText("\u23f8");
         knapStop.setText("\u23f9");
         knapPlay.setText("\u23f5");
+
         // mp.setAutoPlay(true);
         // If autoplay is turned off the method play(), stop(), pause() etc controls how/when medias are played
         //mp.setAutoPlay(false);
