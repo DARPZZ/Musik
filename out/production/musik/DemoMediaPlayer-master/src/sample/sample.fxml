@@ -28,7 +28,7 @@
       <ListView fx:id="sangeliste" layoutX="14.0" layoutY="47.0" onMouseClicked="#handleClickView" prefHeight="244.0" prefWidth="579.0" />
       <TextField fx:id="searchfield" layoutX="14.0" layoutY="291.0" onAction="#handlerSearch" onKeyTyped="#handlerSearch" prefHeight="25.0" prefWidth="579.0" promptText="Search for a song" styleClass="search-field" />
       <ListView fx:id="playlistsongs" layoutX="873.0" layoutY="47.0" onMouseClicked="#handlerPLsong_Select" prefHeight="220.0" prefWidth="401.0" />
-      <ListView fx:id="playlistview" layoutX="600.0" layoutY="47.0" onMouseClicked="#handlerPL_Select" prefHeight="220.0" prefWidth="266.0" />
+      <ListView fx:id="playlistview" layoutX="600.0" layoutY="47.0" onMouseClicked="#handlerPL_Select" prefHeight="244.0" prefWidth="266.0" />
       <Text fill="WHITE" layoutX="219.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tracks" textAlignment="CENTER" wrappingWidth="169.13671875">
          <font>
             <Font size="26.0" />
@@ -90,13 +90,27 @@
             <Font size="13.0" />
          </font>
       </Text>
-      <ProgressBar layoutX="14.0" layoutY="605.0" prefHeight="18.0" prefWidth="495.0" progress="0.0" />
-      <TextField fx:id="textfieldInfo" editable="false" layoutX="14.0" layoutY="561.0" prefHeight="44.0" prefWidth="495.0" scaleShape="false">
+      <ProgressBar layoutX="14.0" layoutY="605.0" prefHeight="18.0" prefWidth="854.0" progress="0.0" />
+      <TextField fx:id="textfieldInfo" editable="false" layoutX="14.0" layoutY="561.0" prefHeight="44.0" prefWidth="854.0" scaleShape="false">
          <font>
             <Font size="18.0" />
          </font>
       </TextField>
-      <TextField fx:id="TF_PlaylistName" layoutX="600.0" layoutY="267.0" prefHeight="25.0" prefWidth="266.0" promptText="Enter Name" />
-      <ImageView fx:id="imageV2" fitHeight="300.0" fitWidth="300.0" layoutX="532.0" layoutY="360.0" pickOnBounds="true" preserveRatio="true" />
+      <Text layoutX="23.0" layoutY="412.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Proudly brought to you by Niko,Darpzz,Tobias &amp; Mulle" textAlignment="CENTER" wrappingWidth="730.52001953125">
+         <font>
+            <Font name="Lucida Calligraphy Italic" size="23.0" />
+         </font>
+         <fill>
+            <LinearGradient endX="1.0" endY="1.0">
+               <stops>
+                  <Stop color="#6d79ff" />
+                  <Stop color="#6d79ff" offset="0.007662835249042145" />
+                  <Stop color="#cd0505" offset="0.5095785440613027" />
+                  <Stop color="#0044ff" offset="1.0" />
+               </stops>
+            </LinearGradient>
+         </fill>
+      </Text>
+      <TextField fx:id="TF_PlaylistName" layoutX="599.0" layoutY="323.0" prefHeight="25.0" prefWidth="266.0" promptText="Enter Name" />
    </children>
 </AnchorPane>
