@@ -1,10 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="4b766c38-3ce1-494d-914b-4ca7a2d0a2dd" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/sqljdbc42.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/musik/.idea/workspace.xml" beforeDir="false" />
+    <list default="true" id="f6fc35e9-2be6-4c8e-9943-1ffbc1ef392d" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/sqljdbc4.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/DemoMediaPlayer-master/src/sample/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/DemoMediaPlayer-master/src/sample/Controller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/musik/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/musik/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/musik/DemoMediaPlayer-master/src/sample/sample.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/musik/DemoMediaPlayer-master/src/sample/sample.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/musik/db.properties" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/musik/db.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/musik/sample/Controller.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/musik/sample/Controller.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/musik/sample/Pictures.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/musik/sample/Pictures.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/musik/sample/sample.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/musik/sample/sample.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -14,7 +19,10 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectId" id="2KApQk3LQFm2N03AXlkreRViw04" />
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="2KAskpbhf1ZgYRS8CnY2wWcx8V2" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -24,9 +32,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "C:/Users/jakob/Desktop/AP Datamatiker/1. Semester/Systemkonstruktion/1. september/DB Material Week 43/DB Material Week 43/sqljdbc4.jar",
-    "node.js.detected.package.eslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
+    "last_opened_file_path": "C:/Users/gugai/Desktop/EASV Sønderborg/Programmering Noter/DB Material Week 43/sqljdbc4.jar",
     "project.structure.last.edited": "Libraries",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2"
@@ -35,12 +41,13 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="4b766c38-3ce1-494d-914b-4ca7a2d0a2dd" name="Changes" comment="" />
-      <created>1673427230617</created>
+      <changelist id="f6fc35e9-2be6-4c8e-9943-1ffbc1ef392d" name="Changes" comment="" />
+      <created>1673428867517</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1673427230617</updated>
-      <workItem from="1673427232215" duration="61000" />
+      <updated>1673428867517</updated>
+      <workItem from="1673428869628" duration="481000" />
+      <workItem from="1673429829869" duration="172000" />
     </task>
     <servers />
   </component>
