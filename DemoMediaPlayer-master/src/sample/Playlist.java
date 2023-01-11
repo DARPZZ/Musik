@@ -148,7 +148,22 @@ public class Playlist
 
     public static String durationIntToDouble(double f) //formatere int til en double i formattet tt:mm:ss
     {
-        double totalMinute = f/60; // divide by 60 to get mm.ss and cast away the seconds
-        return df.format(totalMinute); // add it all together
+         // divide by 60 to get mm.ss and cast away the seconds
+
+        if (f%60 >60)
+        {
+            int minuttes = (int)f/60;
+            int minuteRemain =(int) f%60/60;
+            double totalSec = ((f%60/60-minuteRemain)/1.667)/100;
+            return df.format(minuttes+minuteRemain+totalSec);
+        }
+        else
+        {
+            int totalMinute = (int) f/60;
+            double totalSec = (f%60/1.667)/100;
+            return df.format(totalMinute+totalSec);
+        }
+
+
     }
 }

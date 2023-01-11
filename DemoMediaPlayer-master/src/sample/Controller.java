@@ -37,7 +37,7 @@ public class Controller implements Initializable
     @FXML
     ListView sangeliste, playlistview, playlistsongs;
     @FXML
-    TextField searchfield, textfieldInfo, TF_PlaylistName;
+    TextField searchfield, textfieldInfo, TF_PlaylistName,textfieldPlDuration;
     @FXML
     Slider sliderVolume;
 
@@ -95,9 +95,20 @@ public class Controller implements Initializable
         playlistview.setItems(FXCollections.observableArrayList(Playlist.PlaylistArray()));
     }
 
-    public void updatePlaylistSongView()
+    public void updatePlaylistSongView(int i)
     {
         playlistsongs.setItems(FXCollections.observableArrayList(ActivePlaylist.getListPlaylist()));
+        textfieldPlDuration.setText(Playlist.durationIntToDouble(i));
+    }
+    public String stringFormat(String inputString)
+    {
+        StringBuilder sB = new StringBuilder(25);
+        sB.insert(0,inputString);
+        for (int i = 0; i < 25-inputString.length(); i++)
+        {
+        sB.append(" ");
+        }
+        return sB.toString();
     }
 
     @FXML
@@ -122,6 +133,7 @@ public class Controller implements Initializable
         mediaV.setMediaPlayer(mp);
         mp.play();
     }
+
 
     public void handlerPause()
     {
@@ -192,8 +204,8 @@ public class Controller implements Initializable
             String selectedPL = playlistview.getSelectionModel().getSelectedItem().toString();
             ActivePlaylist.setPlaylistName(selectedPL);
             ActivePlaylist.setPlaylistID(Playlist.getPlaylistID(selectedPL));
-            ActivePlaylist.playlistSongNameFill();
-            updatePlaylistSongView();
+            int totalDur = ActivePlaylist.playlistSongNameFill();
+            updatePlaylistSongView(totalDur);
         } catch (Exception e) {
             System.out.println();
         }
@@ -215,7 +227,8 @@ public class Controller implements Initializable
     {
         String endSearch = selectedItem.substring(selectedItem.indexOf(" ") + 1, selectedItem.indexOf("Artist") - 1);
         ActivePlaylist.addSongPlaylist(endSearch);
-        updatePlaylistSongView();
+        int totaldur =ActivePlaylist.playlistSongNameFill();
+        updatePlaylistSongView(totaldur);
 
     }
 
