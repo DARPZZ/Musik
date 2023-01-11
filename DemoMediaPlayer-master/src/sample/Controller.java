@@ -218,9 +218,7 @@ public class Controller implements Initializable
         String selectedPLsong = playlistsongs.getSelectionModel().getSelectedItem().toString();
         selectedPLsong = selectedPLsong.substring(selectedPLsong.indexOf("g") + 3, selectedPLsong.indexOf("Artist") - 1);
         //Super hacky workaround string requirements in play method
-        DB.selectSQL("SELECT fldFilePath FROM tblSong WHERE fldTitel ='" + selectedPLsong + "'");
-        selectedItem = selectedPLsong + DB.getData() + "                        Artist";
-        DB.getData();
+        selectedItem = " " + selectedPLsong + " Artist";
     }
 
     public void handlerPL_add()
