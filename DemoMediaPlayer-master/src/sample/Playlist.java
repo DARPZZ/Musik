@@ -3,6 +3,9 @@ package sample;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 
+/**
+ * @author TC
+ */
 public class Playlist
 {
     private String PlaylistName;
@@ -14,14 +17,28 @@ public class Playlist
         this.PlaylistName=name;
         this.PlaylistID=ID;
     }
-    public String PlaylistName()
-    {return PlaylistName;}
-    public int PlaylistID()
-    {return PlaylistID;}
+    static public int getPlaylistID(String name)
+    {
+        DB.selectSQL("SELECT fldListId FROM tblPlaylist WHERE fldListName ='"+name+"'");
+        int i =Integer.parseInt(DB.getData());
+        return i;
+    }
     public ArrayList getListPlaylist()
     {return ListPlaylist;}
+    public void setPlaylistID(int i)
+    {
+        this.PlaylistID = i;
+    }
+    public void setPlaylistName(String s)
+    {
+        this.PlaylistName = s;
+    }
 
-
+    /**
+     *
+     * @param name is the name of the new playlist in the database
+     * @return the ID value of the newly created
+     */
     public static int createPlaylist(String name)
     {
         //SQL query
@@ -40,18 +57,10 @@ public class Playlist
         return PlaylistID;
     }
 
-    public int getPlaylistID()
-    {
-        return PlaylistID;
-    }
-    static public int getPlaylistID(String name)
-    {
-        DB.selectSQL("SELECT fldListId FROM tblPlaylist WHERE fldListName ='"+name+"'");
-        int i =Integer.parseInt(DB.getData());
-        return i;
-    }
-    public String getPlaylistName() {return PlaylistName;}
-
+    /**
+     * sets the array "ListPlaylisy" to include all the songs in the playlist
+     * @return the int, sum of all durations
+     */
     public int playlistSongNameFill() //array song names
     {
         // SQL query
@@ -76,7 +85,7 @@ public class Playlist
                 String titel = DB.getData();
                 String artist = DB.getData();
                 int durantionInt =Integer.parseInt(DB.getData());
-                String duration = durationIntToDouble(durantionInt);
+                String duration = durationFormat(durantionInt);
                 totalduration +=durantionInt;
                 String navn = "Song: " + titel + " Artist: " + artist+ "Duration: "+duration;
 
@@ -85,6 +94,11 @@ public class Playlist
         }
         return totalduration;
     }
+
+    /**
+     *
+     * @return Array of all the playlists from the DB
+     */
     public static ArrayList<String> PlaylistArray()
     {
         ArrayList<String> listPlaylist = new ArrayList<String>();
@@ -100,17 +114,19 @@ public class Playlist
         return listPlaylist;
     }
 
+    /**
+     * Deletes from playlists from DB
+     */
     public void deletePlaylist()
     {
         DB.deleteSQL("DELETE FROM tblSonglist WHERE fldListId ="+this.PlaylistID);
         DB.deleteSQL("DELETE FROM tblPlaylist WHERE fldListId ="+this.PlaylistID);
     }
-    public void deleteSongPlaylist(int SongID)
-    {
-        //SQL query
-        // insert INTO tblSonglist (fldListId, fldSongId) VALUES (x,y)
-        DB.updateSQL("DELETE FROM tblSonglist WHERE fldListId ="+PlaylistID+" AND fldSongId ="+SongID);
-    }
+
+    /**
+     * deletes songs from playlists
+     * @param SongName <-- song to be deleted
+     */
     public void deleteSongPlaylist(String SongName)
     {
         DB.selectSQL("SELECT fldSongId FROM tblSong WHERE fldTitel ='"+SongName+"'");
@@ -118,12 +134,11 @@ public class Playlist
         DB.getData();
         DB.updateSQL("DELETE TOP (1) FROM tblSonglist WHERE tblSonglist.fldListId =" + this.PlaylistID + " AND tblSonglist.fldSongId ="+i);
     }
-    public void addSongPlaylist(int SongID)
-    {
-        //SQL query
-        // insert INTO tblSonglist (fldListId, fldSongId) VALUES (x,y)
-        DB.updateSQL("insert INTO tblSonglist (fldListId, fldSongId) VALUES ("+PlaylistID+","+SongID+")");
-    }
+
+    /**
+     * adds a song to the playlist
+     * @param songName <-- song to be deleted
+     */
     public void addSongPlaylist(String songName)
     {
         DB.selectSQL("SELECT fldSongId FROM tblSong WHERE fldTitel ='"+songName+"'");
@@ -133,34 +148,36 @@ public class Playlist
         // insert INTO tblSonglist (fldListId, fldSongId) VALUES (x,y)
         DB.updateSQL("insert INTO tblSonglist (fldListId, fldSongId) VALUES ("+this.PlaylistID+","+SongID+")");
     }
+
+    /**
+     * Renames an existing playlist
+     * @param Newname
+     */
     public void renamePlaylist(String Newname)
     {
         DB.updateSQL("UPDATE tblPlaylist SET fldListName ='"+Newname+"' WHERE fldListName ='"+this.PlaylistName+"'");
     }
-    public void setPlaylistID(int i)
-    {
-        this.PlaylistID = i;
-    }
-    public void setPlaylistName(String s)
-    {
-        this.PlaylistName = s;
-    }
 
-    public static String durationIntToDouble(double f) //formatere int til en double i formattet tt:mm:ss
+    /**
+     *
+     * @param inputNR <-- the duration in seconds
+     * @return duration formatted m,ss
+     */
+    public static String durationFormat(double inputNR) //formatere int til en double i formattet tt:mm:ss
     {
          // divide by 60 to get mm.ss and cast away the seconds
 
-        if (f%60 >60)
+        if (inputNR%60 >60)
         {
-            int minuttes = (int)f/60;
-            int minuteRemain =(int) f%60/60;
-            double totalSec = ((f%60/60-minuteRemain)/1.667)/100;
+            int minuttes = (int)inputNR/60;
+            int minuteRemain =(int) inputNR%60/60;
+            double totalSec = ((inputNR%60/60-minuteRemain)/1.667)/100;
             return df.format(minuttes+minuteRemain+totalSec);
         }
         else
         {
-            int totalMinute = (int) f/60;
-            double totalSec = (f%60/1.667)/100;
+            int totalMinute = (int) inputNR/60;
+            double totalSec = (inputNR%60/1.667)/100;
             return df.format(totalMinute+totalSec);
         }
 
