@@ -12,15 +12,15 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: Black;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
    <children>
-      <Button fx:id="knapPlay" layoutX="14.0" layoutY="631.0" mnemonicParsing="false" onAction="#handlerplay" prefHeight="50.0" prefWidth="149.0" style="-fx-background-color: Black; -fx-border-color: White;" text="Play &gt;&gt;" textFill="WHITE">
+      <Button fx:id="knapPlay" layoutX="14.0" layoutY="631.0" mnemonicParsing="false" onAction="#handlerplay" prefHeight="44.0" prefWidth="149.0" scaleShape="false" style="-fx-background-color: Black; -fx-border-color: White;" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="22.0" />
+         </font></Button>
+      <Button fx:id="knapPause" layoutX="168.0" layoutY="631.0" mnemonicParsing="false" onAction="#handlerPause" prefHeight="50.0" prefWidth="149.0" scaleShape="false" style="-fx-background-color: Black; -fx-border-color: White;" textFill="WHITE">
          <font>
             <Font name="System Bold" size="18.0" />
          </font></Button>
-      <Button fx:id="knapPause" layoutX="168.0" layoutY="631.0" mnemonicParsing="false" onAction="#handlerPause" prefHeight="50.0" prefWidth="149.0" style="-fx-background-color: Black; -fx-border-color: White;" text="Pause  ||" textFill="WHITE">
-         <font>
-            <Font name="System Bold" size="18.0" />
-         </font></Button>
-      <Button fx:id="knapStop" layoutX="323.0" layoutY="631.0" mnemonicParsing="false" onAction="#handlerStop" prefHeight="50.0" prefWidth="149.0" style="-fx-background-color: Black; -fx-border-color: White;" text="Stop" textFill="WHITE">
+      <Button fx:id="knapStop" layoutX="323.0" layoutY="631.0" mnemonicParsing="false" onAction="#handlerStop" prefHeight="50.0" prefWidth="149.0" scaleShape="false" style="-fx-background-color: Black; -fx-border-color: White;" textFill="WHITE">
          <font>
             <Font name="System Bold" size="18.0" />
          </font></Button>
@@ -111,6 +111,6 @@
             </LinearGradient>
          </fill>
       </Text>
-      <TextField fx:id="TF_PlaylistName" layoutX="609.0" layoutY="318.0" promptText="Enter Name" />
+      <TextField fx:id="TF_PlaylistName" layoutX="599.0" layoutY="323.0" prefHeight="25.0" prefWidth="266.0" promptText="Enter Name" />
    </children>
 </AnchorPane>
