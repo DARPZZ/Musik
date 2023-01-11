@@ -80,7 +80,7 @@
          </font>
       </Button>
       <TextField fx:id="textfieldPlDuration" alignment="CENTER_RIGHT" layoutX="873.0" layoutY="267.0" prefHeight="25.0" prefWidth="401.0" promptText="Playlist duration" />
-      <Button fx:id="knapChoose" layoutX="873.0" layoutY="681.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="102.0" style="-fx-background-color: Black; -fx-border-color: White;" text="Choose pictures" textFill="WHITE">
+      <Button fx:id="knapChoose" layoutX="873.0" layoutY="681.0" mnemonicParsing="false" onAction="#handleChoose" prefHeight="35.0" prefWidth="102.0" style="-fx-background-color: Black; -fx-border-color: White;" text="Choose pictures" textFill="WHITE">
          <font>
             <Font name="System Bold" size="10.0" />
          </font>
@@ -98,5 +98,6 @@
       </TextField>
       <TextField fx:id="TF_PlaylistName" layoutX="600.0" layoutY="267.0" prefHeight="25.0" prefWidth="266.0" promptText="Enter Name" />
       <ImageView fx:id="imageV2" fitHeight="300.0" fitWidth="300.0" layoutX="532.0" layoutY="360.0" pickOnBounds="true" preserveRatio="true" />
+      <Slider fx:id="sliderVolume" layoutX="518.0" layoutY="561.0" orientation="VERTICAL" value="100.0" />
    </children>
 </AnchorPane>
