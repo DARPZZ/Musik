@@ -46,6 +46,7 @@ public class Controller implements Initializable {
     private MediaPlayer mp;
     private Media me;
     private String filepath = new File("DemoMediaPlayer-master/src/sample/media/SampleAudio_0.4mb.mp3").getAbsolutePath();
+    private String displayInfo;
     public Playlist ActivePlaylist = new Playlist(null, 0);
     public String selectedItem;
 
@@ -77,7 +78,8 @@ public class Controller implements Initializable {
         for (Song object : Song.getSongList())
         {
             double duration = Playlist.durationIntToDouble((double)object.getDURATION());
-            String navn = "Song: " + object.getSONG_NAME() + " Artist: " + object.getARTIST()+"Duration: " +duration;
+
+            String navn = "Song: " + object.getSONG_NAME() + " Artist: " + object.getARTIST()+ " Duration: " +duration;
             songName.add(navn);
         }
         ObservableList<String> songs = FXCollections.observableArrayList(songName);
@@ -93,7 +95,6 @@ public class Controller implements Initializable {
         playlistview.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
         playlistsongs.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
         System.out.println(Playlist.PlaylistArray());
-
     }
 
     /**
@@ -115,14 +116,6 @@ public class Controller implements Initializable {
     {
         String endSearch = selectedItem.substring(selectedItem.indexOf(" ") + 1, selectedItem.indexOf("Artist") - 1);
         System.out.println(endSearch);
-        ArrayList<String> mylist = Pictures.addPictures();
-/*
-        int index = (int)(Math.random() * mylist.size());
-        Image billeder = new Image(mylist.get(index));
-        String random= mylist.get(index);
-        ImageV.setImage(billeder);
-
- */
         loadBilleder();
 
 
@@ -130,9 +123,11 @@ public class Controller implements Initializable {
         for (Song songs : Song.getSongList()) {
             if (songs.getSONG_NAME().equals(endSearch)) {
                 filepath = songs.getFILE_PATH();
+                displayInfo = songs.getARTIST() + " - " + songs.getSONG_NAME() + " - " + songs.getDURATION();
             }
         }
 
+        textfieldInfo.setText(displayInfo);
         System.out.println("Now playing: " + filepath);
         me = new Media(new File(filepath).toURI().toString());
         // Create new MediaPlayer and attach the media to be played
@@ -152,8 +147,6 @@ public class Controller implements Initializable {
         mp.stop();
         timeline.stop();
        timeline.getKeyFrames().clear();
-
-
     }
 
     public void handlerSearch() {
@@ -190,8 +183,6 @@ public class Controller implements Initializable {
         ActivePlaylist.playlistSongNameFill();
         System.out.println(Playlist.PlaylistArray());
         updatePlaylistView();
-
-
     }
 
     public void handlerPL_Delete() {
@@ -204,7 +195,6 @@ public class Controller implements Initializable {
         String selectedPL = TF_PlaylistName.getText();
         ActivePlaylist.renamePlaylist(selectedPL);
         updatePlaylistView();
-
     }
 
     public void handlerPL_Select(MouseEvent event) {
@@ -218,7 +208,6 @@ public class Controller implements Initializable {
         } catch (Exception e) {
             System.out.println();
         }
-
     }
 
     public void handlerPLsong_Select()
@@ -245,7 +234,6 @@ public class Controller implements Initializable {
             ActivePlaylist.deleteSongPlaylist(selectedItem);
         }
         catch (Exception e){}
-
     }
     public void loadBilleder()
     {
