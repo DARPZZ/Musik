@@ -5,6 +5,7 @@ import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.beans.InvalidationListener;
 import javafx.beans.Observable;
+import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.*;
@@ -81,7 +82,12 @@ public class Controller implements Initializable
             @Override
             public void invalidated(Observable observable)
             {
+                sliderVolume.setShowTickMarks(true);
+                sliderVolume.setShowTickLabels(true);
+                sliderVolume.setMajorTickUnit(25);
                 mp.setVolume(sliderVolume.getValue()/ 100);
+
+
             }
         });
 

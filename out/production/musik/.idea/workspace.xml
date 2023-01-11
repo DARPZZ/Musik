@@ -1,15 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="aad64f5d-ca6e-48b2-970a-a90f74be859d" name="Changes" comment="billede fix 1.2">
-      <change beforePath="$PROJECT_DIR$/DemoMediaPlayer-master/src/sample/DB.java" beforeDir="false" afterPath="$PROJECT_DIR$/DemoMediaPlayer-master/src/sample/DB.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db.properties" beforeDir="false" afterPath="$PROJECT_DIR$/db.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/musik/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/musik/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/musik/db.properties" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/musik/db.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/musik/sample/Controller.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/musik/sample/Controller.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/musik/sample/DB.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/musik/sample/DB.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/musik/sample/Playlist.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/musik/sample/Playlist.class" afterDir="false" />
-    </list>
+    <list default="true" id="aad64f5d-ca6e-48b2-970a-a90f74be859d" name="Changes" comment="billede fix 1.2" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -95,6 +87,7 @@
       <workItem from="1673447767162" duration="41000" />
       <workItem from="1673447835634" duration="374000" />
       <workItem from="1673462082288" duration="3000" />
+      <workItem from="1673462103784" duration="621000" />
     </task>
     <task id="LOCAL-00001" summary="Added slideshow">
       <created>1673389249159</created>
