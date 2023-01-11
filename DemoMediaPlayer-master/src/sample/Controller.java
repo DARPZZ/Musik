@@ -261,9 +261,6 @@ public class Controller implements Initializable
     {
 
     }
-    public void handleVolume()
-    {
 
-    }
 }
 
