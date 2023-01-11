@@ -1,17 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="aad64f5d-ca6e-48b2-970a-a90f74be859d" name="Changes" comment="Code dupe fix 1.1">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/sqljdbc4.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DemoMediaPlayer-master/src/sample/Volume.java" afterDir="false" />
+    <list default="true" id="aad64f5d-ca6e-48b2-970a-a90f74be859d" name="Changes" comment="Fix handler for volume">
       <change beforePath="$PROJECT_DIR$/DemoMediaPlayer-master/src/sample/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/DemoMediaPlayer-master/src/sample/Controller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DemoMediaPlayer-master/src/sample/Playlist.java" beforeDir="false" afterPath="$PROJECT_DIR$/DemoMediaPlayer-master/src/sample/Playlist.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DemoMediaPlayer-master/src/sample/DB.java" beforeDir="false" afterPath="$PROJECT_DIR$/DemoMediaPlayer-master/src/sample/DB.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db.properties" beforeDir="false" afterPath="$PROJECT_DIR$/db.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/musik/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/musik/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/musik/DemoMediaPlayer-master/src/sample/sample.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/musik/DemoMediaPlayer-master/src/sample/sample.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/musik/db.properties" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/musik/db.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/musik/sample/Controller.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/musik/sample/Controller.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/musik/sample/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/musik/sample/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/musik/sample/Playlist.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/musik/sample/Playlist.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/musik/sample/sample.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/musik/sample/sample.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/musik/sample/DB.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/musik/sample/DB.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,18 +33,18 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/Rasmus T. Hermansen/Desktop/Tommy hat/DB Material Week 43/sqljdbc4.jar&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "C:/Users/Rasmus T. Hermansen/Desktop/Kopi af java 2",
+    "project.structure.last.edited": "Libraries",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\Rasmus T. Hermansen\Documents\GitHub\musik\DemoMediaPlayer-master\src\sample\Billeder" />
@@ -80,7 +77,11 @@
       <workItem from="1673431725989" duration="1573000" />
       <workItem from="1673433418679" duration="95000" />
       <workItem from="1673433526951" duration="1008000" />
-      <workItem from="1673434558090" duration="303000" />
+      <workItem from="1673434558090" duration="4494000" />
+      <workItem from="1673439179577" duration="440000" />
+      <workItem from="1673440657134" duration="682000" />
+      <workItem from="1673441359113" duration="110000" />
+      <workItem from="1673441494360" duration="487000" />
     </task>
     <task id="LOCAL-00001" summary="Added slideshow">
       <created>1673389249159</created>
@@ -117,7 +118,28 @@
       <option name="project" value="LOCAL" />
       <updated>1673433036302</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Tilføjet de rigtige billeder og lavet en volume button">
+      <created>1673439045506</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1673439045506</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Fix volume controle">
+      <created>1673439089011</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1673439089011</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Fix handler for volume">
+      <created>1673439380673</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1673439380673</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -141,6 +163,9 @@
     <MESSAGE value="Tilføjet de rigtige databse filer til branch" />
     <MESSAGE value="Code dupe fix" />
     <MESSAGE value="Code dupe fix 1.1" />
-    <option name="LAST_COMMIT_MESSAGE" value="Code dupe fix 1.1" />
+    <MESSAGE value="Tilføjet de rigtige billeder og lavet en volume button" />
+    <MESSAGE value="Fix volume controle" />
+    <MESSAGE value="Fix handler for volume" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fix handler for volume" />
   </component>
 </project>

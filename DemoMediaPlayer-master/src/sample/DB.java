@@ -54,8 +54,8 @@ public class DB {
     }
     private static void connect(){
         try {
-            //con = DriverManager.getConnection("jdbc:sqlserver://localhost:"+port+";databaseName="+databaseName,userName,password);
-            con = DriverManager.getConnection("jdbc:sqlserver://dbmusicplayer.database.windows.net:"+port+";database="+databaseName,userName,"abc123!!");
+            con = DriverManager.getConnection("jdbc:sqlserver://localhost:"+port+";databaseName="+databaseName,userName,password);
+            //con = DriverManager.getConnection("jdbc:sqlserver://dbmusicplayer.database.windows.net:"+port+";database="+databaseName,userName,"abc123!!");
         } catch (SQLException e) {
             System.err.println(e.getMessage());
         }

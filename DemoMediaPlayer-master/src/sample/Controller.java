@@ -65,7 +65,17 @@ public class Controller implements Initializable
         knapPlay.setText("\u23f5");
         // create the list of songs
         Song.CreateList();
-        publishSong();
+
+        ArrayList<String> songName = new ArrayList<>();
+
+        for (Song object : Song.getSongList()) {
+            String navn = "Song: " + object.getSONG_NAME() + " Artist: " + object.getARTIST();
+            songName.add(navn);
+        }
+        ObservableList<String> songs = FXCollections.observableArrayList(songName);
+
+        // set the items of the list view
+        sangeliste.setItems(songs);
 
         // set the selection mode to single, so only one song can be selected at a time
         sangeliste.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
@@ -258,6 +268,10 @@ public class Controller implements Initializable
         sangeliste.setItems(songs);
     }
     public void handleChoose()
+    {
+
+    }
+    public void handleVolume ()
     {
 
     }
