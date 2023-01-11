@@ -1,165 +1,54 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="731a5893-d892-4d5f-8bd3-35cec8f1e4c4" name="Changes" comment="Added image view as fxml" />
+    <list default="true" id="f6fc35e9-2be6-4c8e-9943-1ffbc1ef392d" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/sqljdbc4.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/DemoMediaPlayer-master/src/sample/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/DemoMediaPlayer-master/src/sample/Controller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/musik/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/musik/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/musik/DemoMediaPlayer-master/src/sample/sample.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/musik/DemoMediaPlayer-master/src/sample/sample.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/musik/db.properties" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/musik/db.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/musik/sample/Controller.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/musik/sample/Controller.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/musik/sample/Pictures.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/musik/sample/Pictures.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/musik/sample/sample.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/musik/sample/sample.fxml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="FileTemplateManagerImpl">
-    <option name="RECENT_TEMPLATES">
-      <list>
-        <option value="Class" />
-      </list>
-    </option>
-  </component>
   <component name="Git.Settings">
-    <option name="RECENT_BRANCH_BY_REPOSITORY">
-      <map>
-        <entry key="$PROJECT_DIR$" value="Billeder" />
-      </map>
-    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
-  <component name="ProjectId" id="2K5FDLglrEhvlAS0wFFvztvU74c" />
+  <component name="ProjectId" id="2KAskpbhf1ZgYRS8CnY2wWcx8V2" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/Rasmus T. Hermansen/Desktop/Tommy hat/DB Material Week 43/sqljdbc4.jar&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.5149425&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "C:/Users/gugai/Desktop/EASV Sønderborg/Programmering Noter/DB Material Week 43/sqljdbc4.jar",
+    "project.structure.last.edited": "Libraries",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2"
   }
-}</component>
-  <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\Rasmus T. Hermansen\Documents\GitHub\musik\DemoMediaPlayer-master\src\sample\Billeder" />
-      <recent name="C:\Users\Rasmus T. Hermansen\Documents\GitHub\musik\DemoMediaPlayer-master\src\sample\media" />
-    </key>
-  </component>
-  <component name="RunManager">
-    <configuration name="Main" type="Application" factoryName="Application">
-      <option name="MAIN_CLASS_NAME" value="sample.Main" />
-      <module name="musik" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-        <option name="com.soywiz.korge.intellij.UpdateResourceBeforeRunTask" enabled="false" />
-      </method>
-    </configuration>
-  </component>
+}]]></component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="731a5893-d892-4d5f-8bd3-35cec8f1e4c4" name="Changes" comment="" />
-      <created>1673256420025</created>
+      <changelist id="f6fc35e9-2be6-4c8e-9943-1ffbc1ef392d" name="Changes" comment="" />
+      <created>1673428867517</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1673256420025</updated>
-      <workItem from="1673256422890" duration="4610000" />
-      <workItem from="1673261116929" duration="134000" />
-      <workItem from="1673261273667" duration="12468000" />
-      <workItem from="1673297147588" duration="355000" />
-      <workItem from="1673297523765" duration="322000" />
-      <workItem from="1673299011356" duration="2532000" />
-      <workItem from="1673333046772" duration="340000" />
-      <workItem from="1673333659198" duration="534000" />
-      <workItem from="1673334219075" duration="90000" />
-      <workItem from="1673334398712" duration="1285000" />
-      <workItem from="1673336653998" duration="439000" />
-      <workItem from="1673337613626" duration="2536000" />
-      <workItem from="1673340390248" duration="178000" />
-      <workItem from="1673340589066" duration="36000" />
-      <workItem from="1673340645636" duration="277000" />
-      <workItem from="1673341666008" duration="76000" />
-      <workItem from="1673341775769" duration="1543000" />
-      <workItem from="1673343463904" duration="7458000" />
-      <workItem from="1673351446622" duration="1207000" />
-      <workItem from="1673353984051" duration="397000" />
-      <workItem from="1673354406638" duration="710000" />
-      <workItem from="1673380283875" duration="1867000" />
+      <updated>1673428867517</updated>
+      <workItem from="1673428869628" duration="481000" />
+      <workItem from="1673429829869" duration="172000" />
     </task>
-    <task id="LOCAL-00001" summary="Bug fixes">
-      <created>1673257103086</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1673257103086</updated>
-    </task>
-    <task id="LOCAL-00002" summary="Added seachSange">
-      <created>1673257782580</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1673257782580</updated>
-    </task>
-    <task id="LOCAL-00003" summary="duplicated code removed">
-      <created>1673260970783</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1673260970783</updated>
-    </task>
-    <task id="LOCAL-00004" summary="duplicated code removed">
-      <created>1673261233498</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1673261233498</updated>
-    </task>
-    <task id="LOCAL-00005" summary="duplicated code removed">
-      <created>1673267788005</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1673267788005</updated>
-    </task>
-    <task id="LOCAL-00006" summary="Added billeder">
-      <created>1673269403795</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1673269403795</updated>
-    </task>
-    <task id="LOCAL-00007" summary="Added billeder">
-      <created>1673273978967</created>
-      <option name="number" value="00007" />
-      <option name="presentableId" value="LOCAL-00007" />
-      <option name="project" value="LOCAL" />
-      <updated>1673273978967</updated>
-    </task>
-    <task id="LOCAL-00008" summary="commit billeder 1.1">
-      <created>1673340502454</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL-00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1673340502454</updated>
-    </task>
-    <task id="LOCAL-00009" summary="Tiljøet billederne">
-      <created>1673342058504</created>
-      <option name="number" value="00009" />
-      <option name="presentableId" value="LOCAL-00009" />
-      <option name="project" value="LOCAL" />
-      <updated>1673342058505</updated>
-    </task>
-    <task id="LOCAL-00010" summary="Added image view as fxml">
-      <created>1673344510360</created>
-      <option name="number" value="00010" />
-      <option name="presentableId" value="LOCAL-00010" />
-      <option name="project" value="LOCAL" />
-      <updated>1673344510360</updated>
-    </task>
-    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -175,15 +64,5 @@
         </entry>
       </map>
     </option>
-  </component>
-  <component name="VcsManagerConfiguration">
-    <MESSAGE value="Bug fixes" />
-    <MESSAGE value="Added seachSange" />
-    <MESSAGE value="duplicated code removed" />
-    <MESSAGE value="Added billeder" />
-    <MESSAGE value="commit billeder 1.1" />
-    <MESSAGE value="Tiljøet billederne" />
-    <MESSAGE value="Added image view as fxml" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added image view as fxml" />
   </component>
 </project>
