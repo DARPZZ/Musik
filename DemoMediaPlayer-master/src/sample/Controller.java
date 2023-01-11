@@ -248,7 +248,7 @@ public class Controller implements Initializable
     {
         ArrayList<String> songName = new ArrayList<>();
         for (Song object : Song.getSongList()) {
-            double duration = Playlist.durationIntToDouble((double) object.getDURATION());
+            String duration = Playlist.durationIntToDouble( object.getDURATION());
             String navn = "Song: " + object.getSONG_NAME() + " Artist: " + object.getARTIST() + "Duration: " + duration;
             songName.add(navn);
         }
