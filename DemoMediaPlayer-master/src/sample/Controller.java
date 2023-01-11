@@ -52,8 +52,8 @@ public class Controller implements Initializable {
 
 
         textfieldInfo.setStyle("-fx-background-color: Black; -fx-text-inner-color: white");
-        Image defaultImage = new Image("DemoMediaPlayer-master/src/sample/Logo/Das Music Playa.png");
-        imageV2.setImage(defaultImage);
+        //Image defaultImage = new Image("DemoMediaPlayer-master/src/sample/Logo/Das Music Playa.png");
+        //imageV2.setImage(defaultImage);
         //Unicode for play/pause/stop symbols in corresponding buttons
         knapPause.setText("\u23f8");
         knapStop.setText("\u23f9");
