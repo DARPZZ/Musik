@@ -60,6 +60,9 @@ public class Controller implements Initializable
 
     public void initialize(URL location, ResourceBundle resources)
     {
+        sliderVolume.setShowTickMarks(true);
+        sliderVolume.setShowTickLabels(true);
+        sliderVolume.setMajorTickUnit(25);
         textfieldInfo.setStyle("-fx-background-color: Black; -fx-text-inner-color: white");
         knapPause.setText("\u23f8");
         knapStop.setText("\u23f9");
@@ -82,12 +85,8 @@ public class Controller implements Initializable
             @Override
             public void invalidated(Observable observable)
             {
-                sliderVolume.setShowTickMarks(true);
-                sliderVolume.setShowTickLabels(true);
-                sliderVolume.setMajorTickUnit(25);
+
                 mp.setVolume(sliderVolume.getValue()/ 100);
-
-
             }
         });
 
