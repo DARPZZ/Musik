@@ -1,18 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="aad64f5d-ca6e-48b2-970a-a90f74be859d" name="Changes" comment="Code dupe fix 1.1">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/sqljdbc4.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DemoMediaPlayer-master/src/sample/Volume.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DemoMediaPlayer-master/src/sample/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/DemoMediaPlayer-master/src/sample/Controller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DemoMediaPlayer-master/src/sample/Playlist.java" beforeDir="false" afterPath="$PROJECT_DIR$/DemoMediaPlayer-master/src/sample/Playlist.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/musik/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/musik/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/musik/DemoMediaPlayer-master/src/sample/sample.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/musik/DemoMediaPlayer-master/src/sample/sample.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/musik/sample/Controller.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/musik/sample/Controller.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/musik/sample/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/musik/sample/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/musik/sample/Playlist.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/musik/sample/Playlist.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/musik/sample/sample.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/musik/sample/sample.fxml" afterDir="false" />
-    </list>
+    <list default="true" id="aad64f5d-ca6e-48b2-970a-a90f74be859d" name="Changes" comment="Fix volume controle" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -80,7 +69,7 @@
       <workItem from="1673431725989" duration="1573000" />
       <workItem from="1673433418679" duration="95000" />
       <workItem from="1673433526951" duration="1008000" />
-      <workItem from="1673434558090" duration="303000" />
+      <workItem from="1673434558090" duration="4494000" />
     </task>
     <task id="LOCAL-00001" summary="Added slideshow">
       <created>1673389249159</created>
@@ -117,7 +106,21 @@
       <option name="project" value="LOCAL" />
       <updated>1673433036302</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Tilføjet de rigtige billeder og lavet en volume button">
+      <created>1673439045506</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1673439045506</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Fix volume controle">
+      <created>1673439089011</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1673439089011</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -141,6 +144,8 @@
     <MESSAGE value="Tilføjet de rigtige databse filer til branch" />
     <MESSAGE value="Code dupe fix" />
     <MESSAGE value="Code dupe fix 1.1" />
-    <option name="LAST_COMMIT_MESSAGE" value="Code dupe fix 1.1" />
+    <MESSAGE value="Tilføjet de rigtige billeder og lavet en volume button" />
+    <MESSAGE value="Fix volume controle" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fix volume controle" />
   </component>
 </project>
