@@ -1,13 +1,13 @@
 package sample;
 
-import com.microsoft.sqlserver.jdbc.SQLServerConnectionPoolDataSource;
-
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 public class Playlist
 {
     private String PlaylistName;
     private int PlaylistID;
+    private static DecimalFormat df = new DecimalFormat("0.00");
     private ArrayList ListPlaylist = new ArrayList();
     public Playlist(String name, int ID)
     {
@@ -76,7 +76,7 @@ public class Playlist
                 String titel = DB.getData();
                 String artist = DB.getData();
                 int durantionInt =Integer.parseInt(DB.getData());
-                double duration = durationIntToDouble(durantionInt);
+                String duration = durationIntToDouble(durantionInt);
                 totalduration +=durantionInt;
                 String navn = "Song: " + titel + " Artist: " + artist+ "Duration: "+duration;
 
@@ -146,14 +146,9 @@ public class Playlist
         this.PlaylistName = s;
     }
 
-    public static double durationIntToDouble(double f) //formatere int til en double i formattet tt:mm:ss
+    public static String durationIntToDouble(double f) //formatere int til en double i formattet tt:mm:ss
     {
-        int totalDurInt = (int)f; // Cast the duration to an int, to minimize rounding errors
-        int totalMinute = totalDurInt/60; // divide by 60 to get mm.ss and cast away the seconds
-        double totalSec = (totalDurInt%totalMinute)/100; // moduls the total from amount of minutes for seconds
-        return Math.round(totalMinute+totalSec); // add it all together
-
-
-
+        double totalMinute = f/60; // divide by 60 to get mm.ss and cast away the seconds
+        return df.format(totalMinute); // add it all together
     }
 }
