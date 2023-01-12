@@ -8,7 +8,9 @@ import javafx.beans.Observable;
 import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.concurrent.Task;
 import javafx.scene.control.*;
+import javafx.scene.control.ProgressBar;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
@@ -22,13 +24,12 @@ import javafx.util.Duration;
 
 import java.io.*;
 import java.net.*;
-import java.util.ArrayList;
-import java.util.Random;
-import java.util.ResourceBundle;
+import java.util.*;
 
 public class Controller implements Initializable
 {
-
+    @FXML
+    ProgressBar Bar;
     @FXML
     private MediaView mediaV;
     @FXML
@@ -38,13 +39,12 @@ public class Controller implements Initializable
     @FXML
     ListView sangeliste, playlistview, playlistsongs;
     @FXML
-    TextField searchfield, textfieldInfo, TF_PlaylistName,textfieldPlDuration;
+    TextField searchfield, textfieldInfo, TF_PlaylistName, textfieldPlDuration;
     @FXML
     Slider sliderVolume;
 
-
     final Timeline timeline = new Timeline();
-
+    boolean running = true;
     private MediaPlayer mp;
     private Media me;
     private String filepath = new File("DemoMediaPlayer-master/src/sample/media/SampleAudio_0.4mb.mp3").getAbsolutePath();
@@ -60,6 +60,7 @@ public class Controller implements Initializable
 
     public void initialize(URL location, ResourceBundle resources)
     {
+
         sliderVolume.setShowTickMarks(true);
         sliderVolume.setShowTickLabels(true);
         sliderVolume.setMajorTickUnit(25);
@@ -85,8 +86,7 @@ public class Controller implements Initializable
             @Override
             public void invalidated(Observable observable)
             {
-
-                mp.setVolume(sliderVolume.getValue()/ 100);
+                mp.setVolume(sliderVolume.getValue() / 100);
             }
         });
 
@@ -105,13 +105,13 @@ public class Controller implements Initializable
         playlistsongs.setItems(FXCollections.observableArrayList(ActivePlaylist.getListPlaylist()));
         textfieldPlDuration.setText(Playlist.durationFormat(i));
     }
+
     public String stringFormat(String inputString)
     {
         StringBuilder sB = new StringBuilder(25);
-        sB.insert(0,inputString);
-        for (int i = 0; i < 25-inputString.length(); i++)
-        {
-        sB.append(" ");
+        sB.insert(0, inputString);
+        for (int i = 0; i < 25 - inputString.length(); i++) {
+            sB.append(" ");
         }
         return sB.toString();
     }
@@ -122,6 +122,7 @@ public class Controller implements Initializable
      */
     public void handlerplay()
     {
+        beginTimer();
         String endSearch = selectedItem.substring(selectedItem.indexOf(" ") + 1, selectedItem.indexOf("Artist") - 1);
         System.out.println(endSearch);
         loadBilleder();
@@ -134,7 +135,6 @@ public class Controller implements Initializable
         me = new Media(new File(filepath).toURI().toString());
         // Create new MediaPlayer and attach the media to be played
         mp = new MediaPlayer(me);
-
         mediaV.setMediaPlayer(mp);
         mp.play();
     }
@@ -143,16 +143,17 @@ public class Controller implements Initializable
     public void handlerPause()
     {
         mp.pause();
+        canselTimer();
         timeline.stop();
         timeline.getKeyFrames().clear();
     }
 
     public void handlerStop()
     {
+        canselTimer();
         mp.stop();
         timeline.stop();
         timeline.getKeyFrames().clear();
-
 
     }
 
@@ -230,7 +231,7 @@ public class Controller implements Initializable
     {
         String endSearch = selectedItem.substring(selectedItem.indexOf(" ") + 1, selectedItem.indexOf("Artist") - 1);
         ActivePlaylist.addSongPlaylist(endSearch);
-        int totaldur =ActivePlaylist.playlistSongNameFill();
+        int totaldur = ActivePlaylist.playlistSongNameFill();
         updatePlaylistSongView(totaldur);
 
     }
@@ -264,7 +265,7 @@ public class Controller implements Initializable
     {
         ArrayList<String> songName = new ArrayList<>();
         for (Song object : Song.getSongList()) {
-            String duration = Playlist.durationFormat( object.getDURATION());
+            String duration = Playlist.durationFormat(object.getDURATION());
             String navn = "Song: " + object.getSONG_NAME() + " Artist: " + object.getARTIST() + "Duration: " + duration;
             songName.add(navn);
         }
@@ -273,10 +274,40 @@ public class Controller implements Initializable
         // set the items of the list view
         sangeliste.setItems(songs);
     }
+
     public void handleChoose()
     {
 
     }
+
+    public void beginTimer()
+    {
+        Timer timer = new Timer();
+        TimerTask task = new TimerTask()
+        {
+            @Override
+            public void run()
+            {
+                running = true;
+                double current = mp.getCurrentTime().toSeconds();
+                double end = mp.getTotalDuration().toSeconds();
+                System.out.println(current / end);
+                Bar.setProgress(current /end);
+                if (current / end == 1)
+
+                {
+                    running=false;
+                }
+            }
+        };
+        timer.scheduleAtFixedRate(task,1000,1000);
+
+    }
+    public void canselTimer()
+    {
+        running =false;
+    }
+
 
 }
 

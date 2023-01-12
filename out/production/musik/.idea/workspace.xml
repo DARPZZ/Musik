@@ -1,7 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="aad64f5d-ca6e-48b2-970a-a90f74be859d" name="Changes" comment="billede fix 1.2" />
+    <list default="true" id="aad64f5d-ca6e-48b2-970a-a90f74be859d" name="Changes" comment="Add increments to slider 1.1">
+      <change afterPath="$PROJECT_DIR$/DemoMediaPlayer-master/src/sample/ProgressBar.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DemoMediaPlayer-master/src/sample/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/DemoMediaPlayer-master/src/sample/Controller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DemoMediaPlayer-master/src/sample/sample.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/DemoMediaPlayer-master/src/sample/sample.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/musik/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/musik/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/musik/DemoMediaPlayer-master/src/sample/sample.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/musik/DemoMediaPlayer-master/src/sample/sample.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/musik/db.properties" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/musik/db.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/musik/sample/Controller.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/musik/sample/Controller.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/musik/sample/DB.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/musik/sample/DB.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/musik/sample/sample.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/musik/sample/sample.fxml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -88,6 +98,9 @@
       <workItem from="1673447835634" duration="374000" />
       <workItem from="1673462082288" duration="3000" />
       <workItem from="1673462103784" duration="621000" />
+      <workItem from="1673462747528" duration="3589000" />
+      <workItem from="1673512380884" duration="921000" />
+      <workItem from="1673513362199" duration="3835000" />
     </task>
     <task id="LOCAL-00001" summary="Added slideshow">
       <created>1673389249159</created>
@@ -159,7 +172,21 @@
       <option name="project" value="LOCAL" />
       <updated>1673446936911</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Add increments to slider">
+      <created>1673465862186</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1673465862186</updated>
+    </task>
+    <task id="LOCAL-00012" summary="Add increments to slider 1.1">
+      <created>1673466335311</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1673466335311</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -188,6 +215,8 @@
     <MESSAGE value="Fix handler for volume" />
     <MESSAGE value="billede fix 1.1" />
     <MESSAGE value="billede fix 1.2" />
-    <option name="LAST_COMMIT_MESSAGE" value="billede fix 1.2" />
+    <MESSAGE value="Add increments to slider" />
+    <MESSAGE value="Add increments to slider 1.1" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add increments to slider 1.1" />
   </component>
 </project>
