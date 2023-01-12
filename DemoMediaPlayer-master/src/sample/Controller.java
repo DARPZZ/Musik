@@ -20,6 +20,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.util.Duration;
 
+import javax.swing.*;
 import java.io.*;
 import java.net.*;
 import java.util.ArrayList;
@@ -54,6 +55,10 @@ public class Controller implements Initializable
     private String selectedItem;
     private int identifier; // 1 = songlist, 2 = playlist songlist
     private boolean isPlaying = false;
+    private String displayInfo;
+    private String userDirectoryPath;
+    private Image userImage;
+
 
     /**
      * This method is invoked automatically in the beginning. Used for initializing, loading data etc.
@@ -89,7 +94,6 @@ public class Controller implements Initializable
             @Override
             public void invalidated(Observable observable)
             {
-
                 mp.setVolume(sliderVolume.getValue()/ 100);
             }
         });
@@ -128,18 +132,27 @@ public class Controller implements Initializable
     {
         String endSearch = selectedItem.substring(selectedItem.indexOf(" ") + 1, selectedItem.indexOf("Artist") - 1);
         System.out.println(endSearch);
-        loadBilleder();
-        for (Song songs : Song.getSongList()) {
-            if (songs.getSONG_NAME().equals(endSearch)) {
-                filepath = songs.getFILE_PATH();
-            }
+
+        if (userDirectoryPath == null)
+        {
+            loadBilleder();
         }
+        else
+        {
+            ImageV.setImage(userImage);
+        }
+
+        findFilePath(endSearch);
+
         System.out.println("Now playing: " + filepath);
+        textfieldInfo.setText(displayInfo);
+
         me = new Media(new File(filepath).toURI().toString());
         // Create new MediaPlayer and attach the media to be played
         mp = new MediaPlayer(me);
 
         mediaV.setMediaPlayer(mp);
+
         mp.play();
 
         knapPlay.setVisible(false);
@@ -238,7 +251,6 @@ public class Controller implements Initializable
         identifier =1;
         knapPlay.setVisible(true);
         knapStart_Pause.setVisible(false);
-        mp.stop();
     }
 
     public void handlerPL_Create()
@@ -314,6 +326,28 @@ public class Controller implements Initializable
 
     }
 
+    public void handleChoose()
+    {
+        JFileChooser chooser = new JFileChooser();
+        chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+
+        if (chooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION)
+        {
+            userDirectoryPath = String.valueOf(chooser.getSelectedFile());
+            File[] pictureList = Pictures.ListUserPictures(userDirectoryPath);
+            System.out.println("User picture folder path: " + userDirectoryPath);
+
+            for ( File file : pictureList )
+            {
+                if (file.isFile())
+                {
+                    userImage = new Image((pictureList[0]).toURI().toString());
+                    System.out.println(file);
+                }
+            }
+        }
+    }
+
     public void loadBilleder()
     {
         Random random = new Random();
@@ -342,10 +376,17 @@ public class Controller implements Initializable
         // set the items of the list view
         sangeliste.setItems(songs);
     }
-    public void handleChoose()
+
+    public void findFilePath(String endSearch)
     {
-
+        for (Song songs : Song.getSongList())
+        {
+            if (songs.getSONG_NAME().equals(endSearch))
+            {
+                filepath = songs.getFILE_PATH();
+                displayInfo = songs.getARTIST() + " - " + songs.getSONG_NAME() + " - " + Playlist.durationFormat(songs.getDURATION()) + " min.";
+            }
+        }
     }
-
 }
 
