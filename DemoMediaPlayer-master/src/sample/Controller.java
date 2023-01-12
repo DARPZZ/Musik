@@ -50,6 +50,7 @@ public class Controller implements Initializable
     private String filepath = new File("DemoMediaPlayer-master/src/sample/media/SampleAudio_0.4mb.mp3").getAbsolutePath();
     public Playlist ActivePlaylist = new Playlist(null, 0);
     public String selectedItem;
+    int StopSpil = 0;
 
     /**
      * This method is invoked automatically in the beginning. Used for initializing, loading data etc.
@@ -294,18 +295,18 @@ public class Controller implements Initializable
                 System.out.println(current / end);
                 Bar.setProgress(current /end);
                 if (current / end == 1)
-
                 {
                     running=false;
                 }
             }
         };
-        timer.scheduleAtFixedRate(task,1000,1000);
+        timer.scheduleAtFixedRate(task,500,500);
 
     }
     public void canselTimer()
     {
         running =false;
+
     }
 
 
