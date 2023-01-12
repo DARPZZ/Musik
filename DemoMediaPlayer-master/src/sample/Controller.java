@@ -40,6 +40,8 @@ public class Controller implements Initializable
     TextField searchfield, textfieldInfo, TF_PlaylistName,textfieldPlDuration;
     @FXML
     Slider sliderVolume;
+    @FXML
+    ToggleButton knapStart_Pause;
 
 
     final Timeline timeline = new Timeline();
@@ -47,8 +49,10 @@ public class Controller implements Initializable
     private MediaPlayer mp;
     private Media me;
     private String filepath = new File("DemoMediaPlayer-master/src/sample/media/SampleAudio_0.4mb.mp3").getAbsolutePath();
-    public Playlist ActivePlaylist = new Playlist(null, 0);
-    public String selectedItem;
+    private Playlist ActivePlaylist = new Playlist(null, 0);
+    private String selectedItem;
+    private int identifier; // 1 = songlist, 2 = playlist songlist
+    private boolean isPlaying = false;
 
     /**
      * This method is invoked automatically in the beginning. Used for initializing, loading data etc.
@@ -132,9 +136,64 @@ public class Controller implements Initializable
 
         mediaV.setMediaPlayer(mp);
         mp.play();
+
+        knapPlay.setVisible(false);
+        knapStart_Pause.setVisible(true);
+        isPlaying = true;
+        /*
+        mp.setOnEndOfMedia(new Runnable() {
+            @Override
+            public void run()
+            {
+                {
+                    mp.setStartTime(Duration.ZERO);
+                    String endSearch = selectedItem.substring(selectedItem.indexOf(" ") + 1, selectedItem.indexOf("Artist") - 1);
+                    int indexCheck = 0;
+                    switch (identifier) {
+                        case 1: {
+                            ArrayList<sample.Song> meme = new ArrayList<>(Song.getSongList());
+                            //Song.getSongList() //array af song objekts
+                            for (int i = 0; i < meme.size(); i++) {
+                                if (endSearch.equals(meme.get(i).getSONG_NAME())) ;
+                                indexCheck = i + 1;
+                            }
+                            meme.get(indexCheck).getSONG_NAME();
+                            break;
+                        }
+                        case 2://ActivePlaylist.getListPlaylist() string array
+                        {
+                            ArrayList<String> meme = new ArrayList<>(ActivePlaylist.getListPlaylist());
+                            for (int i = 0; i < meme.size(); i++) {
+                                String Formatted = meme.get(i).substring(meme.get(i).indexOf(" ") + 1, meme.get(i).indexOf("Artist") - 1);
+                                if (endSearch.equals(Formatted)) {
+                                    indexCheck = i + 1;
+                                }
+                            }
+                            meme.get(indexCheck);
+                            break;
+                        }
+                    }
+
+                }
+
+            }
+        });  */
     }
 
 
+
+    public void handlerS_P()
+    {
+        if (knapStart_Pause.isSelected())
+        {
+            mp.play();
+            timeline.play();
+
+        }
+        mp.pause();
+        timeline.stop();
+        timeline.getKeyFrames().clear();
+    }
     public void handlerPause()
     {
         mp.pause();
@@ -147,6 +206,8 @@ public class Controller implements Initializable
         mp.stop();
         timeline.stop();
         timeline.getKeyFrames().clear();
+        knapPlay.setVisible(true);
+        knapStart_Pause.setVisible(false);
 
 
     }
@@ -169,6 +230,10 @@ public class Controller implements Initializable
     public void handleClickView(MouseEvent mouseEvent)
     {
         selectedItem = (String) sangeliste.getSelectionModel().getSelectedItem();
+        identifier =1;
+        knapPlay.setVisible(true);
+        knapStart_Pause.setVisible(false);
+        mp.stop();
     }
 
     public void handlerPL_Create()
@@ -219,6 +284,10 @@ public class Controller implements Initializable
         selectedPLsong = selectedPLsong.substring(selectedPLsong.indexOf("g") + 3, selectedPLsong.indexOf("Artist") - 1);
         //Super hacky workaround string requirements in play method
         selectedItem = " " + selectedPLsong + " Artist";
+        identifier =2;
+        knapPlay.setVisible(true);
+        knapStart_Pause.setVisible(false);
+        mp.stop();
     }
 
     public void handlerPL_add()
