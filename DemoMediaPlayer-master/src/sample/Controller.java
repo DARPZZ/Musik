@@ -20,6 +20,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.util.Duration;
 
+import javax.swing.*;
 import java.io.*;
 import java.net.*;
 import java.util.ArrayList;
@@ -48,6 +49,8 @@ public class Controller implements Initializable
     private MediaPlayer mp;
     private Media me;
     private String filepath = new File("DemoMediaPlayer-master/src/sample/media/SampleAudio_0.4mb.mp3").getAbsolutePath();
+    private String userDirectoryPath;
+    private Image userImage;
     public Playlist ActivePlaylist = new Playlist(null, 0);
     public String selectedItem;
 
@@ -232,7 +235,6 @@ public class Controller implements Initializable
         ActivePlaylist.addSongPlaylist(endSearch);
         int totaldur =ActivePlaylist.playlistSongNameFill();
         updatePlaylistSongView(totaldur);
-
     }
 
     public void handlerPL_remove()
@@ -242,7 +244,6 @@ public class Controller implements Initializable
         } catch (Exception e) {
             System.out.println(e);
         }
-
     }
 
     public void loadBilleder()
@@ -273,10 +274,29 @@ public class Controller implements Initializable
         // set the items of the list view
         sangeliste.setItems(songs);
     }
+
     public void handleChoose()
     {
+        JFileChooser chooser = new JFileChooser();
+        chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
 
+        if (chooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION)
+        {
+            userDirectoryPath = String.valueOf(chooser.getSelectedFile());
+            File[] pictureList = Pictures.ListUserPictures(userDirectoryPath);
+            System.out.println("User picture folder path: " + userDirectoryPath);
+
+
+            userImage = new Image((pictureList[0]).toURI().toString());
+
+            for ( File file : pictureList )
+            {
+                if (file.isFile())
+                {
+                    System.out.println(file);
+                }
+            }
+        }
     }
-
 }
 

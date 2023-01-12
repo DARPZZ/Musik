@@ -1,5 +1,6 @@
 package sample;
 
+import java.io.File;
 import java.util.ArrayList;
 
 public class Pictures
@@ -25,6 +26,11 @@ public class Pictures
 
 
       return pictures;
+    }
+
+    public static File[] ListUserPictures(String folderPath)
+    {
+        return new File(folderPath).listFiles();
     }
 
 }
