@@ -165,50 +165,62 @@ public class Controller implements Initializable
             @Override
             public void run()
             {
+                System.out.println();
                     mp.setStartTime(Duration.ZERO);
                     String endSearch = selectedItem.substring(selectedItem.indexOf(" ") + 1, selectedItem.indexOf("Artist") - 1);
                     int indexCheck = 0;
-                    switch (identifier) {
-                        case 1: {
-                            ArrayList<sample.Song> meme = new ArrayList<>(Song.getSongList());
+                    switch (identifier)
+                    {
+                        case 1:
+                        {
+                            ArrayList<sample.Song> songlist = new ArrayList<>(Song.getSongList());
                             //Song.getSongList() //array af song objekts
-                            for (int i = 0; i < meme.size(); i++) {
-                                if (endSearch.equals(meme.get(i).getSONG_NAME())) ;
-                                indexCheck = i + 1;
-                            }
-                            for (Song songs : Song.getSongList()) {
-                                if (songs.getSONG_NAME().equals(meme.get(indexCheck).getSONG_NAME())) {
-                                    filepath = songs.getFILE_PATH();
+                            for (int i = 0; i < songlist.size(); i++) {
+                                System.out.println(songlist.get(i).getSONG_NAME());
+                                if (endSearch.equals(songlist.get(i).getSONG_NAME())) ;
+                                {
+                                    indexCheck = i + 1;
+                                    break;
                                 }
-                                me = new Media(new File(filepath).toURI().toString());
-                                mp = new MediaPlayer(me);
-                                mp.play();
-
                             }
+                            for (Song songs : Song.getSongList())
+                            {
+                                if (songs.getSONG_NAME().equals(songlist.get(indexCheck).getSONG_NAME())) {
+                                    filepath = songs.getFILE_PATH();
+                                    break;
+                                }
+                            }
+                            me = new Media(new File(filepath).toURI().toString());
+                            mp = new MediaPlayer(me);
+                            mp.play();
                             break;
+
                         }
                         case 2://ActivePlaylist.getListPlaylist() string array
                         {
-                            ArrayList<String> meme = new ArrayList<>(ActivePlaylist.getListPlaylist());
-                            for (int i = 0; i < meme.size(); i++) {
-                                String Formatted = meme.get(i).substring(meme.get(i).indexOf(" ") + 1, meme.get(i).indexOf("Artist") - 1);
-                                if (endSearch.equals(Formatted)) {
+                            ArrayList<String> songlist = new ArrayList<>(ActivePlaylist.getListPlaylist());
+                            for (int i = 0; i < songlist.size(); i++) {
+                                String Formatted = songlist.get(i).substring(songlist.get(i).indexOf(" ") + 1, songlist.get(i).indexOf("Artist") - 1);
+                                if (endSearch.equals(Formatted))
+                                {
                                     indexCheck = i + 1;
+                                    break;
                                 }
                             }
-                            for (Song songs : Song.getSongList()) {
-                                if (songs.getSONG_NAME().equals(meme.get(indexCheck))) {
+                            for (Song songs : Song.getSongList())
+                            {
+                                if (songs.getSONG_NAME().equals(songlist.get(indexCheck)))
+                                {
                                     filepath = songs.getFILE_PATH();
+                                    break;
                                 }
-                                me = new Media(new File(filepath).toURI().toString());
-                                mp = new MediaPlayer(me);
-                                mp.play();
+                            }
+                            me = new Media(new File(filepath).toURI().toString());
+                            mp = new MediaPlayer(me);
+                            mp.play();
                             break;
                         }
                     }
-
-                }
-
             }
         });
     }
@@ -377,7 +389,6 @@ public class Controller implements Initializable
                 new KeyFrame(Duration.seconds(5), event ->
                 {
                     final Image image = new Image(mylist.get(random.nextInt(mylist.size())));
-                    System.out.println("RONALDO: SUIIIIIIIIIIII");
                     ImageV.setImage(image);
                 }));
         timeline.setCycleCount(Animation.INDEFINITE);
