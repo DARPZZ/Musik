@@ -185,9 +185,11 @@ public class Controller implements Initializable
                         {
                             ArrayList<sample.Song> songlist = new ArrayList<>(Song.getSongList());
                             //Song.getSongList() //array af song objekts
-                            for (int i = 0; i < songlist.size(); i++) {
+                            for (int i = 0; i < songlist.size(); i++)
+                            {
                                 System.out.println(songlist.get(i).getSONG_NAME());
-                                if (endSearch.equals(songlist.get(i).getSONG_NAME())) ;
+                                String meme = songlist.get(i).getSONG_NAME();
+                                if (endSearch.equals(meme))
                                 {
                                     indexCheck = i + 1;
                                     break;
@@ -247,16 +249,6 @@ public class Controller implements Initializable
         timeline.stop();
         timeline.getKeyFrames().clear();
     }
-
-    /* old button gone
-    public void handlerPause()
-    {
-        mp.pause();
-        timeline.stop();
-        timeline.getKeyFrames().clear();
-    }
-
-     */
 
     public void handlerStop()
     {
@@ -397,7 +389,6 @@ public class Controller implements Initializable
                 new KeyFrame(Duration.seconds(5), event ->
                 {
                     final Image image = new Image(mylist.get(random.nextInt(mylist.size())));
-                    System.out.println("RONALDO: SUIIIIIIIIIIII");
                     ImageV.setImage(image);
                 }));
         timeline.setCycleCount(Animation.INDEFINITE);
