@@ -5,7 +5,6 @@ import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.beans.InvalidationListener;
 import javafx.beans.Observable;
-import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.*;
@@ -57,7 +56,10 @@ public class Controller implements Initializable
     private boolean isPlaying = false;
     private String displayInfo;
     private String userDirectoryPath;
+    private double duration;
     private Image userImage;
+    private int userImageCount;
+    private File[] pictureList;
 
 
     /**
@@ -77,7 +79,7 @@ public class Controller implements Initializable
         knapStop.setText("\u23f9");
         knapPlay.setText("\u23f5");
         // create the list of songs
-        Song.CreateList();
+        Song.createList();
         publishSong();
 
         // set the selection mode to single, so only one song can be selected at a time
@@ -139,7 +141,7 @@ public class Controller implements Initializable
         }
         else
         {
-            ImageV.setImage(userImage);
+            runUserImage();
         }
 
         findFilePath(endSearch);
@@ -226,8 +228,6 @@ public class Controller implements Initializable
         timeline.getKeyFrames().clear();
         knapPlay.setVisible(true);
         knapStart_Pause.setVisible(false);
-
-
     }
 
     public void handlerSearch()
@@ -304,7 +304,6 @@ public class Controller implements Initializable
         identifier =2;
         knapPlay.setVisible(true);
         knapStart_Pause.setVisible(false);
-        mp.stop();
     }
 
     public void handlerPL_add()
@@ -326,6 +325,9 @@ public class Controller implements Initializable
 
     }
 
+    /**
+     * Allows user to set a folder with the users own images
+     */
     public void handleChoose()
     {
         JFileChooser chooser = new JFileChooser();
@@ -334,17 +336,8 @@ public class Controller implements Initializable
         if (chooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION)
         {
             userDirectoryPath = String.valueOf(chooser.getSelectedFile());
-            File[] pictureList = Pictures.ListUserPictures(userDirectoryPath);
+            pictureList = Pictures.listUserPictures(userDirectoryPath);
             System.out.println("User picture folder path: " + userDirectoryPath);
-
-            for ( File file : pictureList )
-            {
-                if (file.isFile())
-                {
-                    userImage = new Image((pictureList[0]).toURI().toString());
-                    System.out.println(file);
-                }
-            }
         }
     }
 
@@ -385,7 +378,23 @@ public class Controller implements Initializable
             {
                 filepath = songs.getFILE_PATH();
                 displayInfo = songs.getARTIST() + " - " + songs.getSONG_NAME() + " - " + Playlist.durationFormat(songs.getDURATION()) + " min.";
+                duration = songs.getDURATION();
             }
+        }
+    }
+
+    public void runUserImage()
+    {
+        if (userImageCount == pictureList.length)
+        {
+            userImageCount = 0;
+        }
+
+        if (pictureList[userImageCount].isFile())
+        {
+            userImage = new Image((pictureList[userImageCount++]).toURI().toString());
+            ImageV.setImage(userImage);
+            System.out.println("Displayed user image: " + userImage);
         }
     }
 }
