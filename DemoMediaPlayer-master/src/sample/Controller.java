@@ -29,6 +29,7 @@ import javafx.fxml.Initializable;
 import javafx.util.Duration;
 
 import javax.swing.*;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import java.io.*;
 import java.net.*;
 import java.sql.SQLOutput;
@@ -57,6 +58,7 @@ public class Controller implements Initializable
 
     final Timeline timeline = new Timeline();
     boolean running = true;
+    private final Timeline TIMELINE = new Timeline();
     private MediaPlayer mp;
     private Media me;
     private String filepath = new File("DemoMediaPlayer-master/src/sample/media/SampleAudio_0.4mb.mp3").getAbsolutePath();
@@ -147,9 +149,13 @@ public class Controller implements Initializable
         String endSearch = selectedItem.substring(selectedItem.indexOf(" ") + 1, selectedItem.indexOf("Artist") - 1);
         System.out.println(endSearch);
 
-        if (userDirectoryPath == null) {
+        if (userDirectoryPath == null)
+        {
             loadBilleder();
-        } else {
+        }
+        else
+        {
+            TIMELINE.stop();
             runUserImage();
         }
 
@@ -242,19 +248,20 @@ public class Controller implements Initializable
     {
         if (knapStart_Pause.isSelected()) {
             mp.play();
-            timeline.play();
+            TIMELINE.play();
 
         }
         mp.pause();
-        timeline.stop();
-        timeline.getKeyFrames().clear();
+        TIMELINE.stop();
+        TIMELINE.getKeyFrames().clear();
     }
+
 
     public void handlerStop()
     {
         mp.stop();
-        timeline.stop();
-        timeline.getKeyFrames().clear();
+        TIMELINE.stop();
+        TIMELINE.getKeyFrames().clear();
         knapPlay.setVisible(true);
         knapStart_Pause.setVisible(false);
         isPlaying = false;
@@ -268,7 +275,8 @@ public class Controller implements Initializable
         {
             // Handle the key press event here
             KeyCode code = handlerSearch.getCode();
-            if (code == KeyCode.ENTER) {
+            if (code == KeyCode.ENTER)
+            {
                 String search = searchfield.getText();
                 Song.searchSong(search);
                 publishSong();
@@ -373,6 +381,8 @@ public class Controller implements Initializable
     {
         JFileChooser chooser = new JFileChooser();
         chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+        FileNameExtensionFilter filter = new FileNameExtensionFilter("image files", "png", "jpg", "jpeg", "bmp");
+        chooser.setFileFilter(filter);
 
         if (chooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
             userDirectoryPath = String.valueOf(chooser.getSelectedFile());
@@ -385,21 +395,22 @@ public class Controller implements Initializable
     {
         Random random = new Random();
         ArrayList<String> mylist = Pictures.addPictures();
-        timeline.getKeyFrames().add(
+        TIMELINE.getKeyFrames().add(
                 new KeyFrame(Duration.seconds(5), event ->
                 {
                     final Image image = new Image(mylist.get(random.nextInt(mylist.size())));
+                    System.out.println("RONALDO: SUIIIIIIIIIIII");
                     ImageV.setImage(image);
                 }));
-        timeline.setCycleCount(Animation.INDEFINITE);
-        timeline.play();
+        TIMELINE.setCycleCount(Animation.INDEFINITE);
+        TIMELINE.play();
     }
 
     public void publishSong()
     {
         ArrayList<String> songName = new ArrayList<>();
         for (Song object : Song.getSongList()) {
-            String duration = Playlist.durationFormat(object.getDURATION());
+            String duration = Playlist.durationFormat( object.getDURATION());
             String navn = "Song: " + object.getSONG_NAME() + " Artist: " + object.getARTIST() + "Duration: " + duration;
             songName.add(navn);
         }
@@ -411,7 +422,6 @@ public class Controller implements Initializable
 
     /**
      * Finds the filepath for the selected song
-     *
      * @param endSearch
      */
     public void findFilePath(String endSearch)
@@ -434,10 +444,17 @@ public class Controller implements Initializable
             userImageCount = 0;
 
         }
-        if (pictureList[userImageCount].isFile()) {
+        if (pictureList[userImageCount].toString().endsWith(".png") || pictureList[userImageCount].toString().endsWith(".jpg") || pictureList[userImageCount].toString().endsWith(".bmp"))
+        {
             userImage = new Image((pictureList[userImageCount++]).toURI().toString());
             ImageV.setImage(userImage);
             System.out.println("Displayed user image: " + userImage);
+        }
+        else if (pictureList.length > userImageCount + 1)
+        {
+            userImage = new Image((pictureList[++userImageCount]).toURI().toString());
+            userImageCount++;
+            ImageV.setImage(userImage);
         }
     }
 
