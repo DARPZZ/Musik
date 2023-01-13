@@ -12,13 +12,9 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: Black;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
    <children>
-      <Button fx:id="knapPlay" layoutX="14.0" layoutY="631.0" mnemonicParsing="false" onAction="#handlerplay" prefHeight="44.0" prefWidth="149.0" scaleShape="false" style="-fx-background-color: Black; -fx-border-color: White;" textFill="WHITE">
+      <Button fx:id="knapPlay" layoutX="14.0" layoutY="631.0" mnemonicParsing="false" onAction="#handlerplay" prefHeight="50.0" prefWidth="305.0" scaleShape="false" style="-fx-background-color: Black; -fx-border-color: White;" textFill="WHITE">
          <font>
             <Font name="System Bold" size="22.0" />
-         </font></Button>
-      <Button fx:id="knapPause" layoutX="168.0" layoutY="631.0" mnemonicParsing="false" onAction="#handlerPause" prefHeight="50.0" prefWidth="149.0" scaleShape="false" style="-fx-background-color: Black; -fx-border-color: White;" textFill="WHITE">
-         <font>
-            <Font name="System Bold" size="18.0" />
          </font></Button>
       <Button fx:id="knapStop" layoutX="323.0" layoutY="631.0" mnemonicParsing="false" onAction="#handlerStop" prefHeight="50.0" prefWidth="149.0" scaleShape="false" style="-fx-background-color: Black; -fx-border-color: White;" textFill="WHITE">
          <font>
@@ -99,5 +95,9 @@
       <TextField fx:id="TF_PlaylistName" layoutX="600.0" layoutY="267.0" prefHeight="25.0" prefWidth="266.0" promptText="Enter Name" />
       <ImageView fx:id="imageV2" fitHeight="300.0" fitWidth="300.0" layoutX="532.0" layoutY="360.0" pickOnBounds="true" preserveRatio="true" />
       <Slider fx:id="sliderVolume" layoutX="518.0" layoutY="561.0" orientation="VERTICAL" value="100.0" />
+      <ToggleButton fx:id="knapStart_Pause" layoutX="14.0" layoutY="631.0" mnemonicParsing="false" onMouseClicked="#handlerS_P" prefHeight="50.0" prefWidth="305.0" style="-fx-background-color: Black; -fx-border-color: White;" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="22.0" />
+         </font></ToggleButton>
    </children>
 </AnchorPane>

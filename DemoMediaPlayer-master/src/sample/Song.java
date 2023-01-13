@@ -23,7 +23,7 @@ public class Song
         this.DURATION = duration;
     }
 
-    public static void CreateList()
+    public static void createList()
     {
         DB.selectSQL("Select * from tblSong");
 
@@ -38,14 +38,14 @@ public class Song
         }
     }
 
-    public static void AddSongToDB(String songName, String artist, String filePath, double duration)
+    public static void addSongToDB(String songName, String artist, String filePath, double duration)
     {
         DB.insertSQL("Insert into tblSong values('" + songName + "', '" + artist + "', '" + filePath + "', '" + duration + "');");
         System.out.printf("%s er oprettet i databasen", songName);
         SONG_LIST.add(new Song(songName, artist, filePath, duration));
     }
 
-    public static ArrayList<Song> CreateList(String tblName, String fldName, String value)
+    public static ArrayList<Song> createList(String tblName, String fldName, String value)
     {
         ArrayList<Song> listOfSongs = new ArrayList<>();
         DB.selectSQL("Select * from " + tblName + " where " + fldName + " = '" + value + "';");

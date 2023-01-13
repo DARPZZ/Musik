@@ -1,5 +1,6 @@
 package sample;
 
+import java.io.File;
 import java.util.ArrayList;
 
 public class Pictures
@@ -27,4 +28,13 @@ public class Pictures
       return pictures;
     }
 
+    /**
+     * Creates an array with files from a folder
+     * @param folderPath The path to a locally stored folder
+     * @return An array stored with files
+     */
+    public static File[] listUserPictures(String folderPath)
+    {
+        return new File(folderPath).listFiles();
+    }
 }
