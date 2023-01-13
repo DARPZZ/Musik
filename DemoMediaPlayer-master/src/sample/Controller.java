@@ -31,6 +31,7 @@ import javafx.util.Duration;
 import javax.swing.*;
 import java.io.*;
 import java.net.*;
+import java.sql.SQLOutput;
 import java.util.*;
 import java.util.Timer;
 
@@ -50,7 +51,6 @@ public class Controller implements Initializable
     TextField searchfield, textfieldInfo, TF_PlaylistName, textfieldPlDuration;
     @FXML
     Slider sliderVolume, sliderPro;
-    Slider sliderVolume;
     @FXML
     ToggleButton knapStart_Pause;
 
@@ -70,7 +70,6 @@ public class Controller implements Initializable
     private Image userImage;
     private int userImageCount;
     private File[] pictureList;
-
 
 
     /**
@@ -107,7 +106,7 @@ public class Controller implements Initializable
             @Override
             public void invalidated(Observable observable)
             {
-                mp.setVolume(sliderVolume.getValue()/ 100);
+                mp.setVolume(sliderVolume.getValue() / 100);
             }
         });
 
@@ -130,10 +129,9 @@ public class Controller implements Initializable
     public String stringFormat(String inputString)
     {
         StringBuilder sB = new StringBuilder(25);
-        sB.insert(0,inputString);
-        for (int i = 0; i < 25-inputString.length(); i++)
-        {
-        sB.append(" ");
+        sB.insert(0, inputString);
+        for (int i = 0; i < 25 - inputString.length(); i++) {
+            sB.append(" ");
         }
         return sB.toString();
     }
@@ -148,12 +146,9 @@ public class Controller implements Initializable
         String endSearch = selectedItem.substring(selectedItem.indexOf(" ") + 1, selectedItem.indexOf("Artist") - 1);
         System.out.println(endSearch);
 
-        if (userDirectoryPath == null)
-        {
+        if (userDirectoryPath == null) {
             loadBilleder();
-        }
-        else
-        {
+        } else {
             runUserImage();
         }
 
@@ -170,9 +165,12 @@ public class Controller implements Initializable
 
         mp.play();
 
+
         knapPlay.setVisible(false);
         knapStart_Pause.setVisible(true);
         isPlaying = true;
+        beginTimer();
+
         /*
         mp.setOnEndOfMedia(new Runnable() {
             @Override
@@ -214,11 +212,9 @@ public class Controller implements Initializable
     }
 
 
-
     public void handlerS_P()
     {
-        if (knapStart_Pause.isSelected())
-        {
+        if (knapStart_Pause.isSelected()) {
             mp.play();
             timeline.play();
 
@@ -227,8 +223,7 @@ public class Controller implements Initializable
         timeline.stop();
         timeline.getKeyFrames().clear();
     }
-        beginTimer();
-    }
+
     public void handlerPause()
     {
         mp.pause();
@@ -263,7 +258,7 @@ public class Controller implements Initializable
     public void handleClickView(MouseEvent mouseEvent)
     {
         selectedItem = (String) sangeliste.getSelectionModel().getSelectedItem();
-        identifier =1;
+        identifier = 1;
         knapPlay.setVisible(true);
         knapStart_Pause.setVisible(false);
     }
@@ -316,7 +311,7 @@ public class Controller implements Initializable
         selectedPLsong = selectedPLsong.substring(selectedPLsong.indexOf("g") + 3, selectedPLsong.indexOf("Artist") - 1);
         //Super hacky workaround string requirements in play method
         selectedItem = " " + selectedPLsong + " Artist";
-        identifier =2;
+        identifier = 2;
         knapPlay.setVisible(true);
         knapStart_Pause.setVisible(false);
     }
@@ -325,7 +320,7 @@ public class Controller implements Initializable
     {
         String endSearch = selectedItem.substring(selectedItem.indexOf(" ") + 1, selectedItem.indexOf("Artist") - 1);
         ActivePlaylist.addSongPlaylist(endSearch);
-        int totaldur =ActivePlaylist.playlistSongNameFill();
+        int totaldur = ActivePlaylist.playlistSongNameFill();
         updatePlaylistSongView(totaldur);
 
     }
@@ -348,8 +343,7 @@ public class Controller implements Initializable
         JFileChooser chooser = new JFileChooser();
         chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
 
-        if (chooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION)
-        {
+        if (chooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
             userDirectoryPath = String.valueOf(chooser.getSelectedFile());
             pictureList = Pictures.listUserPictures(userDirectoryPath);
             System.out.println("User picture folder path: " + userDirectoryPath);
@@ -375,7 +369,7 @@ public class Controller implements Initializable
     {
         ArrayList<String> songName = new ArrayList<>();
         for (Song object : Song.getSongList()) {
-            String duration = Playlist.durationFormat( object.getDURATION());
+            String duration = Playlist.durationFormat(object.getDURATION());
             String navn = "Song: " + object.getSONG_NAME() + " Artist: " + object.getARTIST() + "Duration: " + duration;
             songName.add(navn);
         }
@@ -387,14 +381,13 @@ public class Controller implements Initializable
 
     /**
      * Finds the filepath for the selected song
+     *
      * @param endSearch
      */
     public void findFilePath(String endSearch)
     {
-        for (Song songs : Song.getSongList())
-        {
-            if (songs.getSONG_NAME().equals(endSearch))
-            {
+        for (Song songs : Song.getSongList()) {
+            if (songs.getSONG_NAME().equals(endSearch)) {
                 filepath = songs.getFILE_PATH();
                 displayInfo = songs.getARTIST() + " - " + songs.getSONG_NAME() + " - " + Playlist.durationFormat(songs.getDURATION()) + " min.";
                 duration = songs.getDURATION();
@@ -407,10 +400,16 @@ public class Controller implements Initializable
      */
     public void runUserImage()
     {
-        if (userImageCount == pictureList.length)
-        {
+        if (userImageCount == pictureList.length) {
             userImageCount = 0;
+
         }
+        if (pictureList[userImageCount].isFile()) {
+            userImage = new Image((pictureList[userImageCount++]).toURI().toString());
+            ImageV.setImage(userImage);
+            System.out.println("Displayed user image: " + userImage);
+        }
+    }
 
     public void beginTimer()
     {
@@ -438,13 +437,16 @@ public class Controller implements Initializable
                 mp.seek(Duration.seconds(sliderPro.getValue()));
             }
         });
-    }
-        if (pictureList[userImageCount].isFile())
+        mp.setOnReady(new Runnable()
         {
-            userImage = new Image((pictureList[userImageCount++]).toURI().toString());
-            ImageV.setImage(userImage);
-            System.out.println("Displayed user image: " + userImage);
-        }
+            @Override
+            public void run()
+            {
+                Duration total = mp.getTotalDuration();
+                sliderPro.setMax(total.toSeconds());
+
+            }
+        });
     }
 }
 
