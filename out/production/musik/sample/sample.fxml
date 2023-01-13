@@ -90,7 +90,6 @@
             <Font size="13.0" />
          </font>
       </Text>
-      <ProgressBar fx:id="Bar" layoutX="14.0" layoutY="605.0" prefHeight="18.0" prefWidth="495.0" progress="0.0" />
       <TextField fx:id="textfieldInfo" editable="false" layoutX="14.0" layoutY="561.0" prefHeight="44.0" prefWidth="495.0" scaleShape="false">
          <font>
             <Font size="18.0" />
@@ -99,5 +98,6 @@
       <TextField fx:id="TF_PlaylistName" layoutX="600.0" layoutY="267.0" prefHeight="25.0" prefWidth="266.0" promptText="Enter Name" />
       <ImageView fx:id="imageV2" fitHeight="300.0" fitWidth="300.0" layoutX="532.0" layoutY="360.0" pickOnBounds="true" preserveRatio="true" />
       <Slider fx:id="sliderVolume" layoutX="518.0" layoutY="561.0" orientation="VERTICAL" value="100.0" />
+      <Slider fx:id="sliderPro" layoutX="14.0" layoutY="605.0" prefHeight="31.0" prefWidth="495.0" />
    </children>
 </AnchorPane>

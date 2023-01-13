@@ -3,12 +3,18 @@ package sample;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.application.Platform;
 import javafx.beans.InvalidationListener;
 import javafx.beans.Observable;
 import javafx.beans.binding.Bindings;
+import javafx.beans.binding.DoubleBinding;
+import javafx.beans.property.ReadOnlyObjectProperty;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.concurrent.Task;
+import javafx.event.EventHandler;
 import javafx.scene.control.*;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.image.Image;
@@ -22,9 +28,11 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.util.Duration;
 
+import javax.swing.*;
 import java.io.*;
 import java.net.*;
 import java.util.*;
+import java.util.Timer;
 
 public class Controller implements Initializable
 {
@@ -41,7 +49,7 @@ public class Controller implements Initializable
     @FXML
     TextField searchfield, textfieldInfo, TF_PlaylistName, textfieldPlDuration;
     @FXML
-    Slider sliderVolume;
+    Slider sliderVolume, sliderPro;
 
     final Timeline timeline = new Timeline();
     boolean running = true;
@@ -50,7 +58,7 @@ public class Controller implements Initializable
     private String filepath = new File("DemoMediaPlayer-master/src/sample/media/SampleAudio_0.4mb.mp3").getAbsolutePath();
     public Playlist ActivePlaylist = new Playlist(null, 0);
     public String selectedItem;
-    int StopSpil = 0;
+
 
     /**
      * This method is invoked automatically in the beginning. Used for initializing, loading data etc.
@@ -61,7 +69,6 @@ public class Controller implements Initializable
 
     public void initialize(URL location, ResourceBundle resources)
     {
-
         sliderVolume.setShowTickMarks(true);
         sliderVolume.setShowTickLabels(true);
         sliderVolume.setMajorTickUnit(25);
@@ -123,7 +130,7 @@ public class Controller implements Initializable
      */
     public void handlerplay()
     {
-        beginTimer();
+
         String endSearch = selectedItem.substring(selectedItem.indexOf(" ") + 1, selectedItem.indexOf("Artist") - 1);
         System.out.println(endSearch);
         loadBilleder();
@@ -138,20 +145,17 @@ public class Controller implements Initializable
         mp = new MediaPlayer(me);
         mediaV.setMediaPlayer(mp);
         mp.play();
+        beginTimer();
     }
-
-
     public void handlerPause()
     {
         mp.pause();
-        canselTimer();
         timeline.stop();
         timeline.getKeyFrames().clear();
     }
 
     public void handlerStop()
     {
-        canselTimer();
         mp.stop();
         timeline.stop();
         timeline.getKeyFrames().clear();
@@ -283,32 +287,30 @@ public class Controller implements Initializable
 
     public void beginTimer()
     {
-        Timer timer = new Timer();
-        TimerTask task = new TimerTask()
+        mp.currentTimeProperty().addListener(new ChangeListener<Duration>()
         {
             @Override
-            public void run()
+            public void changed(ObservableValue<? extends Duration> observable, Duration oldValue, Duration newValue)
             {
-                running = true;
-                double current = mp.getCurrentTime().toSeconds();
-                double end = mp.getTotalDuration().toSeconds();
-                System.out.println(current / end);
-                Bar.setProgress(current /end);
-                if (current / end == 1)
-                {
-                    running=false;
-                }
+                sliderPro.setValue(newValue.toSeconds());
             }
-        };
-        timer.scheduleAtFixedRate(task,500,500);
-
+        });
+        sliderPro.setOnMousePressed(new EventHandler<MouseEvent>()
+        {
+            @Override
+            public void handle(MouseEvent event)
+            {
+                mp.seek(Duration.seconds(sliderPro.getValue()));
+            }
+        });
+        sliderPro.setOnMouseDragged(new EventHandler<MouseEvent>()
+        {
+            @Override
+            public void handle(MouseEvent event)
+            {
+                mp.seek(Duration.seconds(sliderPro.getValue()));
+            }
+        });
     }
-    public void canselTimer()
-    {
-        running =false;
-
-    }
-
-
 }
 
