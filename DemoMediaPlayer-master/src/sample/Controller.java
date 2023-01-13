@@ -19,6 +19,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.util.Duration;
 
+import javax.swing.*;
 import java.io.*;
 import java.net.*;
 import java.util.ArrayList;
@@ -53,6 +54,13 @@ public class Controller implements Initializable
     private String selectedItem;
     private int identifier; // 1 = songlist, 2 = playlist songlist
     private boolean isPlaying = false;
+    private String displayInfo;
+    private String userDirectoryPath;
+    private double duration;
+    private Image userImage;
+    private int userImageCount;
+    private File[] pictureList;
+
 
     /**
      * This method is invoked automatically in the beginning. Used for initializing, loading data etc.
@@ -63,13 +71,16 @@ public class Controller implements Initializable
 
     public void initialize(URL location, ResourceBundle resources)
     {
+        sliderVolume.setShowTickMarks(true);
+        sliderVolume.setShowTickLabels(true);
+        sliderVolume.setMajorTickUnit(25);
         textfieldInfo.setStyle("-fx-background-color: Black; -fx-text-inner-color: white");
         knapStart_Pause.setText("\u23f5/\u23f8");
         knapStop.setText("\u23f9");
         knapPlay.setText("\u23f5");
         knapStart_Pause.setVisible(false);
         // create the list of songs
-        Song.CreateList();
+        Song.createList();
         publishSong();
 
         // set the selection mode to single, so only one song can be selected at a time
@@ -124,18 +135,27 @@ public class Controller implements Initializable
     {
         String endSearch = selectedItem.substring(selectedItem.indexOf(" ") + 1, selectedItem.indexOf("Artist") - 1);
         System.out.println(endSearch);
-        loadBilleder();
-        for (Song songs : Song.getSongList()) {
-            if (songs.getSONG_NAME().equals(endSearch)) {
-                filepath = songs.getFILE_PATH();
-            }
+
+        if (userDirectoryPath == null)
+        {
+            loadBilleder();
         }
+        else
+        {
+            runUserImage();
+        }
+
+        findFilePath(endSearch);
+
         System.out.println("Now playing: " + filepath);
+        textfieldInfo.setText(displayInfo);
+
         me = new Media(new File(filepath).toURI().toString());
         // Create new MediaPlayer and attach the media to be played
         mp = new MediaPlayer(me);
 
         mediaV.setMediaPlayer(mp);
+
         mp.play();
 
         knapPlay.setVisible(false);
@@ -333,6 +353,22 @@ public class Controller implements Initializable
 
     }
 
+    /**
+     * Allows user to set a folder with the users own images
+     */
+    public void handleChoose()
+    {
+        JFileChooser chooser = new JFileChooser();
+        chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+
+        if (chooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION)
+        {
+            userDirectoryPath = String.valueOf(chooser.getSelectedFile());
+            pictureList = Pictures.listUserPictures(userDirectoryPath);
+            System.out.println("User picture folder path: " + userDirectoryPath);
+        }
+    }
+
     public void loadBilleder()
     {
         Random random = new Random();
@@ -356,19 +392,38 @@ public class Controller implements Initializable
             String navn = "Song: " +object.getSONG_NAME()  + " Artist: " +object.getARTIST()  + "Duration: " + duration;
             songName.add(navn);
         }
-        for (String s : songName) {
-            System.out.println(s);
-
-        }
         ObservableList<String> songs = FXCollections.observableArrayList(songName);
 
         // set the items of the list view
         sangeliste.setItems(songs);
     }
-    public void handleChoose()
-    {
 
+    public void findFilePath(String endSearch)
+    {
+        for (Song songs : Song.getSongList())
+        {
+            if (songs.getSONG_NAME().equals(endSearch))
+            {
+                filepath = songs.getFILE_PATH();
+                displayInfo = songs.getARTIST() + " - " + songs.getSONG_NAME() + " - " + Playlist.durationFormat(songs.getDURATION()) + " min.";
+                duration = songs.getDURATION();
+            }
+        }
     }
 
+    public void runUserImage()
+    {
+        if (userImageCount == pictureList.length)
+        {
+            userImageCount = 0;
+        }
+
+        if (pictureList[userImageCount].isFile())
+        {
+            userImage = new Image((pictureList[userImageCount++]).toURI().toString());
+            ImageV.setImage(userImage);
+            System.out.println("Displayed user image: " + userImage);
+        }
+    }
 }
 
