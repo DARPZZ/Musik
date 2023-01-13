@@ -50,14 +50,27 @@ public class Controller implements Initializable
     TextField searchfield, textfieldInfo, TF_PlaylistName, textfieldPlDuration;
     @FXML
     Slider sliderVolume, sliderPro;
+    Slider sliderVolume;
+    @FXML
+    ToggleButton knapStart_Pause;
+
 
     final Timeline timeline = new Timeline();
     boolean running = true;
     private MediaPlayer mp;
     private Media me;
     private String filepath = new File("DemoMediaPlayer-master/src/sample/media/SampleAudio_0.4mb.mp3").getAbsolutePath();
-    public Playlist ActivePlaylist = new Playlist(null, 0);
-    public String selectedItem;
+    private Playlist ActivePlaylist = new Playlist(null, 0);
+    private String selectedItem;
+    private int identifier; // 1 = songlist, 2 = playlist songlist
+    private boolean isPlaying = false;
+    private String displayInfo;
+    private String userDirectoryPath;
+    private double duration;
+    private Image userImage;
+    private int userImageCount;
+    private File[] pictureList;
+
 
 
     /**
@@ -77,7 +90,7 @@ public class Controller implements Initializable
         knapStop.setText("\u23f9");
         knapPlay.setText("\u23f5");
         // create the list of songs
-        Song.CreateList();
+        Song.createList();
         publishSong();
 
         // set the selection mode to single, so only one song can be selected at a time
@@ -94,7 +107,7 @@ public class Controller implements Initializable
             @Override
             public void invalidated(Observable observable)
             {
-                mp.setVolume(sliderVolume.getValue() / 100);
+                mp.setVolume(sliderVolume.getValue()/ 100);
             }
         });
 
@@ -117,9 +130,10 @@ public class Controller implements Initializable
     public String stringFormat(String inputString)
     {
         StringBuilder sB = new StringBuilder(25);
-        sB.insert(0, inputString);
-        for (int i = 0; i < 25 - inputString.length(); i++) {
-            sB.append(" ");
+        sB.insert(0,inputString);
+        for (int i = 0; i < 25-inputString.length(); i++)
+        {
+        sB.append(" ");
         }
         return sB.toString();
     }
@@ -133,18 +147,86 @@ public class Controller implements Initializable
 
         String endSearch = selectedItem.substring(selectedItem.indexOf(" ") + 1, selectedItem.indexOf("Artist") - 1);
         System.out.println(endSearch);
-        loadBilleder();
-        for (Song songs : Song.getSongList()) {
-            if (songs.getSONG_NAME().equals(endSearch)) {
-                filepath = songs.getFILE_PATH();
-            }
+
+        if (userDirectoryPath == null)
+        {
+            loadBilleder();
         }
+        else
+        {
+            runUserImage();
+        }
+
+        findFilePath(endSearch);
+
         System.out.println("Now playing: " + filepath);
+        textfieldInfo.setText(displayInfo);
+
         me = new Media(new File(filepath).toURI().toString());
         // Create new MediaPlayer and attach the media to be played
         mp = new MediaPlayer(me);
+
         mediaV.setMediaPlayer(mp);
+
         mp.play();
+
+        knapPlay.setVisible(false);
+        knapStart_Pause.setVisible(true);
+        isPlaying = true;
+        /*
+        mp.setOnEndOfMedia(new Runnable() {
+            @Override
+            public void run()
+            {
+                {
+                    mp.setStartTime(Duration.ZERO);
+                    String endSearch = selectedItem.substring(selectedItem.indexOf(" ") + 1, selectedItem.indexOf("Artist") - 1);
+                    int indexCheck = 0;
+                    switch (identifier) {
+                        case 1: {
+                            ArrayList<sample.Song> meme = new ArrayList<>(Song.getSongList());
+                            //Song.getSongList() //array af song objekts
+                            for (int i = 0; i < meme.size(); i++) {
+                                if (endSearch.equals(meme.get(i).getSONG_NAME())) ;
+                                indexCheck = i + 1;
+                            }
+                            meme.get(indexCheck).getSONG_NAME();
+                            break;
+                        }
+                        case 2://ActivePlaylist.getListPlaylist() string array
+                        {
+                            ArrayList<String> meme = new ArrayList<>(ActivePlaylist.getListPlaylist());
+                            for (int i = 0; i < meme.size(); i++) {
+                                String Formatted = meme.get(i).substring(meme.get(i).indexOf(" ") + 1, meme.get(i).indexOf("Artist") - 1);
+                                if (endSearch.equals(Formatted)) {
+                                    indexCheck = i + 1;
+                                }
+                            }
+                            meme.get(indexCheck);
+                            break;
+                        }
+                    }
+
+                }
+
+            }
+        });  */
+    }
+
+
+
+    public void handlerS_P()
+    {
+        if (knapStart_Pause.isSelected())
+        {
+            mp.play();
+            timeline.play();
+
+        }
+        mp.pause();
+        timeline.stop();
+        timeline.getKeyFrames().clear();
+    }
         beginTimer();
     }
     public void handlerPause()
@@ -159,7 +241,8 @@ public class Controller implements Initializable
         mp.stop();
         timeline.stop();
         timeline.getKeyFrames().clear();
-
+        knapPlay.setVisible(true);
+        knapStart_Pause.setVisible(false);
     }
 
     public void handlerSearch()
@@ -180,6 +263,9 @@ public class Controller implements Initializable
     public void handleClickView(MouseEvent mouseEvent)
     {
         selectedItem = (String) sangeliste.getSelectionModel().getSelectedItem();
+        identifier =1;
+        knapPlay.setVisible(true);
+        knapStart_Pause.setVisible(false);
     }
 
     public void handlerPL_Create()
@@ -230,13 +316,16 @@ public class Controller implements Initializable
         selectedPLsong = selectedPLsong.substring(selectedPLsong.indexOf("g") + 3, selectedPLsong.indexOf("Artist") - 1);
         //Super hacky workaround string requirements in play method
         selectedItem = " " + selectedPLsong + " Artist";
+        identifier =2;
+        knapPlay.setVisible(true);
+        knapStart_Pause.setVisible(false);
     }
 
     public void handlerPL_add()
     {
         String endSearch = selectedItem.substring(selectedItem.indexOf(" ") + 1, selectedItem.indexOf("Artist") - 1);
         ActivePlaylist.addSongPlaylist(endSearch);
-        int totaldur = ActivePlaylist.playlistSongNameFill();
+        int totaldur =ActivePlaylist.playlistSongNameFill();
         updatePlaylistSongView(totaldur);
 
     }
@@ -249,6 +338,22 @@ public class Controller implements Initializable
             System.out.println(e);
         }
 
+    }
+
+    /**
+     * Allows user to set a folder with the users own images
+     */
+    public void handleChoose()
+    {
+        JFileChooser chooser = new JFileChooser();
+        chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+
+        if (chooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION)
+        {
+            userDirectoryPath = String.valueOf(chooser.getSelectedFile());
+            pictureList = Pictures.listUserPictures(userDirectoryPath);
+            System.out.println("User picture folder path: " + userDirectoryPath);
+        }
     }
 
     public void loadBilleder()
@@ -270,7 +375,7 @@ public class Controller implements Initializable
     {
         ArrayList<String> songName = new ArrayList<>();
         for (Song object : Song.getSongList()) {
-            String duration = Playlist.durationFormat(object.getDURATION());
+            String duration = Playlist.durationFormat( object.getDURATION());
             String navn = "Song: " + object.getSONG_NAME() + " Artist: " + object.getARTIST() + "Duration: " + duration;
             songName.add(navn);
         }
@@ -280,10 +385,32 @@ public class Controller implements Initializable
         sangeliste.setItems(songs);
     }
 
-    public void handleChoose()
+    /**
+     * Finds the filepath for the selected song
+     * @param endSearch
+     */
+    public void findFilePath(String endSearch)
     {
-
+        for (Song songs : Song.getSongList())
+        {
+            if (songs.getSONG_NAME().equals(endSearch))
+            {
+                filepath = songs.getFILE_PATH();
+                displayInfo = songs.getARTIST() + " - " + songs.getSONG_NAME() + " - " + Playlist.durationFormat(songs.getDURATION()) + " min.";
+                duration = songs.getDURATION();
+            }
+        }
     }
+
+    /**
+     * Displays user images and changes picture everytime it's run
+     */
+    public void runUserImage()
+    {
+        if (userImageCount == pictureList.length)
+        {
+            userImageCount = 0;
+        }
 
     public void beginTimer()
     {
@@ -311,6 +438,13 @@ public class Controller implements Initializable
                 mp.seek(Duration.seconds(sliderPro.getValue()));
             }
         });
+    }
+        if (pictureList[userImageCount].isFile())
+        {
+            userImage = new Image((pictureList[userImageCount++]).toURI().toString());
+            ImageV.setImage(userImage);
+            System.out.println("Displayed user image: " + userImage);
+        }
     }
 }
 

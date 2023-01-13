@@ -23,7 +23,10 @@ public class Song
         this.DURATION = duration;
     }
 
-    public static void CreateList()
+    /**
+     * Fills the class variable array with data from the database
+     */
+    public static void createList()
     {
         DB.selectSQL("Select * from tblSong");
 
@@ -38,24 +41,13 @@ public class Song
         }
     }
 
-    public static void AddSongToDB(String songName, String artist, String filePath, double duration)
+    public static void addSongToDB(String songName, String artist, String filePath, double duration)
     {
         DB.insertSQL("Insert into tblSong values('" + songName + "', '" + artist + "', '" + filePath + "', '" + duration + "');");
         System.out.printf("%s er oprettet i databasen", songName);
         SONG_LIST.add(new Song(songName, artist, filePath, duration));
     }
 
-    public static ArrayList<Song> CreateList(String tblName, String fldName, String value)
-    {
-        ArrayList<Song> listOfSongs = new ArrayList<>();
-        DB.selectSQL("Select * from " + tblName + " where " + fldName + " = '" + value + "';");
-
-        while (!DB.getData().equals(DB.NOMOREDATA))
-        {
-            listOfSongs.add(new sample.Song(DB.getData(), DB.getData(), DB.getData(), Double.parseDouble(DB.getData())));
-        }
-        return listOfSongs;
-    }
     public static void searchSong(String searchString)
     {
         SONG_LIST.clear();
