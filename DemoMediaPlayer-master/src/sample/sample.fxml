@@ -99,5 +99,7 @@
          <font>
             <Font name="System Bold" size="18.0" />
          </font></ToggleButton>
+      <ToggleButton fx:id="knapStart_Pause" layoutX="279.0" layoutY="389.0" mnemonicParsing="false" onMouseClicked="#handlerS_P" text="Start/Pause" />
+      <Slider fx:id="sliderPro" layoutX="14.0" layoutY="600.0" prefHeight="31.0" prefWidth="465.0" />
    </children>
 </AnchorPane>

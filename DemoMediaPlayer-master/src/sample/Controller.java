@@ -3,11 +3,20 @@ package sample;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.application.Platform;
 import javafx.beans.InvalidationListener;
 import javafx.beans.Observable;
+import javafx.beans.binding.Bindings;
+import javafx.beans.binding.DoubleBinding;
+import javafx.beans.property.ReadOnlyObjectProperty;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.concurrent.Task;
+import javafx.event.EventHandler;
 import javafx.scene.control.*;
+import javafx.scene.control.ProgressBar;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
@@ -22,13 +31,14 @@ import javafx.util.Duration;
 import javax.swing.*;
 import java.io.*;
 import java.net.*;
-import java.util.ArrayList;
-import java.util.Random;
-import java.util.ResourceBundle;
+import java.sql.SQLOutput;
+import java.util.*;
+import java.util.Timer;
 
 public class Controller implements Initializable
 {
-
+    @FXML
+    ProgressBar Bar;
     @FXML
     private MediaView mediaV;
     @FXML
@@ -38,15 +48,15 @@ public class Controller implements Initializable
     @FXML
     ListView sangeliste, playlistview, playlistsongs;
     @FXML
-    TextField searchfield, textfieldInfo, TF_PlaylistName,textfieldPlDuration;
+    TextField searchfield, textfieldInfo, TF_PlaylistName, textfieldPlDuration;
     @FXML
-    Slider sliderVolume;
+    Slider sliderVolume, sliderPro;
     @FXML
     ToggleButton knapStart_Pause;
 
 
     final Timeline timeline = new Timeline();
-
+    boolean running = true;
     private MediaPlayer mp;
     private Media me;
     private String filepath = new File("DemoMediaPlayer-master/src/sample/media/SampleAudio_0.4mb.mp3").getAbsolutePath();
@@ -97,7 +107,7 @@ public class Controller implements Initializable
             @Override
             public void invalidated(Observable observable)
             {
-                mp.setVolume(sliderVolume.getValue()/ 100);
+                mp.setVolume(sliderVolume.getValue() / 100);
             }
         });
 
@@ -116,13 +126,13 @@ public class Controller implements Initializable
         playlistsongs.setItems(FXCollections.observableArrayList(ActivePlaylist.getListPlaylist()));
         textfieldPlDuration.setText(Playlist.durationFormat(i));
     }
+
     public String stringFormat(String inputString)
     {
         StringBuilder sB = new StringBuilder(25);
-        sB.insert(0,inputString);
-        for (int i = 0; i < 25-inputString.length(); i++)
-        {
-        sB.append(" ");
+        sB.insert(0, inputString);
+        for (int i = 0; i < 25 - inputString.length(); i++) {
+            sB.append(" ");
         }
         return sB.toString();
     }
@@ -133,15 +143,13 @@ public class Controller implements Initializable
      */
     public void handlerplay()
     {
+
         String endSearch = selectedItem.substring(selectedItem.indexOf(" ") + 1, selectedItem.indexOf("Artist") - 1);
         System.out.println(endSearch);
 
-        if (userDirectoryPath == null)
-        {
+        if (userDirectoryPath == null) {
             loadBilleder();
-        }
-        else
-        {
+        } else {
             runUserImage();
         }
 
@@ -158,9 +166,11 @@ public class Controller implements Initializable
 
         mp.play();
 
+
         knapPlay.setVisible(false);
         knapStart_Pause.setVisible(true);
         isPlaying = true;
+        beginTimer();
         mp.setOnEndOfMedia(new Runnable() {
             @Override
             public void run()
@@ -226,11 +236,9 @@ public class Controller implements Initializable
     }
 
 
-
     public void handlerS_P()
     {
-        if (knapStart_Pause.isSelected())
-        {
+        if (knapStart_Pause.isSelected()) {
             mp.play();
             timeline.play();
 
@@ -239,6 +247,7 @@ public class Controller implements Initializable
         timeline.stop();
         timeline.getKeyFrames().clear();
     }
+
     /* old button gone
     public void handlerPause()
     {
@@ -279,7 +288,7 @@ public class Controller implements Initializable
     public void handleClickView(MouseEvent mouseEvent)
     {
         selectedItem = (String) sangeliste.getSelectionModel().getSelectedItem();
-        identifier =1;
+        identifier = 1;
         knapPlay.setVisible(true);
         knapStart_Pause.setVisible(false);
         if (isPlaying == true)
@@ -338,7 +347,7 @@ public class Controller implements Initializable
         selectedPLsong = selectedPLsong.substring(selectedPLsong.indexOf("g") + 3, selectedPLsong.indexOf("Artist") - 1);
         //Super hacky workaround string requirements in play method
         selectedItem = " " + selectedPLsong + " Artist";
-        identifier =2;
+        identifier = 2;
         knapPlay.setVisible(true);
         knapStart_Pause.setVisible(false);
         if (isPlaying == true)
@@ -350,7 +359,7 @@ public class Controller implements Initializable
     {
         String endSearch = selectedItem.substring(selectedItem.indexOf(" ") + 1, selectedItem.indexOf("Artist") - 1);
         ActivePlaylist.addSongPlaylist(endSearch);
-        int totaldur =ActivePlaylist.playlistSongNameFill();
+        int totaldur = ActivePlaylist.playlistSongNameFill();
         updatePlaylistSongView(totaldur);
 
     }
@@ -373,8 +382,7 @@ public class Controller implements Initializable
         JFileChooser chooser = new JFileChooser();
         chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
 
-        if (chooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION)
-        {
+        if (chooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
             userDirectoryPath = String.valueOf(chooser.getSelectedFile());
             pictureList = Pictures.listUserPictures(userDirectoryPath);
             System.out.println("User picture folder path: " + userDirectoryPath);
@@ -389,6 +397,7 @@ public class Controller implements Initializable
                 new KeyFrame(Duration.seconds(5), event ->
                 {
                     final Image image = new Image(mylist.get(random.nextInt(mylist.size())));
+                    System.out.println("RONALDO: SUIIIIIIIIIIII");
                     ImageV.setImage(image);
                 }));
         timeline.setCycleCount(Animation.INDEFINITE);
@@ -399,8 +408,8 @@ public class Controller implements Initializable
     {
         ArrayList<String> songName = new ArrayList<>();
         for (Song object : Song.getSongList()) {
-            String duration = Playlist.durationFormat( object.getDURATION());
-            String navn = "Song: " +object.getSONG_NAME()  + " Artist: " +object.getARTIST()  + "Duration: " + duration;
+            String duration = Playlist.durationFormat(object.getDURATION());
+            String navn = "Song: " + object.getSONG_NAME() + " Artist: " + object.getARTIST() + "Duration: " + duration;
             songName.add(navn);
         }
         ObservableList<String> songs = FXCollections.observableArrayList(songName);
@@ -409,12 +418,15 @@ public class Controller implements Initializable
         sangeliste.setItems(songs);
     }
 
+    /**
+     * Finds the filepath for the selected song
+     *
+     * @param endSearch
+     */
     public void findFilePath(String endSearch)
     {
-        for (Song songs : Song.getSongList())
-        {
-            if (songs.getSONG_NAME().equals(endSearch))
-            {
+        for (Song songs : Song.getSongList()) {
+            if (songs.getSONG_NAME().equals(endSearch)) {
                 filepath = songs.getFILE_PATH();
                 displayInfo = songs.getARTIST() + " - " + songs.getSONG_NAME() + " - " + Playlist.durationFormat(songs.getDURATION()) + " min.";
                 duration = songs.getDURATION();
@@ -422,19 +434,58 @@ public class Controller implements Initializable
         }
     }
 
+    /**
+     * Displays user images and changes picture everytime it's run
+     */
     public void runUserImage()
     {
-        if (userImageCount == pictureList.length)
-        {
+        if (userImageCount == pictureList.length) {
             userImageCount = 0;
-        }
 
-        if (pictureList[userImageCount].isFile())
-        {
+        }
+        if (pictureList[userImageCount].isFile()) {
             userImage = new Image((pictureList[userImageCount++]).toURI().toString());
             ImageV.setImage(userImage);
             System.out.println("Displayed user image: " + userImage);
         }
     }
+
+    public void beginTimer()
+    {
+        mp.currentTimeProperty().addListener(new ChangeListener<Duration>()
+        {
+            @Override
+            public void changed(ObservableValue<? extends Duration> observable, Duration oldValue, Duration newValue)
+            {
+                sliderPro.setValue(newValue.toSeconds());
+            }
+        });
+        sliderPro.setOnMousePressed(new EventHandler<MouseEvent>()
+        {
+            @Override
+            public void handle(MouseEvent event)
+            {
+                mp.seek(Duration.seconds(sliderPro.getValue()));
+            }
+        });
+        sliderPro.setOnMouseDragged(new EventHandler<MouseEvent>()
+        {
+            @Override
+            public void handle(MouseEvent event)
+            {
+                mp.seek(Duration.seconds(sliderPro.getValue()));
+            }
+        });
+        mp.setOnReady(new Runnable()
+        {
+            @Override
+            public void run()
+            {
+                Duration total = mp.getTotalDuration();
+                sliderPro.setMax(total.toSeconds());
+            }
+        });
+    }
+
 }
 
