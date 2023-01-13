@@ -444,9 +444,9 @@ public class Controller implements Initializable
             {
                 Duration total = mp.getTotalDuration();
                 sliderPro.setMax(total.toSeconds());
-
             }
         });
     }
+
 }
 
