@@ -370,6 +370,10 @@ public class Controller implements Initializable
         sangeliste.setItems(songs);
     }
 
+    /**
+     * Finds the filepath for the selected song
+     * @param endSearch
+     */
     public void findFilePath(String endSearch)
     {
         for (Song songs : Song.getSongList())
@@ -383,6 +387,9 @@ public class Controller implements Initializable
         }
     }
 
+    /**
+     * Displays user images and changes picture everytime it's run
+     */
     public void runUserImage()
     {
         if (userImageCount == pictureList.length)
