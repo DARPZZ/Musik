@@ -64,9 +64,10 @@ public class Controller implements Initializable
     public void initialize(URL location, ResourceBundle resources)
     {
         textfieldInfo.setStyle("-fx-background-color: Black; -fx-text-inner-color: white");
-        knapPause.setText("\u23f8");
+        knapStart_Pause.setText("\u23f5/\u23f8");
         knapStop.setText("\u23f9");
         knapPlay.setText("\u23f5");
+        knapStart_Pause.setVisible(false);
         // create the list of songs
         Song.CreateList();
         publishSong();
@@ -140,12 +141,10 @@ public class Controller implements Initializable
         knapPlay.setVisible(false);
         knapStart_Pause.setVisible(true);
         isPlaying = true;
-        /*
         mp.setOnEndOfMedia(new Runnable() {
             @Override
             public void run()
             {
-                {
                     mp.setStartTime(Duration.ZERO);
                     String endSearch = selectedItem.substring(selectedItem.indexOf(" ") + 1, selectedItem.indexOf("Artist") - 1);
                     int indexCheck = 0;
@@ -157,7 +156,15 @@ public class Controller implements Initializable
                                 if (endSearch.equals(meme.get(i).getSONG_NAME())) ;
                                 indexCheck = i + 1;
                             }
-                            meme.get(indexCheck).getSONG_NAME();
+                            for (Song songs : Song.getSongList()) {
+                                if (songs.getSONG_NAME().equals(meme.get(indexCheck).getSONG_NAME())) {
+                                    filepath = songs.getFILE_PATH();
+                                }
+                                me = new Media(new File(filepath).toURI().toString());
+                                mp = new MediaPlayer(me);
+                                mp.play();
+
+                            }
                             break;
                         }
                         case 2://ActivePlaylist.getListPlaylist() string array
@@ -169,7 +176,13 @@ public class Controller implements Initializable
                                     indexCheck = i + 1;
                                 }
                             }
-                            meme.get(indexCheck);
+                            for (Song songs : Song.getSongList()) {
+                                if (songs.getSONG_NAME().equals(meme.get(indexCheck))) {
+                                    filepath = songs.getFILE_PATH();
+                                }
+                                me = new Media(new File(filepath).toURI().toString());
+                                mp = new MediaPlayer(me);
+                                mp.play();
                             break;
                         }
                     }
@@ -177,7 +190,7 @@ public class Controller implements Initializable
                 }
 
             }
-        });  */
+        });
     }
 
 
@@ -194,12 +207,15 @@ public class Controller implements Initializable
         timeline.stop();
         timeline.getKeyFrames().clear();
     }
+    /* old button gone
     public void handlerPause()
     {
         mp.pause();
         timeline.stop();
         timeline.getKeyFrames().clear();
     }
+
+     */
 
     public void handlerStop()
     {
@@ -208,6 +224,7 @@ public class Controller implements Initializable
         timeline.getKeyFrames().clear();
         knapPlay.setVisible(true);
         knapStart_Pause.setVisible(false);
+        isPlaying = false;
 
 
     }
@@ -233,7 +250,12 @@ public class Controller implements Initializable
         identifier =1;
         knapPlay.setVisible(true);
         knapStart_Pause.setVisible(false);
-        mp.stop();
+        if (isPlaying == true)
+        {
+            mp.stop();
+            isPlaying= true;
+        }
+
     }
 
     public void handlerPL_Create()
@@ -287,7 +309,9 @@ public class Controller implements Initializable
         identifier =2;
         knapPlay.setVisible(true);
         knapStart_Pause.setVisible(false);
-        mp.stop();
+        if (isPlaying == true)
+        {mp.stop();}
+
     }
 
     public void handlerPL_add()
@@ -329,8 +353,12 @@ public class Controller implements Initializable
         ArrayList<String> songName = new ArrayList<>();
         for (Song object : Song.getSongList()) {
             String duration = Playlist.durationFormat( object.getDURATION());
-            String navn = "Song: " + object.getSONG_NAME() + " Artist: " + object.getARTIST() + "Duration: " + duration;
+            String navn = "Song: " +object.getSONG_NAME()  + " Artist: " +object.getARTIST()  + "Duration: " + duration;
             songName.add(navn);
+        }
+        for (String s : songName) {
+            System.out.println(s);
+
         }
         ObservableList<String> songs = FXCollections.observableArrayList(songName);
 
