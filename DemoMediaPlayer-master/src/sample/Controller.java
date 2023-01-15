@@ -221,6 +221,7 @@ public class Controller implements Initializable
                             me = new Media(new File(filepath).toURI().toString());
                             mp = new MediaPlayer(me);
                             mp.play();
+                            beginTimer();
                             break;
 
                         }
@@ -256,6 +257,7 @@ public class Controller implements Initializable
                             me = new Media(new File(filepath).toURI().toString());
                             mp = new MediaPlayer(me);
                             mp.play();
+                            beginTimer();
                             break;
                         }
                     }
@@ -435,7 +437,6 @@ public class Controller implements Initializable
                 new KeyFrame(Duration.seconds(5), event ->
                 {
                     final Image image = new Image(mylist.get(random.nextInt(mylist.size())));
-                    System.out.println("RONALDO: SUIIIIIIIIIIII");
                     ImageV.setImage(image);
                 }));
         TIMELINE.setCycleCount(Animation.INDEFINITE);
