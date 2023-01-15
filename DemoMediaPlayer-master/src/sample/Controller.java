@@ -3,17 +3,12 @@ package sample;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
-import javafx.application.Platform;
 import javafx.beans.InvalidationListener;
 import javafx.beans.Observable;
-import javafx.beans.binding.Bindings;
-import javafx.beans.binding.DoubleBinding;
-import javafx.beans.property.ReadOnlyObjectProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.concurrent.Task;
 import javafx.event.EventHandler;
 import javafx.scene.control.*;
 import javafx.scene.control.ProgressBar;
@@ -32,9 +27,7 @@ import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import java.io.*;
 import java.net.*;
-import java.sql.SQLOutput;
 import java.util.*;
-import java.util.Timer;
 
 public class Controller implements Initializable
 {
@@ -45,7 +38,7 @@ public class Controller implements Initializable
     @FXML
     ImageView ImageV;
     @FXML
-    Button knapPlay, knapPause, knapStop, knapCreate, knapAdd, knapDelete, knapRemove, knapRename, knapChoose;
+    Button knapPlay, knapStop, knapCreate, knapAdd, knapDelete, knapRemove, knapRename, knapChoose;
     @FXML
     ListView sangeliste, playlistview, playlistsongs;
     @FXML
@@ -63,7 +56,7 @@ public class Controller implements Initializable
     private Media me;
     private String filepath = new File("DemoMediaPlayer-master/src/sample/media/SampleAudio_0.4mb.mp3").getAbsolutePath();
     private Playlist ActivePlaylist = new Playlist(null, 0);
-    private String selectedItem;
+    private String selectedItem, selectedPlaylist;
     private int identifier; // 1 = songlist, 2 = playlist songlist
     private boolean isPlaying = false;
     private String displayInfo;
@@ -99,10 +92,10 @@ public class Controller implements Initializable
         sangeliste.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
 
         // Playlist setup
+        Playlist.initialize();
         playlistview.setItems(FXCollections.observableArrayList(Playlist.PlaylistArray()));
-        playlistview.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+        playlistview.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
         playlistsongs.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
-        System.out.println(Playlist.PlaylistArray());
 
         sliderVolume.valueProperty().addListener(new InvalidationListener()
         {
@@ -123,10 +116,24 @@ public class Controller implements Initializable
         playlistview.setItems(FXCollections.observableArrayList(Playlist.PlaylistArray()));
     }
 
-    public void updatePlaylistSongView(int i)
+    public void updatePlaylistSongView(ArrayList<Integer> i) //new
     {
-        playlistsongs.setItems(FXCollections.observableArrayList(ActivePlaylist.getListPlaylist()));
-        textfieldPlDuration.setText(Playlist.durationFormat(i));
+        int duration =0;
+        ArrayList<String> songOut = new ArrayList<>();
+        for (int id :i)
+        {
+            for (Song song:Song.getSongList())
+            {
+                if (id == song.getSONG_ID())
+                {
+                    songOut.add("Song: "+ song.getSONG_NAME() + " Artist: " + song.getARTIST() + " Duration: " + Playlist.durationFormat(song.getDURATION()));
+                    duration +=(int)song.getDURATION();
+                    break;
+                }
+            }
+        }
+        playlistsongs.setItems(FXCollections.observableArrayList(songOut));
+        textfieldPlDuration.setText(Playlist.durationFormat(duration));
     }
 
     public String stringFormat(String inputString)
@@ -193,11 +200,14 @@ public class Controller implements Initializable
                             //Song.getSongList() //array af song objekts
                             for (int i = 0; i < songlist.size(); i++)
                             {
-                                System.out.println(songlist.get(i).getSONG_NAME());
                                 String meme = songlist.get(i).getSONG_NAME();
                                 if (endSearch.equals(meme))
                                 {
                                     indexCheck = i + 1;
+                                    if (indexCheck > songlist.size())
+                                    {
+                                        indexCheck =0;
+                                    }
                                     break;
                                 }
                             }
@@ -216,23 +226,33 @@ public class Controller implements Initializable
                         }
                         case 2://ActivePlaylist.getListPlaylist() string array
                         {
-                            ArrayList<String> songlist = new ArrayList<>(ActivePlaylist.getListPlaylist());
-                            for (int i = 0; i < songlist.size(); i++) {
-                                String Formatted = songlist.get(i).substring(songlist.get(i).indexOf(" ") + 1, songlist.get(i).indexOf("Artist") - 1);
-                                if (endSearch.equals(Formatted))
-                                {
-                                    indexCheck = i + 1;
-                                    break;
-                                }
-                            }
-                            for (Song songs : Song.getSongList())
+                            for (Playlist p: Playlist.objectPlaylists)
                             {
-                                if (songs.getSONG_NAME().equals(songlist.get(indexCheck)))
+                                if (selectedPlaylist.equals(p.getPlaylistName()))
                                 {
-                                    filepath = songs.getFILE_PATH();
-                                    break;
+                                    for (int i = 0; i <p.getSongID().size() ; i++)
+                                    {
+                                        if (endSearch.equals(p.getSongName(i)))
+                                        {
+                                            indexCheck =i+1;
+                                            if (indexCheck > p.getSongID().size())
+                                            {
+                                                indexCheck=0;
+                                            }
+                                        }
+                                    }
+                                    for (Song songs : Song.getSongList())
+                                    {
+                                        if (songs.getSONG_NAME().equals(p.getSongName(indexCheck)))
+                                        {
+                                            filepath = songs.getFILE_PATH();
+                                            break;
+                                        }
+                                    }
+
                                 }
                             }
+
                             me = new Media(new File(filepath).toURI().toString());
                             mp = new MediaPlayer(me);
                             mp.play();
@@ -299,50 +319,57 @@ public class Controller implements Initializable
 
     }
 
-    public void handlerPL_Create()
+    public void handlerPL_Create() // new
     {
-        String PLname = TF_PlaylistName.getText();
-        Playlist ActivePlaylist = new Playlist(PLname, Playlist.createPlaylist(PLname)); // Ugly code, Creates the Playlist in SQL and the instance of the Playlist Class
-        ActivePlaylist.playlistSongNameFill();
+        Playlist.createPlaylist(TF_PlaylistName.getText());
         System.out.println(Playlist.PlaylistArray());
         updatePlaylistView();
 
-
     }
 
-    public void handlerPL_Delete()
+    public void handlerPL_Delete() //new
     {
-        ActivePlaylist.deletePlaylist();
-        updatePlaylistView();
-    }
-
-    public void handlerPL_Rename()
-    {
-        System.out.println();
-        String selectedPL = TF_PlaylistName.getText();
-        ActivePlaylist.renamePlaylist(selectedPL);
-        updatePlaylistView();
-
-    }
-
-    public void handlerPL_Select(MouseEvent event)
-    {
-        try // Java throws an error if you click on a non entry in the table, catch to ignore
+        for (Playlist p: Playlist.objectPlaylists)
         {
-            String selectedPL = playlistview.getSelectionModel().getSelectedItem().toString();
-            ActivePlaylist.setPlaylistName(selectedPL);
-            ActivePlaylist.setPlaylistID(Playlist.getPlaylistID(selectedPL));
-            int totalDur = ActivePlaylist.playlistSongNameFill();
-            updatePlaylistSongView(totalDur);
-        } catch (Exception e) {
-            System.out.println();
+            if (p.getPlaylistName().equals(selectedPlaylist))
+            {
+                p.deletePlaylist();
+                break;
+            }
         }
+        updatePlaylistView();
+        playlistsongs.getItems().clear();
+    }
 
+    public void handlerPL_Rename() //new
+    {
+        String newPlaylistName = TF_PlaylistName.getText();
+        for (Playlist p : Playlist.objectPlaylists)
+        {
+            if (p.getPlaylistName().equals(selectedPlaylist))
+             {
+                 p.renamePlaylist(newPlaylistName);
+                 break;
+             }
+        }
+        updatePlaylistView();
+
+    }
+    public void handlerPL_Select(MouseEvent event) //new
+    {
+        String selectedPL = playlistview.getSelectionModel().getSelectedItem().toString();
+        for (int i = 0; i <Playlist.objectPlaylists.size() ; i++)
+        {
+            if (Playlist.objectPlaylists.get(i).getPlaylistName().equals(selectedPL))
+            {
+                updatePlaylistSongView(Playlist.objectPlaylists.get(i).getSongID());
+            }
+        }
+        selectedPlaylist = selectedPL;
     }
 
     public void handlerPLsong_Select()
     {
-        System.out.println();
         String selectedPLsong = playlistsongs.getSelectionModel().getSelectedItem().toString();
         selectedPLsong = selectedPLsong.substring(selectedPLsong.indexOf("g") + 3, selectedPLsong.indexOf("Artist") - 1);
         //Super hacky workaround string requirements in play method
@@ -355,23 +382,32 @@ public class Controller implements Initializable
 
     }
 
-    public void handlerPL_add()
+    public void handlerPL_add() // new
     {
-        String endSearch = selectedItem.substring(selectedItem.indexOf(" ") + 1, selectedItem.indexOf("Artist") - 1);
-        ActivePlaylist.addSongPlaylist(endSearch);
-        int totaldur = ActivePlaylist.playlistSongNameFill();
-        updatePlaylistSongView(totaldur);
-
+        for (Playlist p: Playlist.objectPlaylists)
+        {
+          if (selectedPlaylist.equals(p.getPlaylistName()))
+          {
+              String endSearch = selectedItem.substring(selectedItem.indexOf(" ") + 1, selectedItem.indexOf("Artist") - 1);
+              p.addSongPlaylist(endSearch);
+              updatePlaylistSongView(p.getSongID());
+              break;
+          }
+        }
     }
 
-    public void handlerPL_remove()
+    public void handlerPL_remove() //new
     {
-        try {
-            ActivePlaylist.deleteSongPlaylist(selectedItem);
-        } catch (Exception e) {
-            System.out.println(e);
+        for (Playlist p: Playlist.objectPlaylists)
+        {
+            if (selectedPlaylist.equals(p.getPlaylistName()))
+            {
+                String endSearch = selectedItem.substring(selectedItem.indexOf(" ") + 1, selectedItem.indexOf("Artist") - 1);
+                p.removeSongPlaylist(endSearch);
+                updatePlaylistSongView(p.getSongID());
+                break;
+            }
         }
-
     }
 
     /**

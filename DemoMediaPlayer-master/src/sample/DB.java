@@ -123,7 +123,8 @@ public class DB {
      *
      * @return The next single value (without formatting) from previous select
      */
-    public static String getData(){
+    public static String getData()
+    {
         if (terminated){
             System.exit(0);
         }
@@ -134,6 +135,23 @@ public class DB {
             disconnect();
             pendingData=false;
             return NOMOREDATA;
+        }else {
+            return getNextValue(false).trim();
+        }
+    }
+    // Path of least resistance
+    public static String getDataHack()
+    {
+        if (terminated){
+            System.exit(0);
+        }
+        if (!pendingData){
+            terminated=true;
+            throw new RuntimeException("ERROR! No previous select, communication with the database is lost!");
+        }else if (!moreData){
+            disconnect();
+            pendingData=false;
+            return "-1";
         }else {
             return getNextValue(false).trim();
         }
