@@ -22,6 +22,7 @@ import javafx.scene.media.*;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.util.Duration;
+import org.omg.CORBA.portable.ValueOutputStream;
 
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -184,86 +185,92 @@ public class Controller implements Initializable
         knapStart_Pause.setVisible(true);
         isPlaying = true;
         beginTimer();
-        mp.setOnEndOfMedia(new Runnable() {
-            @Override
-            public void run()
-            {
-                System.out.println();
-                    mp.setStartTime(Duration.ZERO);
-                    String endSearch = selectedItem.substring(selectedItem.indexOf(" ") + 1, selectedItem.indexOf("Artist") - 1);
-                    int indexCheck = 0;
-                    switch (identifier)
-                    {
-                        case 1:
-                        {
-                            ArrayList<sample.Song> songlist = new ArrayList<>(Song.getSongList());
-                            //Song.getSongList() //array af song objekts
-                            for (int i = 0; i < songlist.size(); i++)
-                            {
-                                String meme = songlist.get(i).getSONG_NAME();
-                                if (endSearch.equals(meme))
-                                {
-                                    indexCheck = i + 1;
-                                    if (indexCheck > songlist.size())
-                                    {
-                                        indexCheck =0;
-                                    }
-                                    break;
-                                }
-                            }
-                            for (Song songs : Song.getSongList())
-                            {
-                                if (songs.getSONG_NAME().equals(songlist.get(indexCheck).getSONG_NAME())) {
-                                    filepath = songs.getFILE_PATH();
-                                    break;
-                                }
-                            }
-                            me = new Media(new File(filepath).toURI().toString());
-                            mp = new MediaPlayer(me);
-                            mp.play();
-                            beginTimer();
-                            break;
-
-                        }
-                        case 2://ActivePlaylist.getListPlaylist() string array
-                        {
-                            for (Playlist p: Playlist.objectPlaylists)
-                            {
-                                if (selectedPlaylist.equals(p.getPlaylistName()))
-                                {
-                                    for (int i = 0; i <p.getSongID().size() ; i++)
-                                    {
-                                        if (endSearch.equals(p.getSongName(i)))
-                                        {
-                                            indexCheck =i+1;
-                                            if (indexCheck > p.getSongID().size())
-                                            {
-                                                indexCheck=0;
-                                            }
-                                        }
-                                    }
-                                    for (Song songs : Song.getSongList())
-                                    {
-                                        if (songs.getSONG_NAME().equals(p.getSongName(indexCheck)))
-                                        {
-                                            filepath = songs.getFILE_PATH();
-                                            break;
-                                        }
-                                    }
-
-                                }
-                            }
-
-                            me = new Media(new File(filepath).toURI().toString());
-                            mp = new MediaPlayer(me);
-                            mp.play();
-                            beginTimer();
-                            break;
-                        }
-                    }
-            }
-        });
+        mp.setOnEndOfMedia(this::playNext);
     }
+    private void playNext()
+    {
+        System.out.println();
+        mp.setStartTime(Duration.ZERO);
+        String endSearch = selectedItem.substring(selectedItem.indexOf(" ") + 1, selectedItem.indexOf("Artist") - 1);
+        int indexCheck = 0;
+        switch (identifier)
+        {
+            case 1: {
+                ArrayList<sample.Song> songlist = new ArrayList<>(Song.getSongList());
+                //Song.getSongList() //array af song objekts
+                for (int i = 0; i < songlist.size(); i++) {
+                    String meme = songlist.get(i).getSONG_NAME();
+                    if (endSearch.equals(meme)) {
+                        indexCheck = i + 1;
+                        if (indexCheck >= songlist.size()) {
+                            indexCheck = 0;
+                        }
+                        break;
+                    }
+                }
+                String newS = null;
+                for (Song songs : Song.getSongList()) {
+                    if (songs.getSONG_NAME().equals(songlist.get(indexCheck).getSONG_NAME())) {
+                        findFilePath(songs.getSONG_NAME());
+                        newS = "Song: " + songs.getSONG_NAME() + " Artist";
+                        break;
+                    }
+                }
+                selectedItem = newS;
+                me = new Media(new File(filepath).toURI().toString());
+                mp = new MediaPlayer(me);
+                textfieldInfo.setText(displayInfo);
+                mp.play();
+                beginTimer();
+                mp.setOnEndOfMedia(this::playNext);
+                break;
+
+            }
+            case 2://ActivePlaylist.getListPlaylist() string array
+            {
+                String newS =null;
+                for (Playlist p: Playlist.objectPlaylists)
+                {
+
+                    if (selectedPlaylist.equals(p.getPlaylistName()))
+                    {
+                        for (int i = 0; i <p.getSongID().size() ; i++)
+                        {
+                            if (endSearch.equals(p.getSongName(i)))
+                            {
+                                indexCheck =i+1;
+                                if (indexCheck >= p.getSongID().size())
+                                {
+                                    indexCheck=0;
+                                }
+                            }
+                        }
+                        for (Song songs : Song.getSongList())
+                        {
+                            if (songs.getSONG_NAME().equals(p.getSongName(indexCheck)))
+                            {
+                                findFilePath(songs.getSONG_NAME());
+                                newS = "Song: " + songs.getSONG_NAME() + " Artist";
+                                break;
+                            }
+                        }
+
+                    }
+                }
+                selectedItem = newS;
+                me = new Media(new File(filepath).toURI().toString());
+                mp = new MediaPlayer(me);
+                textfieldInfo.setText(displayInfo);
+                mp.play();
+                beginTimer();
+                mp.setOnEndOfMedia(this::playNext);
+                break;
+            }
+        }
+    }
+
+
+
 
 
     public void handlerS_P()
