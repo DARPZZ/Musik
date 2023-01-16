@@ -1,7 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="aad64f5d-ca6e-48b2-970a-a90f74be859d" name="Changes" comment="Lagt koden for progress bar i sin egen class" />
+    <list default="true" id="aad64f5d-ca6e-48b2-970a-a90f74be859d" name="Changes" comment="Lagt koden for progress bar i sin egen class">
+      <change beforePath="$PROJECT_DIR$/DemoMediaPlayer-master/src/sample/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/DemoMediaPlayer-master/src/sample/Controller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DemoMediaPlayer-master/src/sample/sample.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/DemoMediaPlayer-master/src/sample/sample.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/musik/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/musik/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/musik/DemoMediaPlayer-master/src/sample/sample.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/musik/DemoMediaPlayer-master/src/sample/sample.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/musik/sample/Controller.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/musik/sample/Controller.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/musik/sample/sample.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/musik/sample/sample.fxml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -110,6 +117,9 @@
       <workItem from="1673612013000" duration="2019000" />
       <workItem from="1673851071812" duration="73000" />
       <workItem from="1673851175551" duration="518000" />
+      <workItem from="1673851710818" duration="1409000" />
+      <workItem from="1673853145212" duration="108000" />
+      <workItem from="1673853450596" duration="1024000" />
     </task>
     <task id="LOCAL-00001" summary="Added slideshow">
       <created>1673389249159</created>
@@ -244,7 +254,14 @@
       <option name="project" value="LOCAL" />
       <updated>1673851461445</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="Lagt koden for progress bar i sin egen class">
+      <created>1673851840670</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1673851840670</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
