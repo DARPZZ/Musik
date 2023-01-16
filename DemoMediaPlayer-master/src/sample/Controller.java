@@ -11,7 +11,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.scene.control.*;
-import javafx.scene.control.ProgressBar;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
@@ -22,7 +21,6 @@ import javafx.scene.media.*;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.util.Duration;
-import org.omg.CORBA.portable.ValueOutputStream;
 
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -32,8 +30,6 @@ import java.util.*;
 
 public class Controller implements Initializable
 {
-    @FXML
-    ProgressBar Bar;
     @FXML
     private MediaView mediaV;
     @FXML
@@ -51,12 +47,10 @@ public class Controller implements Initializable
 
 
     final Timeline timeline = new Timeline();
-    boolean running = true;
     private final Timeline TIMELINE = new Timeline();
     private MediaPlayer mp;
     private Media me;
     private String filepath = new File("DemoMediaPlayer-master/src/sample/media/SampleAudio_0.4mb.mp3").getAbsolutePath();
-    private Playlist ActivePlaylist = new Playlist(null, 0);
     private String selectedItem, selectedPlaylist;
     private int identifier; // 1 = songlist, 2 = playlist songlist
     private boolean isPlaying = false;
@@ -135,16 +129,6 @@ public class Controller implements Initializable
         }
         playlistsongs.setItems(FXCollections.observableArrayList(songOut));
         textfieldPlDuration.setText(Playlist.durationFormat(duration));
-    }
-
-    public String stringFormat(String inputString)
-    {
-        StringBuilder sB = new StringBuilder(25);
-        sB.insert(0, inputString);
-        for (int i = 0; i < 25 - inputString.length(); i++) {
-            sB.append(" ");
-        }
-        return sB.toString();
     }
 
     @FXML
