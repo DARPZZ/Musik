@@ -7,8 +7,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.media.MediaPlayer;
 import javafx.util.Duration;
 
-import java.util.Timer;
-import java.util.TimerTask;
 public class Progress
 {
     public void beginTimer(MediaPlayer mp , Slider sliderPro)

@@ -5,23 +5,17 @@ import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.beans.InvalidationListener;
 import javafx.beans.Observable;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.EventHandler;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseEvent;
-
 import javafx.scene.media.*;
-
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.util.Duration;
-
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import java.io.*;
@@ -46,21 +40,17 @@ public class Controller implements Initializable
     ToggleButton knapStart_Pause;
 
     Progress progress = new Progress();
-    final Timeline timeline = new Timeline();
     private final Timeline TIMELINE = new Timeline();
     private MediaPlayer mp;
     private Media me;
     private String filepath = new File("DemoMediaPlayer-master/src/sample/media/SampleAudio_0.4mb.mp3").getAbsolutePath();
-    private String selectedItem, selectedPlaylist;
-    private int identifier; // 1 = songlist, 2 = playlist songlist
+    private String selectedItem, selectedPlaylist, selectedSongName;
+    private int identifier, userImageCount;
     private boolean isPlaying = false;
-    private String displayInfo;
-    private String userDirectoryPath;
+    private String displayInfo, userDirectoryPath;
     private double duration;
     private Image userImage;
-    private int userImageCount;
     private File[] pictureList;
-
 
     /**
      * This method is invoked automatically in the beginning. Used for initializing, loading data etc.
@@ -100,8 +90,6 @@ public class Controller implements Initializable
                 mp.setVolume(sliderVolume.getValue() / 100);
             }
         });
-
-
     }
 
     /**
@@ -136,12 +124,14 @@ public class Controller implements Initializable
     /**
      * Handler for the play/pause/stop button
      */
+    private void fieldSubString()
+    {
+        String endSearch = selectedItem.substring(selectedItem.indexOf(" ") + 1, selectedItem.indexOf("Artist") - 1);
+        selectedSongName = endSearch;
+    }
     public void handlerplay()
     {
-
-        String endSearch = selectedItem.substring(selectedItem.indexOf(" ") + 1, selectedItem.indexOf("Artist") - 1);
-        System.out.println(endSearch);
-
+        fieldSubString();
         if (userDirectoryPath == null)
         {
             loadBilleder();
@@ -152,19 +142,15 @@ public class Controller implements Initializable
             runUserImage();
         }
 
-        findFilePath(endSearch);
-
-        System.out.println("Now playing: " + filepath);
+        findFilePath(selectedSongName);
         textfieldInfo.setText(displayInfo);
 
         me = new Media(new File(filepath).toURI().toString());
         // Create new MediaPlayer and attach the media to be played
         mp = new MediaPlayer(me);
-
         mediaV.setMediaPlayer(mp);
 
         mp.play();
-
 
         knapPlay.setVisible(false);
         knapStart_Pause.setVisible(true);
@@ -174,46 +160,35 @@ public class Controller implements Initializable
     }
     private void playNext()
     {
-        System.out.println();
+        String newS = null;
         mp.setStartTime(Duration.ZERO);
-        String endSearch = selectedItem.substring(selectedItem.indexOf(" ") + 1, selectedItem.indexOf("Artist") - 1);
+        fieldSubString();
         int indexCheck = 0;
         switch (identifier)
         {
             case 1: {
-                ArrayList<sample.Song> songlist = new ArrayList<>(Song.getSongList());
+                ArrayList<Song> songlist = new ArrayList<>(Song.getSongList());
                 //Song.getSongList() //array af song objekts
-                for (int i = 0; i < songlist.size(); i++) {
-                    String meme = songlist.get(i).getSONG_NAME();
-                    if (endSearch.equals(meme)) {
+                for (int i = 0; i < songlist.size(); i++)
+                {
+                    if (selectedSongName.equals(songlist.get(i).getSONG_NAME()))
+                    {
                         indexCheck = i + 1;
-                        if (indexCheck >= songlist.size()) {
+                        if (indexCheck >= songlist.size())
+                        {
                             indexCheck = 0;
                         }
                         break;
                     }
                 }
-                String newS = null;
-                for (Song songs : Song.getSongList()) {
-                    if (songs.getSONG_NAME().equals(songlist.get(indexCheck).getSONG_NAME())) {
-                        findFilePath(songs.getSONG_NAME());
-                        newS = "Song: " + songs.getSONG_NAME() + " Artist";
-                        break;
-                    }
-                }
-                selectedItem = newS;
-                me = new Media(new File(filepath).toURI().toString());
-                mp = new MediaPlayer(me);
-                textfieldInfo.setText(displayInfo);
-                mp.play();
-                progress.beginTimer(mp,sliderPro);
-                mp.setOnEndOfMedia(this::playNext);
-                break;
+                newS = "Song: " + songlist.get(indexCheck).getSONG_NAME() + " Artist";
 
+                selectedItem = newS;
+                handlerplay();
+                break;
             }
             case 2://ActivePlaylist.getListPlaylist() string array
             {
-                String newS =null;
                 for (Playlist p: Playlist.objectPlaylists)
                 {
 
@@ -221,7 +196,7 @@ public class Controller implements Initializable
                     {
                         for (int i = 0; i <p.getSongID().size() ; i++)
                         {
-                            if (endSearch.equals(p.getSongName(i)))
+                            if (selectedSongName.equals(p.getSongName(i)))
                             {
                                 indexCheck =i+1;
                                 if (indexCheck >= p.getSongID().size())
@@ -230,33 +205,15 @@ public class Controller implements Initializable
                                 }
                             }
                         }
-                        for (Song songs : Song.getSongList())
-                        {
-                            if (songs.getSONG_NAME().equals(p.getSongName(indexCheck)))
-                            {
-                                findFilePath(songs.getSONG_NAME());
-                                newS = "Song: " + songs.getSONG_NAME() + " Artist";
-                                break;
-                            }
-                        }
-
+                        newS = "Song: " + p.getSongName(indexCheck) + " Artist";
                     }
                 }
                 selectedItem = newS;
-                me = new Media(new File(filepath).toURI().toString());
-                mp = new MediaPlayer(me);
-                textfieldInfo.setText(displayInfo);
-                mp.play();
-                progress.beginTimer(mp,sliderPro);
-                mp.setOnEndOfMedia(this::playNext);
+                handlerplay();
                 break;
             }
         }
     }
-
-
-
-
 
     public void handlerS_P()
     {
@@ -294,7 +251,6 @@ public class Controller implements Initializable
                 String search = searchfield.getText();
                 Song.searchSong(search);
                 publishSong();
-                // searchfield.clear();
             }
         });
     }
@@ -310,18 +266,15 @@ public class Controller implements Initializable
             mp.stop();
             isPlaying= true;
         }
-
     }
 
-    public void handlerPL_Create() // new
+    public void handlerPL_Create()
     {
         Playlist.createPlaylist(TF_PlaylistName.getText());
-        System.out.println(Playlist.PlaylistArray());
         updatePlaylistView();
-
     }
 
-    public void handlerPL_Delete() //new
+    public void handlerPL_Delete()
     {
         for (Playlist p: Playlist.objectPlaylists)
         {
@@ -335,7 +288,7 @@ public class Controller implements Initializable
         playlistsongs.getItems().clear();
     }
 
-    public void handlerPL_Rename() //new
+    public void handlerPL_Rename()
     {
         String newPlaylistName = TF_PlaylistName.getText();
         for (Playlist p : Playlist.objectPlaylists)
@@ -373,31 +326,30 @@ public class Controller implements Initializable
         knapStart_Pause.setVisible(false);
         if (isPlaying == true)
         {mp.stop();}
-
     }
 
-    public void handlerPL_add() // new
+    public void handlerPL_add()
     {
         for (Playlist p: Playlist.objectPlaylists)
         {
           if (selectedPlaylist.equals(p.getPlaylistName()))
           {
-              String endSearch = selectedItem.substring(selectedItem.indexOf(" ") + 1, selectedItem.indexOf("Artist") - 1);
-              p.addSongPlaylist(endSearch);
+              fieldSubString();
+              p.addSongPlaylist(selectedSongName);
               updatePlaylistSongView(p.getSongID());
               break;
           }
         }
     }
 
-    public void handlerPL_remove() //new
+    public void handlerPL_remove()
     {
         for (Playlist p: Playlist.objectPlaylists)
         {
             if (selectedPlaylist.equals(p.getPlaylistName()))
             {
-                String endSearch = selectedItem.substring(selectedItem.indexOf(" ") + 1, selectedItem.indexOf("Artist") - 1);
-                p.removeSongPlaylist(endSearch);
+                fieldSubString();
+                p.removeSongPlaylist(selectedSongName);
                 updatePlaylistSongView(p.getSongID());
                 break;
             }
@@ -417,7 +369,6 @@ public class Controller implements Initializable
         if (chooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
             userDirectoryPath = String.valueOf(chooser.getSelectedFile());
             pictureList = Pictures.listUserPictures(userDirectoryPath);
-            System.out.println("User picture folder path: " + userDirectoryPath);
         }
     }
 
@@ -440,11 +391,10 @@ public class Controller implements Initializable
         ArrayList<String> songName = new ArrayList<>();
         for (Song object : Song.getSongList()) {
             String duration = Playlist.durationFormat( object.getDURATION());
-            String navn = "Song: " + object.getSONG_NAME() + " Artist: " + object.getARTIST() + "Duration: " + duration;
+            String navn = "Song: " + object.getSONG_NAME() + " Artist: " + object.getARTIST() + " Duration: " + duration;
             songName.add(navn);
         }
         ObservableList<String> songs = FXCollections.observableArrayList(songName);
-
         // set the items of the list view
         sangeliste.setItems(songs);
     }
@@ -455,8 +405,10 @@ public class Controller implements Initializable
      */
     public void findFilePath(String endSearch)
     {
-        for (Song songs : Song.getSongList()) {
-            if (songs.getSONG_NAME().equals(endSearch)) {
+        for (Song songs : Song.getSongList())
+        {
+            if (songs.getSONG_NAME().equals(endSearch))
+            {
                 filepath = songs.getFILE_PATH();
                 displayInfo = songs.getARTIST() + " - " + songs.getSONG_NAME() + " - " + Playlist.durationFormat(songs.getDURATION()) + " min.";
                 duration = songs.getDURATION();
@@ -469,15 +421,14 @@ public class Controller implements Initializable
      */
     public void runUserImage()
     {
-        if (userImageCount == pictureList.length) {
+        if (userImageCount == pictureList.length)
+        {
             userImageCount = 0;
-
         }
         if (pictureList[userImageCount].toString().endsWith(".png") || pictureList[userImageCount].toString().endsWith(".jpg") || pictureList[userImageCount].toString().endsWith(".bmp"))
         {
             userImage = new Image((pictureList[userImageCount++]).toURI().toString());
             ImageV.setImage(userImage);
-            System.out.println("Displayed user image: " + userImage);
         }
         else if (pictureList.length > userImageCount + 1)
         {
@@ -486,8 +437,6 @@ public class Controller implements Initializable
             ImageV.setImage(userImage);
         }
     }
-
-
 
 }
 

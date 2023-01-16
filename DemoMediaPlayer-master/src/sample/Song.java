@@ -36,20 +36,7 @@ public class Song
     /**
      * Fills the class variable array with data from the database
      */
-    public static void createListOld()
-    {
-        DB.selectSQL("Select * from tblSong");
 
-        while (!DB.getData().equals(DB.NOMOREDATA))
-        {
-            SONG_LIST.add(new sample.Song(DB.getData(), DB.getData(), DB.getData(), Double.parseDouble(DB.getData())));
-        }
-
-        if (!SONG_LIST.isEmpty())
-        {
-            System.out.println(SONG_LIST);
-        }
-    }
     public static void createList()
     {
             DB.selectSQL("Select * from tblSong");
@@ -62,21 +49,10 @@ public class Song
                     SONG_LIST.add(new sample.Song(id, DB.getData(), DB.getData(), DB.getData(), Double.parseDouble(DB.getData())));
                 }
             }
-            System.out.println(SONG_LIST);
-
     }
-
-    public static void addSongToDB(String songName, String artist, String filePath, double duration)
-    {
-        DB.insertSQL("Insert into tblSong values('" + songName + "', '" + artist + "', '" + filePath + "', '" + duration + "');");
-        System.out.printf("%s er oprettet i databasen", songName);
-        SONG_LIST.add(new Song(songName, artist, filePath, duration));
-    }
-
     public static void searchSong(String searchString)
     {
         SONG_LIST.clear();
-
         DB.selectSQL("Select * from tblSong where fldArtistName like '%"+searchString +"%' or  fldTitel like '%"+ searchString + "%'");
         while (!DB.getData().equals(DB.NOMOREDATA))
         {

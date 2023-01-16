@@ -51,7 +51,6 @@ public class Playlist
         Playlist newPlaylist = new Playlist(name,Integer.parseInt(DB.getData()));
         DB.getData();
         objectPlaylists.add(newPlaylist);
-
     }
 
     /**
@@ -149,7 +148,6 @@ public class Playlist
     public static String durationFormat(double inputNR) //formatere int til en double i formattet tt:mm:ss
     {
          // divide by 60 to get mm.ss and cast away the seconds
-
         if (inputNR%60 >60)
         {
             int minuttes = (int)inputNR/60;
@@ -163,8 +161,6 @@ public class Playlist
             double totalSec = (inputNR%60/1.667)/100;
             return df.format(totalMinute+totalSec);
         }
-
-
     }
 
     //Break
@@ -187,7 +183,6 @@ public class Playlist
         int id = Integer.parseInt(DB.getData());
         for (int playlistID: uniquePL_ID)
         {
-
             String name = DB.getData();
             Playlist Playlistnew = new Playlist(name,id);
             Playlistnew.SongID.add(Integer.parseInt(DB.getData()));
@@ -202,10 +197,5 @@ public class Playlist
             }
             objectPlaylists.add(Playlistnew);
         }
-
-
-
-
-
     }
 }

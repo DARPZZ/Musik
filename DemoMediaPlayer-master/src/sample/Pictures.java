@@ -23,8 +23,6 @@ public class Pictures
         pictures.add("DemoMediaPlayer-master/src/sample/Billeder/bil 12.png");
         pictures.add("DemoMediaPlayer-master/src/sample/Billeder/bil 13.png");
 
-
-
       return pictures;
     }
 
