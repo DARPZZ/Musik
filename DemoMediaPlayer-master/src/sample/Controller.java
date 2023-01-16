@@ -45,7 +45,7 @@ public class Controller implements Initializable
     @FXML
     ToggleButton knapStart_Pause;
 
-
+    Progress progress = new Progress();
     final Timeline timeline = new Timeline();
     private final Timeline TIMELINE = new Timeline();
     private MediaPlayer mp;
@@ -100,6 +100,7 @@ public class Controller implements Initializable
                 mp.setVolume(sliderVolume.getValue() / 100);
             }
         });
+
 
     }
 
@@ -168,7 +169,7 @@ public class Controller implements Initializable
         knapPlay.setVisible(false);
         knapStart_Pause.setVisible(true);
         isPlaying = true;
-        beginTimer();
+        progress.beginTimer(mp,sliderPro);
         mp.setOnEndOfMedia(this::playNext);
     }
     private void playNext()
@@ -205,7 +206,7 @@ public class Controller implements Initializable
                 mp = new MediaPlayer(me);
                 textfieldInfo.setText(displayInfo);
                 mp.play();
-                beginTimer();
+                progress.beginTimer(mp,sliderPro);
                 mp.setOnEndOfMedia(this::playNext);
                 break;
 
@@ -246,7 +247,7 @@ public class Controller implements Initializable
                 mp = new MediaPlayer(me);
                 textfieldInfo.setText(displayInfo);
                 mp.play();
-                beginTimer();
+                progress.beginTimer(mp,sliderPro);
                 mp.setOnEndOfMedia(this::playNext);
                 break;
             }
@@ -486,42 +487,7 @@ public class Controller implements Initializable
         }
     }
 
-    public void beginTimer()
-    {
-        mp.currentTimeProperty().addListener(new ChangeListener<Duration>()
-        {
-            @Override
-            public void changed(ObservableValue<? extends Duration> observable, Duration oldValue, Duration newValue)
-            {
-                sliderPro.setValue(newValue.toSeconds());
-            }
-        });
-        sliderPro.setOnMousePressed(new EventHandler<MouseEvent>()
-        {
-            @Override
-            public void handle(MouseEvent event)
-            {
-                mp.seek(Duration.seconds(sliderPro.getValue()));
-            }
-        });
-        sliderPro.setOnMouseDragged(new EventHandler<MouseEvent>()
-        {
-            @Override
-            public void handle(MouseEvent event)
-            {
-                mp.seek(Duration.seconds(sliderPro.getValue()));
-            }
-        });
-        mp.setOnReady(new Runnable()
-        {
-            @Override
-            public void run()
-            {
-                Duration total = mp.getTotalDuration();
-                sliderPro.setMax(total.toSeconds());
-            }
-        });
-    }
+
 
 }
 

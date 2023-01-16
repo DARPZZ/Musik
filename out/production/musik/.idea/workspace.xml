@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="aad64f5d-ca6e-48b2-970a-a90f74be859d" name="Changes" comment="Added slider to styring af musik 1.0">
+    <list default="true" id="aad64f5d-ca6e-48b2-970a-a90f74be859d" name="Changes" comment="Lagt koden for progress bar i sin egen class">
       <change beforePath="$PROJECT_DIR$/DemoMediaPlayer-master/src/sample/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/DemoMediaPlayer-master/src/sample/Controller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DemoMediaPlayer-master/src/sample/sample.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/DemoMediaPlayer-master/src/sample/sample.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/musik/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/musik/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/musik/sample/Controller$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/musik/sample/Controller$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/musik/DemoMediaPlayer-master/src/sample/sample.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/musik/DemoMediaPlayer-master/src/sample/sample.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/musik/sample/Controller.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/musik/sample/Controller.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/musik/sample/Song.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/musik/sample/Song.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/musik/sample/sample.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/musik/sample/sample.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,18 +32,18 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "C:/Users/Rasmus T. Hermansen/Desktop/Tommy hat/DB Material Week 43/sqljdbc4.jar",
-    "project.structure.last.edited": "Libraries",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Rasmus T. Hermansen/Desktop/Musik 13-01-2023&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\Rasmus T. Hermansen\Documents\GitHub\musik\DemoMediaPlayer-master\src\sample\Billeder" />
@@ -110,7 +111,15 @@
       <workItem from="1673599140570" duration="5671000" />
       <workItem from="1673604953960" duration="157000" />
       <workItem from="1673605129622" duration="6000" />
-      <workItem from="1673605153600" duration="523000" />
+      <workItem from="1673605153600" duration="3583000" />
+      <workItem from="1673608781997" duration="88000" />
+      <workItem from="1673608888909" duration="2901000" />
+      <workItem from="1673612013000" duration="2019000" />
+      <workItem from="1673851071812" duration="73000" />
+      <workItem from="1673851175551" duration="518000" />
+      <workItem from="1673851710818" duration="1409000" />
+      <workItem from="1673853145212" duration="108000" />
+      <workItem from="1673853450596" duration="1024000" />
     </task>
     <task id="LOCAL-00001" summary="Added slideshow">
       <created>1673389249159</created>
@@ -224,7 +233,35 @@
       <option name="project" value="LOCAL" />
       <updated>1673604814108</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="Sæt max værdi">
+      <created>1673607861444</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1673607861444</updated>
+    </task>
+    <task id="LOCAL-00018" summary="Sæt max værdi 1.1">
+      <created>1673608733511</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1673608733511</updated>
+    </task>
+    <task id="LOCAL-00019" summary="Lagt koden for progress bar i sin egen class">
+      <created>1673851461445</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1673851461445</updated>
+    </task>
+    <task id="LOCAL-00020" summary="Lagt koden for progress bar i sin egen class">
+      <created>1673851840670</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1673851840670</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -259,6 +296,9 @@
     <MESSAGE value="Added ProgressBar 1.1" />
     <MESSAGE value="database fix 1.1" />
     <MESSAGE value="Added slider to styring af musik 1.0" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added slider to styring af musik 1.0" />
+    <MESSAGE value="Sæt max værdi" />
+    <MESSAGE value="Sæt max værdi 1.1" />
+    <MESSAGE value="Lagt koden for progress bar i sin egen class" />
+    <option name="LAST_COMMIT_MESSAGE" value="Lagt koden for progress bar i sin egen class" />
   </component>
 </project>
