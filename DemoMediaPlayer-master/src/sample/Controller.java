@@ -54,7 +54,7 @@ public class Controller implements Initializable
     @FXML
     ToggleButton knapStart_Pause;
 
-
+Progress progress = new Progress();
     final Timeline timeline = new Timeline();
     boolean running = true;
     private MediaPlayer mp;
@@ -169,7 +169,7 @@ public class Controller implements Initializable
         knapPlay.setVisible(false);
         knapStart_Pause.setVisible(true);
         isPlaying = true;
-        beginTimer();
+        progress.beginTimer(mp,sliderPro);
 
         /*
         mp.setOnEndOfMedia(new Runnable() {
@@ -410,43 +410,5 @@ public class Controller implements Initializable
             System.out.println("Displayed user image: " + userImage);
         }
     }
-
-    public void beginTimer()
-    {
-        mp.currentTimeProperty().addListener(new ChangeListener<Duration>()
-        {
-            @Override
-            public void changed(ObservableValue<? extends Duration> observable, Duration oldValue, Duration newValue)
-            {
-                sliderPro.setValue(newValue.toSeconds());
-            }
-        });
-        sliderPro.setOnMousePressed(new EventHandler<MouseEvent>()
-        {
-            @Override
-            public void handle(MouseEvent event)
-            {
-                mp.seek(Duration.seconds(sliderPro.getValue()));
-            }
-        });
-        sliderPro.setOnMouseDragged(new EventHandler<MouseEvent>()
-        {
-            @Override
-            public void handle(MouseEvent event)
-            {
-                mp.seek(Duration.seconds(sliderPro.getValue()));
-            }
-        });
-        mp.setOnReady(new Runnable()
-        {
-            @Override
-            public void run()
-            {
-                Duration total = mp.getTotalDuration();
-                sliderPro.setMax(total.toSeconds());
-            }
-        });
-    }
-
 }
 
