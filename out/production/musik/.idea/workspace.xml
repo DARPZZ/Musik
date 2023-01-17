@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="aad64f5d-ca6e-48b2-970a-a90f74be859d" name="Changes" comment="Audio" />
+    <list default="true" id="aad64f5d-ca6e-48b2-970a-a90f74be859d" name="Changes" comment="Fixet audio og billeder efter som det ikke virkede" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -21,6 +21,9 @@
     <option name="stateVersion" value="1" />
   </component>
   <component name="ProjectId" id="2K9ORbNsVjmdwEVzYz4sPwcmM4Z" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -41,6 +44,7 @@
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\Rasmus T. Hermansen\Documents\GitHub\musik\DemoMediaPlayer-master\src\sample\Billeder" />
+      <recent name="C:\Users\Rasmus T. Hermansen\Documents\GitHub\musik\DemoMediaPlayer-master\src\sample\media" />
     </key>
   </component>
   <component name="RunManager">
@@ -120,6 +124,7 @@
       <workItem from="1673858252896" duration="99000" />
       <workItem from="1673858845282" duration="2921000" />
       <workItem from="1673939664863" duration="98000" />
+      <workItem from="1673939779828" duration="1470000" />
     </task>
     <task id="LOCAL-00001" summary="Added slideshow">
       <created>1673389249159</created>
@@ -275,7 +280,14 @@
       <option name="project" value="LOCAL" />
       <updated>1673939736797</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="Fixet audio og billeder efter som det ikke virkede">
+      <created>1673941240247</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1673941240247</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -315,6 +327,7 @@
     <MESSAGE value="Lagt koden for progress bar i sin egen class" />
     <MESSAGE value="Lagt koden for progress bar i sin egen class 1.1" />
     <MESSAGE value="Audio" />
-    <option name="LAST_COMMIT_MESSAGE" value="Audio" />
+    <MESSAGE value="Fixet audio og billeder efter som det ikke virkede" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixet audio og billeder efter som det ikke virkede" />
   </component>
 </project>

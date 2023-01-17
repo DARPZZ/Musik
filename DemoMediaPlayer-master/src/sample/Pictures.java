@@ -22,7 +22,6 @@ public class Pictures
         pictures.add("DemoMediaPlayer-master/src/sample/Billeder/png 11.png");
         pictures.add("DemoMediaPlayer-master/src/sample/Billeder/png 12.png");
         pictures.add("DemoMediaPlayer-master/src/sample/Billeder/png 13.png");
-        System.out.println("Ronaldo");
       return pictures;
     }
 
