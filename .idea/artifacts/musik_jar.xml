@@ -1,0 +1,10 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="musik:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/musik_jar</output-path>
+    <root id="archive" name="musik.jar">
+      <element id="module-output" name="musik" />
+      <element id="library" level="project" name="lib" />
+      <element id="extracted-dir" path="$USER_HOME$/Desktop/Tommy hat/DB Material Week 43/sqljdbc4.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>
