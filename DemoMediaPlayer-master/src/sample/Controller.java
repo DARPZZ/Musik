@@ -11,8 +11,6 @@ import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.media.*;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -26,7 +24,7 @@ import java.util.*;
 public class Controller implements Initializable
 {
     @FXML
-    private MediaView mediaV;
+    MediaView mediaV;
     @FXML
     ImageView ImageV;
     @FXML
@@ -46,18 +44,14 @@ public class Controller implements Initializable
     private Media me;
     private String filepath = new File("DemoMediaPlayer-master/src/sample/media/SampleAudio_0.4mb.mp3").getAbsolutePath();
     private String selectedItem, selectedPlaylist, selectedSongName;
+    private String displayInfo, userDirectoryPath;
     private int identifier, userImageCount;
     private boolean isPlaying = false;
-    private String displayInfo, userDirectoryPath;
-    private double duration;
-    private Image userImage;
     private File[] pictureList;
 
     /**
      * This method is invoked automatically in the beginning. Used for initializing, loading data etc.
      *
-     * @param location
-     * @param resources
      */
 
     public void initialize(URL location, ResourceBundle resources)
@@ -121,15 +115,13 @@ public class Controller implements Initializable
         textfieldPlDuration.setText(Playlist.durationFormat(duration));
     }
 
-    @FXML
-    /**
-     * Handler for the play/pause/stop button
-     */
+
     private void fieldSubString()
     {
-        String endSearch = selectedItem.substring(selectedItem.indexOf(" ") + 1, selectedItem.indexOf("Artist") - 1);
-        selectedSongName = endSearch;
+        selectedSongName = selectedItem.substring(selectedItem.indexOf(" ") + 1, selectedItem.indexOf("Artist") - 1);
     }
+
+    @FXML
     public void handlerplay()
     {
         fieldSubString();
@@ -256,13 +248,13 @@ public class Controller implements Initializable
         });
     }
 
-    public void handleClickView(MouseEvent mouseEvent)
+    public void handleClickView()
     {
         selectedItem = (String) sangeliste.getSelectionModel().getSelectedItem();
         identifier = 1;
         knapPlay.setVisible(true);
         knapStart_Pause.setVisible(false);
-        if (isPlaying == true)
+        if (isPlaying)
         {
             mp.stop();
             isPlaying= true;
@@ -303,7 +295,7 @@ public class Controller implements Initializable
         updatePlaylistView();
 
     }
-    public void handlerPL_Select(MouseEvent event) //new
+    public void handlerPL_Select() //new
     {
         String selectedPL = playlistview.getSelectionModel().getSelectedItem().toString();
         for (int i = 0; i <Playlist.objectPlaylists.size() ; i++)
@@ -325,7 +317,7 @@ public class Controller implements Initializable
         identifier = 2;
         knapPlay.setVisible(true);
         knapStart_Pause.setVisible(false);
-        if (isPlaying == true)
+        if (isPlaying)
         {mp.stop();}
     }
 
@@ -402,7 +394,6 @@ public class Controller implements Initializable
 
     /**
      * Finds the filepath for the selected song
-     * @param endSearch
      */
     public void findFilePath(String endSearch)
     {
@@ -412,7 +403,6 @@ public class Controller implements Initializable
             {
                 filepath = songs.getFILE_PATH();
                 displayInfo = songs.getARTIST() + " - " + songs.getSONG_NAME() + " - " + Playlist.durationFormat(songs.getDURATION()) + " min.";
-                duration = songs.getDURATION();
             }
         }
     }
@@ -424,8 +414,11 @@ public class Controller implements Initializable
     {
         if (userImageCount == pictureList.length)
         {
+            // Resets the counter at the end of the array
             userImageCount = 0;
         }
+        Image userImage;
+        // Sets image in the image viewer if the file is an image else skips to the next
         if (pictureList[userImageCount].toString().endsWith(".png") || pictureList[userImageCount].toString().endsWith(".jpg") || pictureList[userImageCount].toString().endsWith(".bmp"))
         {
             userImage = new Image((pictureList[userImageCount++]).toURI().toString());
@@ -438,6 +431,5 @@ public class Controller implements Initializable
             ImageV.setImage(userImage);
         }
     }
-
 }
 
