@@ -5,7 +5,9 @@ import java.util.ArrayList;
 
 public class Pictures
 {
-
+    /**
+     * Create an Array that store pictures
+     */
      static ArrayList<String> pictures = new ArrayList<>();
     public static ArrayList<String> addPictures()
     {

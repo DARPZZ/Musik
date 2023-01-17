@@ -15,6 +15,7 @@ public class Main extends Application
         primaryStage.setTitle("DAS MUSIC PLAYA");
         primaryStage.setScene(new Scene(root, 1280, 720));
         primaryStage.show();
+
     }
 
     public static void main(String[] args)

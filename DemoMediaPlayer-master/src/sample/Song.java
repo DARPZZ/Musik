@@ -50,6 +50,11 @@ public class Song
                 }
             }
     }
+
+    /**
+     * Allows the user to search for both artist and titel of a song
+     * @param searchString the text feild that gets the user input
+     */
     public static void searchSong(String searchString)
     {
         SONG_LIST.clear();

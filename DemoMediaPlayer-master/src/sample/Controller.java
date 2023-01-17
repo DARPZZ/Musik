@@ -76,7 +76,9 @@ public class Controller implements Initializable
         playlistview.setItems(FXCollections.observableArrayList(Playlist.PlaylistArray()));
         playlistview.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
         playlistsongs.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
-
+/**
+ * Allows the user to selecet another volume insted of 100%
+ */
         sliderVolume.valueProperty().addListener(new InvalidationListener()
         {
             @Override
@@ -134,7 +136,6 @@ public class Controller implements Initializable
             TIMELINE.stop();
             runUserImage();
         }
-
         findFilePath(selectedSongName);
         textfieldInfo.setText(displayInfo);
 
@@ -233,6 +234,9 @@ public class Controller implements Initializable
 
     }
 
+    /**
+     * The user can search for what they would like
+     */
     public void handlerSearch()
     {
         searchfield.setOnKeyPressed(handlerSearch ->
@@ -364,6 +368,10 @@ public class Controller implements Initializable
             pictureList = Pictures.listUserPictures(userDirectoryPath);
         }
     }
+
+    /**
+     * Loading pictures random of an Array list, and display random every 5 sec
+     */
 
     public void loadBilleder()
     {
