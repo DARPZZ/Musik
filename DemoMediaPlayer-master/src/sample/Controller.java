@@ -99,7 +99,9 @@ public class Controller implements Initializable
     {
         playlistview.setItems(FXCollections.observableArrayList(Playlist.PlaylistArray()));
     }
-
+    /**
+     * Method updates the song view for the current playlist
+     */
     public void updatePlaylistSongView(ArrayList<Integer> i) //new
     {
         int duration =0;
@@ -129,6 +131,10 @@ public class Controller implements Initializable
         String endSearch = selectedItem.substring(selectedItem.indexOf(" ") + 1, selectedItem.indexOf("Artist") - 1);
         selectedSongName = endSearch;
     }
+
+    /**
+     * Creates the MP object, and starts playing the MP.
+     */
     public void handlerplay()
     {
         fieldSubString();
@@ -158,6 +164,10 @@ public class Controller implements Initializable
         progress.beginTimer(mp,sliderPro);
         mp.setOnEndOfMedia(this::playNext);
     }
+
+    /**
+     * recreates the MP object with the next song ind either the playlist or songlist
+     */
     private void playNext()
     {
         String newS = null;
@@ -167,13 +177,13 @@ public class Controller implements Initializable
         switch (identifier)
         {
             case 1: {
-                ArrayList<Song> songlist = new ArrayList<>(Song.getSongList());
+                ArrayList<Song> songlist = new ArrayList<>(Song.getSongList()); // makes an array with all the songs
                 //Song.getSongList() //array af song objekts
                 for (int i = 0; i < songlist.size(); i++)
                 {
-                    if (selectedSongName.equals(songlist.get(i).getSONG_NAME()))
+                    if (selectedSongName.equals(songlist.get(i).getSONG_NAME())) // checks the name of the song against the currently playing song
                     {
-                        indexCheck = i + 1;
+                        indexCheck = i + 1; // add one to the current index and if out of index wraps around.
                         if (indexCheck >= songlist.size())
                         {
                             indexCheck = 0;
@@ -189,10 +199,10 @@ public class Controller implements Initializable
             }
             case 2://ActivePlaylist.getListPlaylist() string array
             {
-                for (Playlist p: Playlist.objectPlaylists)
+                for (Playlist p: Playlist.objectPlaylists) // goes through the playlists
                 {
 
-                    if (selectedPlaylist.equals(p.getPlaylistName()))
+                    if (selectedPlaylist.equals(p.getPlaylistName())) // does the same as above
                     {
                         for (int i = 0; i <p.getSongID().size() ; i++)
                         {
@@ -214,7 +224,9 @@ public class Controller implements Initializable
             }
         }
     }
-
+    /**
+     * Starts and Pauses the playing song
+     */
     public void handlerS_P()
     {
         if (knapStart_Pause.isSelected()) {
@@ -227,7 +239,9 @@ public class Controller implements Initializable
         TIMELINE.getKeyFrames().clear();
     }
 
-
+    /**
+     * Stops the song, requiring a new play to start again
+     */
     public void handlerStop()
     {
         mp.stop();
@@ -240,6 +254,9 @@ public class Controller implements Initializable
 
     }
 
+    /**
+     * harvests the input in the search field
+     */
     public void handlerSearch()
     {
         searchfield.setOnKeyPressed(handlerSearch ->
@@ -255,6 +272,10 @@ public class Controller implements Initializable
         });
     }
 
+    /**
+     * Changes the song from the song list
+     * @param mouseEvent
+     */
     public void handleClickView(MouseEvent mouseEvent)
     {
         selectedItem = (String) sangeliste.getSelectionModel().getSelectedItem();
@@ -268,12 +289,18 @@ public class Controller implements Initializable
         }
     }
 
+    /**
+     * Creates a new playlist object and adds it to the sever
+     */
     public void handlerPL_Create()
     {
         Playlist.createPlaylist(TF_PlaylistName.getText());
         updatePlaylistView();
     }
 
+    /**
+     * Deletes the playlist
+     */
     public void handlerPL_Delete()
     {
         for (Playlist p: Playlist.objectPlaylists)
@@ -288,6 +315,9 @@ public class Controller implements Initializable
         playlistsongs.getItems().clear();
     }
 
+    /**
+     * Renames the playlist object and updates the server
+     */
     public void handlerPL_Rename()
     {
         String newPlaylistName = TF_PlaylistName.getText();
@@ -302,6 +332,11 @@ public class Controller implements Initializable
         updatePlaylistView();
 
     }
+
+    /**
+     * selects new playlist
+     * @param event
+     */
     public void handlerPL_Select(MouseEvent event) //new
     {
         String selectedPL = playlistview.getSelectionModel().getSelectedItem().toString();
@@ -315,6 +350,9 @@ public class Controller implements Initializable
         selectedPlaylist = selectedPL;
     }
 
+    /**
+     * Selects a new song from a playlist
+     */
     public void handlerPLsong_Select()
     {
         String selectedPLsong = playlistsongs.getSelectionModel().getSelectedItem().toString();
@@ -328,6 +366,9 @@ public class Controller implements Initializable
         {mp.stop();}
     }
 
+    /**
+     * Adds a new song to a playlist, object and server
+     */
     public void handlerPL_add()
     {
         for (Playlist p: Playlist.objectPlaylists)
@@ -342,6 +383,9 @@ public class Controller implements Initializable
         }
     }
 
+    /**
+     * removes a song from a playlist and server
+     */
     public void handlerPL_remove()
     {
         for (Playlist p: Playlist.objectPlaylists)
@@ -371,7 +415,9 @@ public class Controller implements Initializable
             pictureList = Pictures.listUserPictures(userDirectoryPath);
         }
     }
-
+    /**
+     * randomly show pictures from the default file-folder every 5 sec.
+     */
     public void loadBilleder()
     {
         Random random = new Random();

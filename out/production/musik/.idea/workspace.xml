@@ -1,12 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="ArtifactsWorkspaceSettings">
+    <artifacts-to-build>
+      <artifact name="musik:jar" />
+    </artifacts-to-build>
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="aad64f5d-ca6e-48b2-970a-a90f74be859d" name="Changes" comment="Lagt koden for progress bar i sin egen class">
-      <change beforePath="$PROJECT_DIR$/DemoMediaPlayer-master/src/sample/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/DemoMediaPlayer-master/src/sample/Controller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DemoMediaPlayer-master/src/sample/sample.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/DemoMediaPlayer-master/src/sample/sample.fxml" afterDir="false" />
+    <list default="true" id="92516457-40cd-4c4a-8e71-293754c6a170" name="Changes" comment="cleanup">
+      <change afterPath="$PROJECT_DIR$/.idea/artifacts/musik_jar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/musik.iml" beforeDir="false" afterPath="$PROJECT_DIR$/musik.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/musik/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/musik/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/musik/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/musik/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/musik/DemoMediaPlayer-master/src/sample/sample.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/musik/DemoMediaPlayer-master/src/sample/sample.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/musik/musik.iml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/musik/musik.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/musik/sample/Controller$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/musik/sample/Controller$1.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/musik/sample/Controller.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/musik/sample/Controller.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/musik/sample/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/musik/sample/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/musik/sample/Pictures.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/musik/sample/Pictures.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/musik/sample/Playlist.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/musik/sample/Playlist.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/musik/sample/Song.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/musik/sample/Song.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/musik/sample/sample.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/musik/sample/sample.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -14,254 +27,290 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="FileTemplateManagerImpl">
-    <option name="RECENT_TEMPLATES">
-      <list>
-        <option value="Class" />
-      </list>
-    </option>
-  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
-  <component name="ProjectId" id="2K9ORbNsVjmdwEVzYz4sPwcmM4Z" />
+  <component name="ProjectId" id="2K5FPnzXdYPJooWjX1s8jbXYVup" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/Rasmus T. Hermansen/Desktop/Musik 13-01-2023&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "C:/Java/DBv2",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "run.code.analysis.last.selected.profile": "pProject Default"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\Rasmus T. Hermansen\Documents\GitHub\musik\DemoMediaPlayer-master\src\sample\Billeder" />
+      <recent name="C:\Java\MediaPlayer_uge1\musik\DemoMediaPlayer-master\src\sample" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Application.Main2">
     <configuration name="Main" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="sample.Main" />
+      <module name="musik" />
+      <option name="VM_PARAMETERS" value="--module-path ${PATH_TO_FX} --add-modules javafx.fxml,javafx.controls,javafx.graphics" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Main2" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="sample.Main" />
       <module name="musik" />
       <method v="2">
         <option name="Make" enabled="true" />
-        <option name="com.soywiz.korge.intellij.UpdateResourceBeforeRunTask" enabled="false" />
       </method>
     </configuration>
+    <list>
+      <item itemvalue="Application.Main2" />
+      <item itemvalue="Application.Main" />
+    </list>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="aad64f5d-ca6e-48b2-970a-a90f74be859d" name="Changes" comment="" />
-      <created>1673383330269</created>
+      <changelist id="92516457-40cd-4c4a-8e71-293754c6a170" name="Changes" comment="" />
+      <created>1673256515784</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1673383330269</updated>
-      <workItem from="1673383332225" duration="6106000" />
-      <workItem from="1673426079323" duration="2680000" />
-      <workItem from="1673428805015" duration="51000" />
-      <workItem from="1673428870771" duration="187000" />
-      <workItem from="1673429076123" duration="42000" />
-      <workItem from="1673429244919" duration="2421000" />
-      <workItem from="1673431725989" duration="1573000" />
-      <workItem from="1673433418679" duration="95000" />
-      <workItem from="1673433526951" duration="1008000" />
-      <workItem from="1673434558090" duration="4494000" />
-      <workItem from="1673439179577" duration="440000" />
-      <workItem from="1673440657134" duration="682000" />
-      <workItem from="1673441359113" duration="110000" />
-      <workItem from="1673441494360" duration="487000" />
-      <workItem from="1673442098111" duration="646000" />
-      <workItem from="1673442779188" duration="894000" />
-      <workItem from="1673443726385" duration="180000" />
-      <workItem from="1673444424404" duration="46000" />
-      <workItem from="1673445558063" duration="37000" />
-      <workItem from="1673445609201" duration="465000" />
-      <workItem from="1673446194617" duration="585000" />
-      <workItem from="1673446903967" duration="65000" />
-      <workItem from="1673447065434" duration="243000" />
-      <workItem from="1673447378751" duration="299000" />
-      <workItem from="1673447767162" duration="41000" />
-      <workItem from="1673447835634" duration="374000" />
-      <workItem from="1673462082288" duration="3000" />
-      <workItem from="1673462103784" duration="621000" />
-      <workItem from="1673462747528" duration="3589000" />
-      <workItem from="1673512380884" duration="921000" />
-      <workItem from="1673513362199" duration="9658000" />
-      <workItem from="1673523135389" duration="32000" />
-      <workItem from="1673523190270" duration="176000" />
-      <workItem from="1673523379005" duration="21000" />
-      <workItem from="1673523677803" duration="319000" />
-      <workItem from="1673524015028" duration="320000" />
-      <workItem from="1673524349765" duration="227000" />
-      <workItem from="1673524805988" duration="84000" />
-      <workItem from="1673524902983" duration="2000" />
-      <workItem from="1673524923311" duration="291000" />
-      <workItem from="1673525239567" duration="327000" />
-      <workItem from="1673599140570" duration="5671000" />
-      <workItem from="1673604953960" duration="157000" />
-      <workItem from="1673605129622" duration="6000" />
-      <workItem from="1673605153600" duration="3583000" />
-      <workItem from="1673608781997" duration="88000" />
-      <workItem from="1673608888909" duration="2901000" />
-      <workItem from="1673612013000" duration="2019000" />
-      <workItem from="1673851071812" duration="73000" />
-      <workItem from="1673851175551" duration="518000" />
-      <workItem from="1673851710818" duration="1409000" />
-      <workItem from="1673853145212" duration="108000" />
-      <workItem from="1673853450596" duration="1024000" />
+      <updated>1673256515784</updated>
+      <workItem from="1673256517136" duration="5102000" />
+      <workItem from="1673263854286" duration="492000" />
+      <workItem from="1673264988983" duration="1353000" />
+      <workItem from="1673267724907" duration="977000" />
+      <workItem from="1673269884743" duration="92000" />
+      <workItem from="1673270074591" duration="18889000" />
+      <workItem from="1673362785234" duration="16561000" />
+      <workItem from="1673427646642" duration="10131000" />
+      <workItem from="1673443368335" duration="1585000" />
+      <workItem from="1673445334450" duration="62780000" />
+      <workItem from="1673864613562" duration="81000" />
+      <workItem from="1674120482713" duration="70000" />
+      <workItem from="1674123232402" duration="126000" />
     </task>
-    <task id="LOCAL-00001" summary="Added slideshow">
-      <created>1673389249159</created>
+    <task id="LOCAL-00001" summary="Playlist commit 1.0">
+      <created>1673258981512</created>
       <option name="number" value="00001" />
       <option name="presentableId" value="LOCAL-00001" />
       <option name="project" value="LOCAL" />
-      <updated>1673389249159</updated>
+      <updated>1673258981512</updated>
     </task>
-    <task id="LOCAL-00002" summary="Added flere billeder">
-      <created>1673427910588</created>
+    <task id="LOCAL-00002" summary="Playlist commit 1.0">
+      <created>1673259408950</created>
       <option name="number" value="00002" />
       <option name="presentableId" value="LOCAL-00002" />
       <option name="project" value="LOCAL" />
-      <updated>1673427910588</updated>
+      <updated>1673259408950</updated>
     </task>
-    <task id="LOCAL-00003" summary="Added flere billeder 1.1">
-      <created>1673428770937</created>
+    <task id="LOCAL-00003" summary="Playlist commit 1.0">
+      <created>1673263632241</created>
       <option name="number" value="00003" />
       <option name="presentableId" value="LOCAL-00003" />
       <option name="project" value="LOCAL" />
-      <updated>1673428770937</updated>
+      <updated>1673263632241</updated>
     </task>
-    <task id="LOCAL-00004" summary="Tilføjet de rigtige databse filer til branch">
-      <created>1673428990111</created>
+    <task id="LOCAL-00004" summary="Playlist commit 1.0&#10;ARGRGARHGHHGFHG HEKP ME!">
+      <created>1673270632853</created>
       <option name="number" value="00004" />
       <option name="presentableId" value="LOCAL-00004" />
       <option name="project" value="LOCAL" />
-      <updated>1673428990112</updated>
+      <updated>1673270632853</updated>
     </task>
-    <task id="LOCAL-00005" summary="Code dupe fix">
-      <created>1673433036302</created>
+    <task id="LOCAL-00005" summary="Playlist commit 1.1">
+      <created>1673352339582</created>
       <option name="number" value="00005" />
       <option name="presentableId" value="LOCAL-00005" />
       <option name="project" value="LOCAL" />
-      <updated>1673433036302</updated>
+      <updated>1673352339582</updated>
     </task>
-    <task id="LOCAL-00006" summary="Tilføjet de rigtige billeder og lavet en volume button">
-      <created>1673439045506</created>
+    <task id="LOCAL-00006" summary="Playlist commit 1.1">
+      <created>1673352932080</created>
       <option name="number" value="00006" />
       <option name="presentableId" value="LOCAL-00006" />
       <option name="project" value="LOCAL" />
-      <updated>1673439045506</updated>
+      <updated>1673352932080</updated>
     </task>
-    <task id="LOCAL-00007" summary="Fix volume controle">
-      <created>1673439089011</created>
+    <task id="LOCAL-00007" summary="Playlist commit 1.2&#10;Playlist selectable, and songlist implimented">
+      <created>1673357831141</created>
       <option name="number" value="00007" />
       <option name="presentableId" value="LOCAL-00007" />
       <option name="project" value="LOCAL" />
-      <updated>1673439089011</updated>
+      <updated>1673357831141</updated>
     </task>
-    <task id="LOCAL-00008" summary="Fix handler for volume">
-      <created>1673439380673</created>
+    <task id="LOCAL-00008" summary="Playlist commit test">
+      <created>1673363247053</created>
       <option name="number" value="00008" />
       <option name="presentableId" value="LOCAL-00008" />
       <option name="project" value="LOCAL" />
-      <updated>1673439380673</updated>
+      <updated>1673363247053</updated>
     </task>
-    <task id="LOCAL-00009" summary="billede fix 1.1">
-      <created>1673443865086</created>
+    <task id="LOCAL-00009" summary="Playlist commit 1.1 &#10;Create, Delete, Rename should work">
+      <created>1673364165346</created>
       <option name="number" value="00009" />
       <option name="presentableId" value="LOCAL-00009" />
       <option name="project" value="LOCAL" />
-      <updated>1673443865086</updated>
+      <updated>1673364165346</updated>
     </task>
-    <task id="LOCAL-00010" summary="billede fix 1.2">
-      <created>1673446936911</created>
+    <task id="LOCAL-00010" summary="Playlist commit 1.1.1&#10;Create, Delete, Rename should work'&#10;SQL navngivning updated">
+      <created>1673368157796</created>
       <option name="number" value="00010" />
       <option name="presentableId" value="LOCAL-00010" />
       <option name="project" value="LOCAL" />
-      <updated>1673446936911</updated>
+      <updated>1673368157796</updated>
     </task>
-    <task id="LOCAL-00011" summary="Add increments to slider">
-      <created>1673465862186</created>
+    <task id="LOCAL-00011" summary="Playlist commit 1.2&#10;Alt virker*">
+      <created>1673375224538</created>
       <option name="number" value="00011" />
       <option name="presentableId" value="LOCAL-00011" />
       <option name="project" value="LOCAL" />
-      <updated>1673465862186</updated>
+      <updated>1673375224538</updated>
     </task>
-    <task id="LOCAL-00012" summary="Add increments to slider 1.1">
-      <created>1673466335311</created>
+    <task id="LOCAL-00012" summary="Playlist commit 1.3&#10;Duration implimenteret*&#10;Mangler noget layout, det er lidt ugly&#10;List view er langsom">
+      <created>1673383747218</created>
       <option name="number" value="00012" />
       <option name="presentableId" value="LOCAL-00012" />
       <option name="project" value="LOCAL" />
-      <updated>1673466335311</updated>
+      <updated>1673383747218</updated>
     </task>
-    <task id="LOCAL-00013" summary="Added ProgressBar">
-      <created>1673519301009</created>
+    <task id="LOCAL-00013" summary="Playlist commit 1.3&#10;Duration implimenteret*&#10;Mangler noget layout, det er lidt ugly&#10;List view er langsom">
+      <created>1673383875848</created>
       <option name="number" value="00013" />
       <option name="presentableId" value="LOCAL-00013" />
       <option name="project" value="LOCAL" />
-      <updated>1673519301009</updated>
+      <updated>1673383875848</updated>
     </task>
-    <task id="LOCAL-00014" summary="Added ProgressBar 1.1">
-      <created>1673522578080</created>
+    <task id="LOCAL-00014" summary="Playlist commit 1.3.1&#10;play funktion">
+      <created>1673386560026</created>
       <option name="number" value="00014" />
       <option name="presentableId" value="LOCAL-00014" />
       <option name="project" value="LOCAL" />
-      <updated>1673522578080</updated>
+      <updated>1673386560026</updated>
     </task>
-    <task id="LOCAL-00015" summary="database fix 1.1">
-      <created>1673523912565</created>
+    <task id="LOCAL-00015" summary="Playlist commit 1.3.2">
+      <created>1673433149728</created>
       <option name="number" value="00015" />
       <option name="presentableId" value="LOCAL-00015" />
       <option name="project" value="LOCAL" />
-      <updated>1673523912565</updated>
+      <updated>1673433149728</updated>
     </task>
-    <task id="LOCAL-00016" summary="Added slider to styring af musik 1.0">
-      <created>1673604814108</created>
+    <task id="LOCAL-00016" summary="Playlist commit 1.3.2">
+      <created>1673441552359</created>
       <option name="number" value="00016" />
       <option name="presentableId" value="LOCAL-00016" />
       <option name="project" value="LOCAL" />
-      <updated>1673604814108</updated>
+      <updated>1673441552359</updated>
     </task>
-    <task id="LOCAL-00017" summary="Sæt max værdi">
-      <created>1673607861444</created>
+    <task id="LOCAL-00017" summary="Playlist commit 1.3.2">
+      <created>1673445422033</created>
       <option name="number" value="00017" />
       <option name="presentableId" value="LOCAL-00017" />
       <option name="project" value="LOCAL" />
-      <updated>1673607861444</updated>
+      <updated>1673445422033</updated>
     </task>
-    <task id="LOCAL-00018" summary="Sæt max værdi 1.1">
-      <created>1673608733511</created>
+    <task id="LOCAL-00018" summary="Playlist commit 1.3.3">
+      <created>1673447052064</created>
       <option name="number" value="00018" />
       <option name="presentableId" value="LOCAL-00018" />
       <option name="project" value="LOCAL" />
-      <updated>1673608733511</updated>
+      <updated>1673447052064</updated>
     </task>
-    <task id="LOCAL-00019" summary="Lagt koden for progress bar i sin egen class">
-      <created>1673851461445</created>
+    <task id="LOCAL-00019" summary="Playlist commit 1.3.4">
+      <created>1673452374642</created>
       <option name="number" value="00019" />
       <option name="presentableId" value="LOCAL-00019" />
       <option name="project" value="LOCAL" />
-      <updated>1673851461445</updated>
+      <updated>1673452374642</updated>
     </task>
-    <task id="LOCAL-00020" summary="Lagt koden for progress bar i sin egen class">
-      <created>1673851840670</created>
+    <task id="LOCAL-00020" summary="Playlist commit toggle knap">
+      <created>1673522775370</created>
       <option name="number" value="00020" />
       <option name="presentableId" value="LOCAL-00020" />
       <option name="project" value="LOCAL" />
-      <updated>1673851840670</updated>
+      <updated>1673522775370</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="Playlist commit toggle knap">
+      <created>1673522821307</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1673522821307</updated>
+    </task>
+    <task id="LOCAL-00022" summary="Playlist commit toggle knap">
+      <created>1673602219152</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1673602219152</updated>
+    </task>
+    <task id="LOCAL-00023" summary="Playlist commit toggle knap">
+      <created>1673603465210</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1673603465210</updated>
+    </task>
+    <task id="LOCAL-00024" summary="Playlist commit toggle knap">
+      <created>1673603476165</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1673603476165</updated>
+    </task>
+    <task id="LOCAL-00025" summary="Playlist autoplay">
+      <created>1673612249180</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1673612249180</updated>
+    </task>
+    <task id="LOCAL-00026" summary="Playlist refactor&#10;songid implemented in Song.jar">
+      <created>1673792037721</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1673792037721</updated>
+    </task>
+    <task id="LOCAL-00027" summary="Ronaldo er død">
+      <created>1673792423936</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1673792423936</updated>
+    </task>
+    <task id="LOCAL-00028" summary="Autoplay, progress bar and songinfo implemented">
+      <created>1673796319380</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1673796319380</updated>
+    </task>
+    <task id="LOCAL-00029" summary="cleanup">
+      <created>1673859176004</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1673859176004</updated>
+    </task>
+    <task id="LOCAL-00030" summary="cleanup">
+      <created>1673862455455</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1673862455455</updated>
+    </task>
+    <option name="localTasksCounter" value="31" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -279,26 +328,25 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Added slideshow" />
-    <MESSAGE value="Added flere billeder" />
-    <MESSAGE value="Added flere billeder 1.1" />
-    <MESSAGE value="Tilføjet de rigtige databse filer til branch" />
-    <MESSAGE value="Code dupe fix" />
-    <MESSAGE value="Code dupe fix 1.1" />
-    <MESSAGE value="Tilføjet de rigtige billeder og lavet en volume button" />
-    <MESSAGE value="Fix volume controle" />
-    <MESSAGE value="Fix handler for volume" />
-    <MESSAGE value="billede fix 1.1" />
-    <MESSAGE value="billede fix 1.2" />
-    <MESSAGE value="Add increments to slider" />
-    <MESSAGE value="Add increments to slider 1.1" />
-    <MESSAGE value="Added ProgressBar" />
-    <MESSAGE value="Added ProgressBar 1.1" />
-    <MESSAGE value="database fix 1.1" />
-    <MESSAGE value="Added slider to styring af musik 1.0" />
-    <MESSAGE value="Sæt max værdi" />
-    <MESSAGE value="Sæt max værdi 1.1" />
-    <MESSAGE value="Lagt koden for progress bar i sin egen class" />
-    <option name="LAST_COMMIT_MESSAGE" value="Lagt koden for progress bar i sin egen class" />
+    <MESSAGE value="Playlist commit 1.0" />
+    <MESSAGE value="Playlist commit 1.0&#10;ARGRGARHGHHGFHG HEKP ME!" />
+    <MESSAGE value="Playlist commit 1.1" />
+    <MESSAGE value="Playlist commit 1.2&#10;Playlist selectable, and songlist implimented" />
+    <MESSAGE value="Playlist commit test" />
+    <MESSAGE value="Playlist commit 1.1 &#10;Create, Delete, Rename should work" />
+    <MESSAGE value="Playlist commit 1.1.1&#10;Create, Delete, Rename should work'&#10;SQL navngivning updated" />
+    <MESSAGE value="Playlist commit 1.2&#10;Alt virker*" />
+    <MESSAGE value="Playlist commit 1.3&#10;Duration implimenteret*&#10;Mangler noget layout, det er lidt ugly&#10;List view er langsom" />
+    <MESSAGE value="Playlist commit 1.3.1&#10;play funktion" />
+    <MESSAGE value="Playlist commit 1.3.2" />
+    <MESSAGE value="Playlist commit 1.3.3" />
+    <MESSAGE value="Playlist commit 1.3.4" />
+    <MESSAGE value="Playlist commit toggle knap" />
+    <MESSAGE value="Playlist autoplay" />
+    <MESSAGE value="Playlist refactor&#10;songid implemented in Song.jar" />
+    <MESSAGE value="Ronaldo er død" />
+    <MESSAGE value="Autoplay, progress bar and songinfo implemented" />
+    <MESSAGE value="cleanup" />
+    <option name="LAST_COMMIT_MESSAGE" value="cleanup" />
   </component>
 </project>

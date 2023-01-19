@@ -163,7 +163,9 @@ public class Playlist
         }
     }
 
-    //Break
+    /**
+     * The initialize process gathers all the data from SQL and initialize the objects
+     */
     public static void initialize() // Breaks if there are no playlist, could be wrapped in an if statement to avoid
     {
         //SQL Selects the count of playlist as first result, and the distinct id as the rest
