@@ -36,6 +36,7 @@ public class Song
     /**
      * Fills the class variable array with data from the database
      */
+
     public static void createList()
     {
             DB.selectSQL("Select * from tblSong");
@@ -51,8 +52,8 @@ public class Song
     }
 
     /**
-     * reformats the visual list of songs.
-     * @param searchString <- The inputted keyword
+     * Allows the user to search for both artist and titel of a song
+     * @param searchString the text feild that gets the user input
      */
     public static void searchSong(String searchString)
     {

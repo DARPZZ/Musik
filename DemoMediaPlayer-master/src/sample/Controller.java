@@ -25,7 +25,7 @@ import java.util.*;
 public class Controller implements Initializable
 {
     @FXML
-    private MediaView mediaV;
+    MediaView mediaV;
     @FXML
     ImageView ImageV;
     @FXML
@@ -45,18 +45,14 @@ public class Controller implements Initializable
     private Media me;
     private String filepath = new File("DemoMediaPlayer-master/src/sample/media/SampleAudio_0.4mb.mp3").getAbsolutePath();
     private String selectedItem, selectedPlaylist, selectedSongName;
+    private String displayInfo, userDirectoryPath;
     private int identifier, userImageCount;
     private boolean isPlaying = false;
-    private String displayInfo, userDirectoryPath;
-    private double duration;
-    private Image userImage;
     private File[] pictureList;
 
     /**
      * This method is invoked automatically in the beginning. Used for initializing, loading data etc.
      *
-     * @param location
-     * @param resources
      */
 
     public void initialize(URL location, ResourceBundle resources)
@@ -81,7 +77,9 @@ public class Controller implements Initializable
         playlistview.setItems(FXCollections.observableArrayList(Playlist.PlaylistArray()));
         playlistview.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
         playlistsongs.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
-
+/**
+ * Allows the user to selecet another volume insted of 100%
+ */
         sliderVolume.valueProperty().addListener(new InvalidationListener()
         {
             @Override
@@ -131,6 +129,8 @@ public class Controller implements Initializable
         String endSearch = selectedItem.substring(selectedItem.indexOf(" ") + 1, selectedItem.indexOf("Artist") - 1);
         selectedSongName = endSearch;
     }
+
+    @FXML
 
     /**
      * Creates the MP object, and starts playing the MP.
@@ -255,7 +255,7 @@ public class Controller implements Initializable
     }
 
     /**
-     * harvests the input in the search field
+     * The user can search for what they would like
      */
     public void handlerSearch()
     {
@@ -282,7 +282,7 @@ public class Controller implements Initializable
         identifier = 1;
         knapPlay.setVisible(true);
         knapStart_Pause.setVisible(false);
-        if (isPlaying == true)
+        if (isPlaying)
         {
             mp.stop();
             isPlaying= true;
@@ -362,7 +362,7 @@ public class Controller implements Initializable
         identifier = 2;
         knapPlay.setVisible(true);
         knapStart_Pause.setVisible(false);
-        if (isPlaying == true)
+        if (isPlaying)
         {mp.stop();}
     }
 
@@ -415,9 +415,11 @@ public class Controller implements Initializable
             pictureList = Pictures.listUserPictures(userDirectoryPath);
         }
     }
+
     /**
-     * randomly show pictures from the default file-folder every 5 sec.
+     * Loading pictures random of an Array list, and display random every 5 sec
      */
+
     public void loadBilleder()
     {
         Random random = new Random();
@@ -457,7 +459,6 @@ public class Controller implements Initializable
             {
                 filepath = songs.getFILE_PATH();
                 displayInfo = songs.getARTIST() + " - " + songs.getSONG_NAME() + " - " + Playlist.durationFormat(songs.getDURATION()) + " min.";
-                duration = songs.getDURATION();
             }
         }
     }
@@ -469,8 +470,11 @@ public class Controller implements Initializable
     {
         if (userImageCount == pictureList.length)
         {
+            // Resets the counter at the end of the array
             userImageCount = 0;
         }
+        Image userImage;
+        // Sets image in the image viewer if the file is an image else skips to the next
         if (pictureList[userImageCount].toString().endsWith(".png") || pictureList[userImageCount].toString().endsWith(".jpg") || pictureList[userImageCount].toString().endsWith(".bmp"))
         {
             userImage = new Image((pictureList[userImageCount++]).toURI().toString());
@@ -483,6 +487,5 @@ public class Controller implements Initializable
             ImageV.setImage(userImage);
         }
     }
-
 }
 
